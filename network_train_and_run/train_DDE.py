@@ -29,7 +29,7 @@ args = parser.parse_args()
 #USE_CUDA = False
 USE_CUDA = torch.cuda.is_available()
 print("balin-->", USE_CUDA)
-device = torch.device("cuda:1" if USE_CUDA else "cpu")
+device = torch.device("cuda:0" if USE_CUDA else "cpu")
 
 Patch_H = 128
 Patch_W = 128
@@ -108,7 +108,7 @@ def saveBImg(DirList, batchIDs, imgBatch, maskBatch, saveDir):
         saveN = saveDir + p[-1]
         rst = imgBatch[c, 0:3, :, :] * torch.tensor(vgg_std).view(-1, 1, 1).to(device) + \
               torch.tensor(vgg_mean).view(-1, 1, 1).to(device)
-        save_image(rst*maskBatch[c], filename=saveN)
+        save_image(rst*maskBatch[c], fp=saveN)
         c = c+1
     return
 
@@ -122,9 +122,9 @@ BMatIDs = [0 for _ in range(BSize)]
     3: Chiffon_Silk, 4: DenimLight
 '''
 train_RefMat = [0, 0, 0, 1, 2, 1, 2, 1, 2, 3, 4, 3, 4, 3, 4]
-train_inDir = '../TrainData/TT_InfoPatch/APT_in/'
-train_maskDir = '../TrainData/TT_InfoPatch/APT_Mask/'
-train_stylDir = '../TrainData/TT_InfoPatch/APT_gt/'
+train_inDir = '../TrainData/MatCC/e__in/'
+train_maskDir = '../TrainData/MatCC/e__Mask/'
+train_stylDir = '../TrainData/MatCC/e__gt/'
 #train_InfoDir = ['../TrainData/TT_InfoPatch/APT_in_b/1/', '../TrainData/TT_InfoPatch/APT_in_a/1/']
 #train_InfoDir = ['../Data/case_1/Chamuse/InfoPatch/P_JJ/'+str(i) + '/' for i in range(NumInfoMap)]
 train_InfoDir = []
@@ -143,9 +143,9 @@ print(TrainKK)
     0: Chamuse_Silk, 1: WoolMelton, 2: Knit_Terry
 '''
 test_RefMat = [0, 1, 2]
-test_inDir = '../TrainData/TT_InfoPatch/PE_in/'
-test_maskDir = '../TrainData/TT_InfoPatch/PE_Mask/'
-test_stylDir = '../TrainData/TT_InfoPatch/PE_gt/'
+test_inDir = '../TrainData/MatCC/e__in/'
+test_maskDir = '../TrainData/MatCC/e__Mask/'
+test_stylDir = '../TrainData/MatCC/e__gt/'
 #test_InfoDir = ['../TrainData/TT_InfoPatch/PE_in_b/1/', '../TrainData/TT_InfoPatch/PE_in_a/1/']
 #test_InfoDir = ['../Data/case_1/Chamuse/InfoPatch/T_JJ/'+str(i) + '/' for i in range(NumInfoMap)]
 test_InfoDir = []
@@ -257,7 +257,7 @@ betit = -1
 # print("begLoss: " + str(best) + " >> begIter: " + str(betit))
 
 if IFTRAIN:
-    IFSumWriter = True
+    IFSumWriter = False
 
     if IFSumWriter:
         from torch.utils.tensorboard import SummaryWriter

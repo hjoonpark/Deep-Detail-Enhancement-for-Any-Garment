@@ -70,15 +70,16 @@ def getBatchData(DirList, batchIDs, RootList, device, refMat):
     return iX, oY
 
 
-TrainDir = ['../TrainData/TT_InfoPatch/APT_in/']
+TrainDir = ['../TrainData/MatCC/e__in/']
 
 '''
     0: Chamuse_Silk, 1: WoolMelton, 2: Knit_Terry,
     3: Chiffon_Silk, 4: DenimLight
 '''
 Train_RefMat = [0, 0, 0, 1, 2, 1, 2, 1, 2, 3, 4, 3, 4, 3, 4]
-wF = ["*_1.png", "*_2.png", "*_3.png", "*_4.png",
-      "*_7.png", "*_8.png", "*_9.png", "*_10.png", "*_11.png", "*_12.png"]
+# wF = ["*_1.png", "*_2.png", "*_3.png", "*_4.png",
+#       "*_7.png", "*_8.png", "*_9.png", "*_10.png", "*_11.png", "*_12.png"]
+wF = ["*.png"]
 Train_imgList = get_fileSet_list(TrainDir[0], withF=wF)
 TrainID = [i for i in range(len(Train_imgList))]
 shuffle(TrainID)
@@ -89,7 +90,7 @@ Test_RefMat = [0, 1, 2]
 # TestDir = ['../TrainData/TT_InfoPatch/PE_in_b/1/',
 #            '../TrainData/TT_InfoPatch/PE_in/',
 #            '../TrainData/TT_InfoPatch/PE_in_a/1/']
-TestDir = ['../TrainData/TT_InfoPatch/PE_in/']
+TestDir = ['../TrainData/MatCC/e__in/']
 Test_imgList = get_fileSet_list(TestDir[0], withF=[])
 TestID = [i for i in range(len(Test_imgList))]
 shuffle(TestID)
@@ -103,13 +104,14 @@ print(c_model)
 lossFunction = torch.nn.MSELoss().to(device)
 optimizer = optim.Adam(params=c_model.parameters(), lr=0.01, betas=(0.9, 0.999), amsgrad=True)
 
-IFSumWriter = True
+IFSumWriter = False
 if IFSumWriter:
     from torch.utils.tensorboard import SummaryWriter
     #from tensorboardX import SummaryWriter
     writer = SummaryWriter(log_dir='./runs_CC/CC_sigF/')
 
 for epo in range(numEpoch):
+    print(epo, TrainKK)
     shuffle(TrainID)
     for kk in range(TrainKK):
         t = time.time()
@@ -125,7 +127,7 @@ for epo in range(numEpoch):
               format(iterN, loss.item(), time.time() - t))
 
         if iterN % 100 == 0 or iterN == TrainKK * numEpoch - 1:
-            writer.add_scalar('trainLoss', loss, iterN)
+            # writer.add_scalar('trainLoss', loss, iterN)
             t = time.time()
             c_model.eval()
             with torch.no_grad():
@@ -138,7 +140,7 @@ for epo in range(numEpoch):
                 loss = lossFunction(yy, test_y)
                 print("Test Iter: {}, loss: {:.4f} time:{:.4f}s".
                       format(iterN, loss.item(), time.time() - t))
-                writer.add_scalar('testLoss', loss, iterN)
+                # writer.add_scalar('testLoss', loss, iterN)
 
         if iterN % 500 == 0:
             saveName = '../matCCTest/ckp_sigF/temp_500.ckp'

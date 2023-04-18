@@ -1,0 +1,6 @@
+__pycache__
+matCCTest/
+*.png
+*.pt
+ckp/
+TrainData/

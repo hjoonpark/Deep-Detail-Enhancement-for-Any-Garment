@@ -174,7 +174,7 @@ def randomImgPatchCrop(imgPrefix, dsimgPrefix, savePrefix, mask, imgH, imgW, PSi
         pcount = pcount + 1
         cp = cp + 1
     cv2.imwrite('../TrainData/MatCC/p'+str(fID)+'.png', drawImg)
-    exit(1)
+    # exit(1)
     #cv2.imwrite('../patchTest/ps_'+str(fID)+'.png', pickmask*255)
     print(fID, '-->', pcount)
     return pcount
@@ -215,9 +215,10 @@ if __name__ == '__main__':
         img_W = mask.shape[1]
         print(img_H, img_W)
         validCenters = genValidCenterArray(PSize=PatchSize, imgH=img_H, imgW=img_W, mask=mask)
-        print(len(validCenters))
+        print("validCenters:", len(validCenters))
 
-        for f in range(Frame0, Frame1):
+        for f in range(Frame0, Frame1, 1):
+            # print("frame:", f, Frame0, Frame1)
             #imgF = imgPref + str(f).zfill(7) + '.png'
             #dsF = imgDsPref + str(f).zfill(7) + '.png'
             #extraInfoN = [uvPref + 'JJWei/' + str(i) + '_' + str(f).zfill(7) + '.png' for i in range(NumJJ)]
