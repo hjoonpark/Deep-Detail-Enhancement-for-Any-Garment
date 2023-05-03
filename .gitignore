@@ -4,3 +4,4 @@ matCCTest/
 *.pt
 ckp/
 TrainData/
+nvidia_data/

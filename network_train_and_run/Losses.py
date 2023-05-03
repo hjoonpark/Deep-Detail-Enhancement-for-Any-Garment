@@ -152,9 +152,9 @@ class Loss_NormalCrossVert(nn.Module):
     def forward(self, normalArray: torch.Tensor, vertArray: torch.Tensor):
         assert (normalArray.size()[0] == self.numV)
         assert (vertArray.size()[0] == self.numV)
-        v_0 = vertArray[self.edge_0, :]
-        v_1 = vertArray[self.edge_1, :]
-        ve = v_0 - v_1
+        p = vertArray[self.edge_0, :] # center
+        q = vertArray[self.edge_1, :] # neighbor
+        ve = q - p
         led = torch.sqrt(torch.bmm(ve.unsqueeze(1), ve.unsqueeze(-1))).squeeze(-1)
         ve = ve / led
         vn = torch.cat([normalArray[i].repeat(self.edge_c[i], 1) for i in range(self.numV)], dim=0)

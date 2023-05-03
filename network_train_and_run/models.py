@@ -45,7 +45,7 @@ class batch_InstanceNorm2d(nn.Module):
 
 
 class Generator_CNNCIN(nn.Module):
-    def __init__(self, inDim, outDim, styleNum, ifADD=True):
+    def __init__(self, inDim, outDim, styleNum=0, ifADD=True):
         super(Generator_CNNCIN, self).__init__()
         self.ifADD = ifADD
         self.E1_Conv2d = nn.Conv2d(inDim, 64, kernel_size=3, stride=1, padding=1)
@@ -90,7 +90,7 @@ class Generator_CNNCIN(nn.Module):
         self.out_Conv2d = nn.Conv2d(64, outDim, kernel_size=3, stride=1, padding=1) if ifADD is True else \
             nn.ConvTranspose2d(64+64, outDim, kernel_size=3, stride=1, padding=1)
 
-    def forward(self, X, styleId):
+    def forward(self, X, styleId=torch.IntTensor([0])):
         e1 = self.E1_Conv2d(X)
         e1 = self.E1_ReLu(e1)  # [B, 64, H, W]
         e2 = self.E1_Pool(e1)  # [B, 64, H//2, W//2]
