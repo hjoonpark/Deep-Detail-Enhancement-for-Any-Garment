@@ -20,7 +20,7 @@ from torchvision.utils import save_image
 # Training settings
 parser = argparse.ArgumentParser()
 parser.add_argument('--epochs', type=int, default=500, help='Number of epochs to train.')
-parser.add_argument('--lr', type=float, default=1e-4, help='Initial learning rate.')
+parser.add_argument('--lr', type=float, default=1e-3, help='Initial learning rate.')
 parser.add_argument('--weight_decay', type=float, default=1e-5, help='Weight decay (L2 loss on parameters).')
 parser.add_argument('--patience', type=int, default=100000, help='Patience')
 
@@ -166,8 +166,9 @@ def model_train(itt):
 
     Loss.backward()
     optimizer.step()
-    print("Train Iter: {}, Content Loss: {:.3f}, Style Loss: {:.3f}, Loss: {:.3f}, time:{:.4f}s".
-          format(itt, c_Loss.item(), s_Loss.item(), Loss.item(), time.time() - t))
+    if itt % 100 == 0:
+        print("Train Iter: {}, Content Loss: {:.3f}, Style Loss: {:.3f}, Loss: {:.3f}, time:{:.4f}s".
+            format(itt, c_Loss.item(), s_Loss.item(), Loss.item(), time.time() - t))
     return Loss
 
 def model_test(itt):

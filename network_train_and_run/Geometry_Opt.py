@@ -8,6 +8,10 @@ from Losses import Loss_NormalCrossVert, LapSmooth_loss
 import time
 import cv2, glob
 
+import networkx as nx
+import plotly
+import plotly.graph_objects as go
+
 #USE_CUDA = False
 USE_CUDA = torch.cuda.is_available()
 print('balin-->', USE_CUDA)
@@ -16,8 +20,79 @@ device = torch.device("cuda:0" if USE_CUDA else "cpu")
 num_iter = 10000
 
 cEdgeWeight = 1
-distWeight = 0
-smoothWeight = 0
+distWeight = 0.01
+smoothWeight = 0.01
+
+def save_plotly(iteration, save_path, x, rrNormArray, vertEdges_0):
+    L = 1.5
+    colors = rrNormArray.copy()
+
+    x_edges1, y_edges1, z_edges1 = [], [], []
+    for v_idx, normal in enumerate(rrNormArray):
+        src = x[v_idx].copy()
+        normal2 = normal
+
+        trg = src + L*normal2
+
+        es = [(src, trg)]
+        for e in es:
+            x_edges1 += (e[0][0], e[1][0], None)
+            y_edges1 += (e[0][1], e[1][1], None)
+            z_edges1 += (e[0][2], e[1][2], None)
+
+    # x_edges2, y_edges2, z_edges2 = [], [], []
+    # for i in range(len(vertEdges_0)):
+    #     a = vertEdges_0[i]
+    #     b = vertEdges_1[i]
+    #     x_edges2 += (x[a][0], x[b][0], None)
+    #     y_edges2 += (x[a][1], x[b][1], None)
+    #     z_edges2 += (x[a][2], x[b][2], None)
+
+    #create a trace for the nodes
+    v = x
+    nodes1 = go.Scatter3d(
+        x=v[:,0],
+        y=v[:,1],
+        z=v[:,2],
+        mode='markers',
+        marker=dict(symbol='circle',
+                size=1,
+                color=colors)
+        )
+    edges1 = go.Scatter3d(
+        x=x_edges1,
+        y=y_edges1,
+        z=z_edges1,
+        mode='lines',
+        line=dict(color=colors, width=0.3),
+        hoverinfo='none'
+    )
+    # edges2 = go.Scatter3d(
+    #     x=x_edges2,
+    #     y=y_edges2,
+    #     z=z_edges2,
+    #     mode='lines',
+    #     line=dict(color="black", width=1),
+    #     hoverinfo='none'
+    # )
+    s = 1.2
+    mins = (x.min(0)+L)*s
+    maxs = (x.max(0)+L)*s
+    G_data2 = [nodes1, edges1]
+    fig = go.Figure(data=G_data2)
+    fig.update_layout(autosize=False, width=960, height=760, )
+    camera = dict(
+        eye=dict(x=0.1, y=-0.1, z=2)
+    )
+    fig.update_layout(
+        scene_camera=camera,
+        title="iter: {}".format(iteration),
+        scene = dict(
+            xaxis = dict(range=[mins[0], maxs[0]],),
+            yaxis = dict(range=[mins[1], maxs[1]],),
+            zaxis = dict(range=[mins[2], maxs[2]]))
+    )
+    fig.write_image(save_path) 
 
 def write_obj(save_path, points, normals=[], faces=[], vts=[]):
     """
@@ -130,13 +205,13 @@ def geo_opt_ours(nmap_path, rrVertArray, uvs, vertEdges_0, vertEdges_1, EdgeCoun
     rrNormTensor = torch.from_numpy(rrNormArray).type(torch.FloatTensor).to(device)
     print("rrNormArray:", rrNormArray.shape)
     print("rrNormTensor:", rrNormTensor.shape)
-    gtVertTensor = torch.from_numpy(rrVertArray).type(torch.FloatTensor).to(device)
-    print("gtVertTensor:", gtVertTensor.shape)
-    
     # ini vert position
     noise = torch.from_numpy(rrVertArray.copy()).type(torch.FloatTensor).to(device)
     noise.requires_grad = True
 
+    gtVertTensor = noise.detach().clone()
+    print("gtVertTensor:", gtVertTensor.shape)
+    
     Func_lossNormalCrossVert = Loss_NormalCrossVert(vertEdges_0, vertEdges_1, EdgeCounts, numV, device).to(device)
     Func_lossVertToGtVert = nn.L1Loss(reduction='mean').to(device)
 
@@ -144,6 +219,9 @@ def geo_opt_ours(nmap_path, rrVertArray, uvs, vertEdges_0, vertEdges_1, EdgeCoun
     oldLoss = 0.
     t = time.time()
     
+    plot_dir = "output/plot"
+    os.makedirs(plot_dir, exist_ok=True)
+
     for iteration in range(num_iter + 1):
         adam.zero_grad()
         loss_geo = Func_lossNormalCrossVert(normalArray=rrNormTensor, vertArray=noise)
@@ -156,11 +234,13 @@ def geo_opt_ours(nmap_path, rrVertArray, uvs, vertEdges_0, vertEdges_1, EdgeCoun
         else:
             loss_smooth = 0
 
-        if iteration % 10 == 0:
+        if iteration % 100 == 0:
+            save_path = os.path.join(plot_dir, "iter_{:05d}.jpg".format(iteration))
+            save_plotly(iteration, save_path, noise.detach().cpu().numpy(), rrNormArray, vertEdges_0)
             print("Iteration: {}, old_loss: {:.6f}, total Loss: {:.6f}, Geo Loss: {:.6f}, disLoss: {:.6f}, Smooth Loss: {:.6f}".format(iteration,oldLoss, total_loss.item(), cEdgeWeight * loss_geo.item(), distWeight * loss_dist, smoothWeight * loss_smooth))
 
         # if abs(oldLoss-total_loss.item()) < 0.000001 and iteration > 50:
-        if loss_geo < 1e-4:
+        if loss_geo < 1e-3:
             print("total_loss.item()-oldLoss:", total_loss.item()-oldLoss)
             return noise.clone().detach()
 
@@ -255,9 +335,14 @@ if __name__ == '__main__':
     EdgeCounts = np.loadtxt(os.path.join(in_dir, "edges_counts.txt")).astype(int)
     numV = len(hrestshape)
 
+    Adj = np.zeros((len(hrestshape), len(hrestshape))).astype(float)
+    Adj[vertEdges_0, vertEdges_1] = 1
+    Adj[vertEdges_1, vertEdges_0] = 1
+    LapM = torch.from_numpy(getLaplacianMatrix(Adj)).float().to(device)
+
+    print("LapM:", LapM.shape, LapM.dtype)
     print("edges:", edges.shape, edges.dtype)
     print("EdgeCounts:", EdgeCounts.shape, EdgeCounts.dtype)
-    LapM = None
 
     for folder in folders:
         hres_paths = sorted(glob.glob(os.path.join(in_dir, "BakedUVMaps", folder, "hires*.001*")))
