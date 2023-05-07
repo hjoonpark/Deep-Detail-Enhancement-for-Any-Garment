@@ -64,7 +64,6 @@ def readAdjFile(name):
     file.close()
     return Adj, numV
 
-
 def getLaplacianMatrix(Adj):
     LapM = np.zeros_like(Adj)
     LapM = LapM - Adj
@@ -74,7 +73,6 @@ def getLaplacianMatrix(Adj):
         LapM[i, i] = a[i]-1.
         LapM[i, :] = LapM[i, :] / (a[i] - 1)
     return LapM
-
 
 def readVertArrayFile(name):
     array = []

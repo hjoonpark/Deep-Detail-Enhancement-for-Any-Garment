@@ -20,7 +20,7 @@ device = torch.device("cuda:0" if USE_CUDA else "cpu")
 num_iter = 10000
 
 cEdgeWeight = 1
-distWeight = 0.01
+distWeight = 0.1
 smoothWeight = 0.01
 
 def save_plotly(iteration, save_path, x, rrNormArray, vertEdges_0):
@@ -235,12 +235,13 @@ def geo_opt_ours(nmap_path, rrVertArray, uvs, vertEdges_0, vertEdges_1, EdgeCoun
             loss_smooth = 0
 
         if iteration % 100 == 0:
-            save_path = os.path.join(plot_dir, "iter_{:05d}.jpg".format(iteration))
-            save_plotly(iteration, save_path, noise.detach().cpu().numpy(), rrNormArray, vertEdges_0)
-            print("Iteration: {}, old_loss: {:.6f}, total Loss: {:.6f}, Geo Loss: {:.6f}, disLoss: {:.6f}, Smooth Loss: {:.6f}".format(iteration,oldLoss, total_loss.item(), cEdgeWeight * loss_geo.item(), distWeight * loss_dist, smoothWeight * loss_smooth))
+            # save_path = os.path.join(plot_dir, "iter_{:05d}.jpg".format(iteration))
+            # save_plotly(iteration, save_path, noise.detach().cpu().numpy(), rrNormArray, vertEdges_0)
+            print("Iteration: {}, old_loss: {:.6f}, total Loss: {:.6f}, Geo Loss: {:.6f}, disLoss: {:.6f}, Smooth Loss: {:.6f}".format(\
+                iteration,oldLoss, total_loss.item(), cEdgeWeight * loss_geo.item(), distWeight * loss_dist, smoothWeight * loss_smooth))
 
-        # if abs(oldLoss-total_loss.item()) < 0.000001 and iteration > 50:
-        if loss_geo < 1e-3:
+        if abs(oldLoss-total_loss.item()) < 1e-7 and iteration > 50:
+        # if loss_geo < 1e-3:
             print("total_loss.item()-oldLoss:", total_loss.item()-oldLoss)
             return noise.clone().detach()
 
@@ -320,7 +321,6 @@ if __name__ == '__main__':
     out_dir = "output"
     os.makedirs(out_dir, exist_ok=1)
 
-    folders = ["amazement"]
 
     hrestshape, _, hfaces = read_obj(os.path.join(in_dir, "restshape_surf_v1.4.obj"))
     print("hrestshape:", hrestshape.shape, hrestshape.min(), hrestshape.max(), hrestshape.dtype)
@@ -344,17 +344,25 @@ if __name__ == '__main__':
     print("edges:", edges.shape, edges.dtype)
     print("EdgeCounts:", EdgeCounts.shape, EdgeCounts.dtype)
 
+    folders = ["pain"]
     for folder in folders:
-        hres_paths = sorted(glob.glob(os.path.join(in_dir, "BakedUVMaps", folder, "hires*.001*")))
+        hres_paths = sorted(glob.glob(os.path.join(in_dir, "BakedUVMaps", folder, "hires*.*.*")))
         print("  ", folder, ":", len(hres_paths), "frames")
 
         for hres_path in hres_paths:
-            if "16" not in hres_path:
+            if "128" not in hres_path:
                 continue
-            bname = os.path.basename(hres_path).split(".png")[0]
-            print(">> ", bname)
 
-            p = geo_opt_ours(hres_path, hrestshape, uvs, vertEdges_0, vertEdges_1, EdgeCounts, numV, LapM)
+            bname = os.path.basename(hres_path).split(".png")[0]
+            frame = int(bname.split(".")[-1])
+            obj_path = os.path.join(in_dir, "obj", f"{folder}_{frame:03d}.obj")
+            if not os.path.exists(obj_path):
+                print("NOT FOUND:", obj_path)
+                assert 0
+            x0, _, _ = read_obj(obj_path)
+            print(">> ", bname, obj_path)
+
+            p = geo_opt_ours(hres_path, x0, uvs, vertEdges_0, vertEdges_1, EdgeCounts, numV, LapM)
             p = p.cpu().numpy()
 
             save_path = os.path.join(out_dir, "{}_hires_{}.obj".format(folder, bname))

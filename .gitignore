@@ -5,3 +5,8 @@ matCCTest/
 ckp/
 TrainData/
 nvidia_data/
+*.obj
+*.png
+*.jpg
+plot/
+output/
