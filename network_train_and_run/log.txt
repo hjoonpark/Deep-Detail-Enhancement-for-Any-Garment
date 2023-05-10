@@ -1,0 +1,1953 @@
+balin--> True
+nm_paths: 440
+test_paths: 440
+torch.Size([15, 3, 512, 512]) torch.Size([15, 1, 512, 512]) torch.Size([15, 3, 512, 512])
+[]
+Generator_CNNCIN(
+  (E1_Conv2d): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (E1_ReLu): ReLU(inplace=True)
+  (E1_Pool): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+  (E2_Conv2d): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (E2_ReLu): ReLU(inplace=True)
+  (E2_Pool): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+  (E3_Conv2d): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (E3_ReLu): ReLU(inplace=True)
+  (E3_Pool): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+  (E4_Conv2d): Conv2d(256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (E4_ReLu): ReLU(inplace=True)
+  (E4_Pool): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+  (D1_Deconv2d): ConvTranspose2d(512, 512, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+  (D1_CIN): batch_InstanceNorm2d(
+    (inns): ModuleList(
+      (0): InstanceNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+    )
+  )
+  (D1_ReLu): ReLU(inplace=True)
+  (D2_Deconv2d): ConvTranspose2d(512, 256, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+  (D2_CIN): batch_InstanceNorm2d(
+    (inns): ModuleList(
+      (0): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+    )
+  )
+  (D2_ReLu): ReLU(inplace=True)
+  (D3_Deconv2d): ConvTranspose2d(256, 128, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+  (D3_CIN): batch_InstanceNorm2d(
+    (inns): ModuleList(
+      (0): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+    )
+  )
+  (D3_ReLu): ReLU(inplace=True)
+  (D4_Deconv2d): ConvTranspose2d(128, 64, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+  (D4_CIN): batch_InstanceNorm2d(
+    (inns): ModuleList(
+      (0): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+    )
+  )
+  (D4_ReLu): ReLU(inplace=True)
+  (out_Conv2d): Conv2d(64, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+)
+Trainable parameters=8,502,403
+/nobackup/joon/anaconda3/envs/torch2-lap/lib/python3.8/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/nobackup/joon/anaconda3/envs/torch2-lap/lib/python3.8/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG19_Weights.IMAGENET1K_V1`. You can also use `weights=VGG19_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Train Iter: 0, Content Loss: 75685448.000, Style Loss: 522259840.000, Loss: 597945280.000, time:7.9195s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 0, Content Loss: 78999336.000, Style Loss: 536866016.000, Loss: 615865344.000, time:1.7937s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00000000_lores_N.1001.0001.png
+Train Iter: 50, Content Loss: 48633920.000, Style Loss: 48369044.000, Loss: 97002960.000, time:4.0119s
+Train Iter: 100, Content Loss: 41385840.000, Style Loss: 29344858.000, Loss: 70730696.000, time:3.5803s
+Train Iter: 150, Content Loss: 37046832.000, Style Loss: 25703216.000, Loss: 62750048.000, time:3.7997s
+Train Iter: 200, Content Loss: 29146740.000, Style Loss: 16507249.000, Loss: 45653988.000, time:4.0254s
+Train Iter: 250, Content Loss: 17398808.000, Style Loss: 9889833.000, Loss: 27288640.000, time:3.9411s
+Train Iter: 300, Content Loss: 9836525.000, Style Loss: 6202020.500, Loss: 16038546.000, time:3.8608s
+Train Iter: 350, Content Loss: 13947899.000, Style Loss: 8949647.000, Loss: 22897546.000, time:4.0702s
+Train Iter: 400, Content Loss: 8400401.000, Style Loss: 4310664.500, Loss: 12711066.000, time:4.0010s
+Train Iter: 450, Content Loss: 6831929.500, Style Loss: 3429024.000, Loss: 10260954.000, time:3.8512s
+Train Iter: 500, Content Loss: 6899466.500, Style Loss: 3317674.000, Loss: 10217140.000, time:4.0380s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 500, Content Loss: 5575137.000, Style Loss: 2531666.500, Loss: 8106803.500, time:1.7899s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00000500_lores_N.1001.0001.png
+Train Iter: 550, Content Loss: 6539627.000, Style Loss: 2461712.500, Loss: 9001340.000, time:3.9751s
+Train Iter: 600, Content Loss: 4761263.500, Style Loss: 2560709.750, Loss: 7321973.000, time:3.9609s
+Train Iter: 650, Content Loss: 6143912.000, Style Loss: 2143255.500, Loss: 8287167.500, time:4.0423s
+Train Iter: 700, Content Loss: 4380567.500, Style Loss: 1668654.750, Loss: 6049222.000, time:4.0700s
+Train Iter: 750, Content Loss: 6835333.500, Style Loss: 2167700.500, Loss: 9003034.000, time:3.8637s
+Train Iter: 800, Content Loss: 4101992.750, Style Loss: 2027963.250, Loss: 6129956.000, time:3.6439s
+Train Iter: 850, Content Loss: 4151028.500, Style Loss: 1380443.375, Loss: 5531472.000, time:4.0587s
+Train Iter: 900, Content Loss: 3799096.000, Style Loss: 2286753.250, Loss: 6085849.000, time:3.8091s
+Train Iter: 950, Content Loss: 4266631.000, Style Loss: 1347324.500, Loss: 5613955.500, time:3.6693s
+Train Iter: 1000, Content Loss: 4159105.750, Style Loss: 1329208.250, Loss: 5488314.000, time:4.0501s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 1000, Content Loss: 3777035.250, Style Loss: 1373730.375, Loss: 5150765.500, time:1.8099s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00001000_lores_N.1001.0001.png
+Train Iter: 1050, Content Loss: 3792943.250, Style Loss: 1340496.500, Loss: 5133440.000, time:3.9341s
+Train Iter: 1100, Content Loss: 3670247.500, Style Loss: 1531532.750, Loss: 5201780.000, time:3.8470s
+Train Iter: 1150, Content Loss: 3779244.000, Style Loss: 1395564.875, Loss: 5174809.000, time:3.9363s
+Train Iter: 1200, Content Loss: 2976539.000, Style Loss: 1206183.125, Loss: 4182722.000, time:3.5707s
+Train Iter: 1250, Content Loss: 4001556.500, Style Loss: 1161440.750, Loss: 5162997.000, time:3.4514s
+Train Iter: 1300, Content Loss: 3750105.500, Style Loss: 1245762.000, Loss: 4995867.500, time:3.2658s
+Train Iter: 1350, Content Loss: 2765718.750, Style Loss: 1074180.625, Loss: 3839899.500, time:3.4739s
+Train Iter: 1400, Content Loss: 3153945.500, Style Loss: 1120001.250, Loss: 4273947.000, time:3.4290s
+Train Iter: 1450, Content Loss: 3036432.000, Style Loss: 1220357.250, Loss: 4256789.000, time:3.4689s
+Train Iter: 1500, Content Loss: 3154105.500, Style Loss: 975389.188, Loss: 4129494.750, time:2.7656s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 1500, Content Loss: 2681573.250, Style Loss: 813100.000, Loss: 3494673.250, time:1.6267s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00001500_lores_N.1001.0001.png
+Train Iter: 1550, Content Loss: 3300529.000, Style Loss: 1075945.000, Loss: 4376474.000, time:3.6602s
+Train Iter: 1600, Content Loss: 3416094.500, Style Loss: 1272558.125, Loss: 4688652.500, time:3.6806s
+Train Iter: 1650, Content Loss: 3154982.500, Style Loss: 1185005.500, Loss: 4339988.000, time:3.4986s
+Train Iter: 1700, Content Loss: 2759736.250, Style Loss: 1520766.875, Loss: 4280503.000, time:3.4433s
+Train Iter: 1750, Content Loss: 2854213.500, Style Loss: 1148139.500, Loss: 4002353.000, time:3.4939s
+Train Iter: 1800, Content Loss: 3143941.500, Style Loss: 998248.750, Loss: 4142190.250, time:3.5297s
+Train Iter: 1850, Content Loss: 2653214.000, Style Loss: 948336.188, Loss: 3601550.250, time:3.7297s
+Train Iter: 1900, Content Loss: 2621634.000, Style Loss: 1204242.375, Loss: 3825876.500, time:4.0494s
+Train Iter: 1950, Content Loss: 3221449.500, Style Loss: 1481096.500, Loss: 4702546.000, time:3.9214s
+Train Iter: 2000, Content Loss: 2856393.000, Style Loss: 1054271.500, Loss: 3910664.500, time:3.9022s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 2000, Content Loss: 2199480.750, Style Loss: 666904.000, Loss: 2866384.750, time:1.8566s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00002000_lores_N.1001.0001.png
+Train Iter: 2050, Content Loss: 3344472.000, Style Loss: 1276322.750, Loss: 4620795.000, time:4.0484s
+Train Iter: 2100, Content Loss: 2709169.250, Style Loss: 871028.812, Loss: 3580198.000, time:3.9569s
+Train Iter: 2150, Content Loss: 2298374.500, Style Loss: 908847.000, Loss: 3207221.500, time:3.9970s
+Train Iter: 2200, Content Loss: 3065996.250, Style Loss: 960975.438, Loss: 4026971.750, time:4.0252s
+Train Iter: 2250, Content Loss: 2664060.750, Style Loss: 824925.562, Loss: 3488986.250, time:3.4215s
+Train Iter: 2300, Content Loss: 2167098.000, Style Loss: 1198190.000, Loss: 3365288.000, time:3.8851s
+Train Iter: 2350, Content Loss: 2634406.000, Style Loss: 1175658.000, Loss: 3810064.000, time:3.8870s
+Train Iter: 2400, Content Loss: 2659232.250, Style Loss: 1156517.375, Loss: 3815749.500, time:3.9209s
+Train Iter: 2450, Content Loss: 2184500.500, Style Loss: 909620.062, Loss: 3094120.500, time:4.0252s
+Train Iter: 2500, Content Loss: 3324128.000, Style Loss: 1011038.062, Loss: 4335166.000, time:4.0562s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 2500, Content Loss: 2190795.500, Style Loss: 605694.250, Loss: 2796489.750, time:1.8103s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00002500_lores_N.1001.0001.png
+Train Iter: 2550, Content Loss: 4042957.000, Style Loss: 1430378.750, Loss: 5473336.000, time:3.8503s
+Train Iter: 2600, Content Loss: 2463127.000, Style Loss: 931566.688, Loss: 3394693.750, time:4.0081s
+Train Iter: 2650, Content Loss: 2697547.000, Style Loss: 889222.938, Loss: 3586770.000, time:4.0389s
+Train Iter: 2700, Content Loss: 1914541.250, Style Loss: 621406.750, Loss: 2535948.000, time:4.0083s
+Train Iter: 2750, Content Loss: 2325251.250, Style Loss: 897305.312, Loss: 3222556.500, time:3.8651s
+Train Iter: 2800, Content Loss: 2426919.500, Style Loss: 902292.000, Loss: 3329211.500, time:3.8723s
+Train Iter: 2850, Content Loss: 3787139.500, Style Loss: 1174364.500, Loss: 4961504.000, time:4.0519s
+Train Iter: 2900, Content Loss: 2367105.000, Style Loss: 1051841.250, Loss: 3418946.250, time:3.9458s
+Train Iter: 2950, Content Loss: 2278089.250, Style Loss: 813992.625, Loss: 3092082.000, time:3.9704s
+Train Iter: 3000, Content Loss: 2424506.750, Style Loss: 891330.250, Loss: 3315837.000, time:4.0152s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 3000, Content Loss: 1796900.250, Style Loss: 737555.312, Loss: 2534455.500, time:1.9238s
+train_DDE_ours.py:29: RuntimeWarning: More than 20 figures have been opened. Figures created through the pyplot interface (`matplotlib.pyplot.figure`) are retained until explicitly closed and may consume too much memory. (To control this warning, see the rcParam `figure.max_open_warning`). Consider using `matplotlib.pyplot.close()`.
+  fig = plt.figure(figsize=(15, 11))
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00003000_lores_N.1001.0001.png
+Train Iter: 3050, Content Loss: 2342134.500, Style Loss: 1034946.875, Loss: 3377081.500, time:4.0300s
+Train Iter: 3100, Content Loss: 2660249.000, Style Loss: 998970.875, Loss: 3659220.000, time:3.8384s
+Train Iter: 3150, Content Loss: 2170872.500, Style Loss: 944059.000, Loss: 3114931.500, time:3.4721s
+Train Iter: 3200, Content Loss: 3134370.750, Style Loss: 953771.375, Loss: 4088142.000, time:4.1034s
+Train Iter: 3250, Content Loss: 2236280.000, Style Loss: 1033026.375, Loss: 3269306.500, time:3.9213s
+Train Iter: 3300, Content Loss: 2097493.000, Style Loss: 1107854.750, Loss: 3205347.750, time:4.0518s
+Train Iter: 3350, Content Loss: 2318860.750, Style Loss: 739636.062, Loss: 3058496.750, time:3.9186s
+Train Iter: 3400, Content Loss: 2445134.500, Style Loss: 955493.625, Loss: 3400628.000, time:3.8810s
+Train Iter: 3450, Content Loss: 2741742.250, Style Loss: 1189689.750, Loss: 3931432.000, time:3.9154s
+Train Iter: 3500, Content Loss: 2415790.750, Style Loss: 1142927.375, Loss: 3558718.000, time:3.4917s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 3500, Content Loss: 2112097.750, Style Loss: 702108.562, Loss: 2814206.250, time:1.7566s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00003500_lores_N.1001.0001.png
+Train Iter: 3550, Content Loss: 2271807.000, Style Loss: 973377.438, Loss: 3245184.500, time:4.0514s
+Train Iter: 3600, Content Loss: 2018071.000, Style Loss: 819375.625, Loss: 2837446.500, time:3.9470s
+Train Iter: 3650, Content Loss: 2368593.000, Style Loss: 830860.062, Loss: 3199453.000, time:3.9947s
+Train Iter: 3700, Content Loss: 2320906.000, Style Loss: 855321.625, Loss: 3176227.500, time:3.9511s
+Train Iter: 3750, Content Loss: 2573096.000, Style Loss: 1237550.750, Loss: 3810646.750, time:3.7812s
+Train Iter: 3800, Content Loss: 2282232.000, Style Loss: 789839.938, Loss: 3072072.000, time:3.9535s
+Train Iter: 3850, Content Loss: 2051643.875, Style Loss: 842135.438, Loss: 2893779.250, time:3.7122s
+Train Iter: 3900, Content Loss: 2298116.000, Style Loss: 1071615.250, Loss: 3369731.250, time:3.9707s
+Train Iter: 3950, Content Loss: 2124236.000, Style Loss: 861819.000, Loss: 2986055.000, time:3.9613s
+Train Iter: 4000, Content Loss: 2911176.750, Style Loss: 1263929.625, Loss: 4175106.500, time:4.0946s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 4000, Content Loss: 1819986.875, Style Loss: 650869.125, Loss: 2470856.000, time:1.7637s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00004000_lores_N.1001.0001.png
+Train Iter: 4050, Content Loss: 2277628.500, Style Loss: 764530.312, Loss: 3042158.750, time:2.8463s
+Train Iter: 4100, Content Loss: 2210170.750, Style Loss: 958288.250, Loss: 3168459.000, time:4.1641s
+Train Iter: 4150, Content Loss: 1933095.500, Style Loss: 770578.438, Loss: 2703674.000, time:4.0534s
+Train Iter: 4200, Content Loss: 2210257.250, Style Loss: 791044.062, Loss: 3001301.250, time:3.9545s
+Train Iter: 4250, Content Loss: 2613501.000, Style Loss: 947568.812, Loss: 3561069.750, time:3.9539s
+Train Iter: 4300, Content Loss: 2890101.000, Style Loss: 1225196.875, Loss: 4115298.000, time:3.9343s
+Train Iter: 4350, Content Loss: 2491789.250, Style Loss: 961389.938, Loss: 3453179.250, time:3.9257s
+Train Iter: 4400, Content Loss: 2193713.500, Style Loss: 787250.812, Loss: 2980964.250, time:3.2154s
+Train Iter: 4450, Content Loss: 2409831.500, Style Loss: 1206300.500, Loss: 3616132.000, time:3.8502s
+Train Iter: 4500, Content Loss: 2384617.000, Style Loss: 1139292.000, Loss: 3523909.000, time:3.8598s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 4500, Content Loss: 1778153.000, Style Loss: 625385.312, Loss: 2403538.250, time:1.8259s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00004500_lores_N.1001.0001.png
+Train Iter: 4550, Content Loss: 2014717.250, Style Loss: 881968.812, Loss: 2896686.000, time:3.8760s
+Train Iter: 4600, Content Loss: 2235795.000, Style Loss: 781689.312, Loss: 3017484.250, time:3.9477s
+Train Iter: 4650, Content Loss: 1997500.500, Style Loss: 910604.188, Loss: 2908104.750, time:3.9919s
+Train Iter: 4700, Content Loss: 1894489.000, Style Loss: 1070168.750, Loss: 2964657.750, time:3.9542s
+Train Iter: 4750, Content Loss: 2385180.500, Style Loss: 1028262.938, Loss: 3413443.500, time:3.7758s
+Train Iter: 4800, Content Loss: 2775144.500, Style Loss: 1052097.375, Loss: 3827242.000, time:3.7730s
+Train Iter: 4850, Content Loss: 2943304.000, Style Loss: 793357.000, Loss: 3736661.000, time:4.0197s
+Train Iter: 4900, Content Loss: 2455602.250, Style Loss: 1229077.875, Loss: 3684680.000, time:4.0148s
+Train Iter: 4950, Content Loss: 2414071.000, Style Loss: 841185.312, Loss: 3255256.250, time:3.9744s
+Train Iter: 5000, Content Loss: 2848220.000, Style Loss: 973515.562, Loss: 3821735.500, time:4.1033s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 5000, Content Loss: 1785450.250, Style Loss: 584516.438, Loss: 2369966.750, time:1.8038s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00005000_lores_N.1001.0001.png
+Train Iter: 5050, Content Loss: 2896059.000, Style Loss: 1232616.750, Loss: 4128675.750, time:2.4402s
+Train Iter: 5100, Content Loss: 2290072.000, Style Loss: 762096.562, Loss: 3052168.500, time:2.0532s
+Train Iter: 5150, Content Loss: 2891387.000, Style Loss: 818476.688, Loss: 3709863.750, time:3.1335s
+Train Iter: 5200, Content Loss: 2794143.500, Style Loss: 779954.688, Loss: 3574098.250, time:3.1333s
+Train Iter: 5250, Content Loss: 2436755.750, Style Loss: 1045862.250, Loss: 3482618.000, time:2.2460s
+Train Iter: 5300, Content Loss: 2153267.500, Style Loss: 992032.000, Loss: 3145299.500, time:3.1656s
+Train Iter: 5350, Content Loss: 1984505.125, Style Loss: 838160.250, Loss: 2822665.500, time:3.0996s
+Train Iter: 5400, Content Loss: 1992266.750, Style Loss: 899966.375, Loss: 2892233.000, time:2.1621s
+Train Iter: 5450, Content Loss: 2449526.250, Style Loss: 818535.125, Loss: 3268061.500, time:3.0967s
+Train Iter: 5500, Content Loss: 2089546.875, Style Loss: 953262.125, Loss: 3042809.000, time:3.1559s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 5500, Content Loss: 1934846.500, Style Loss: 635687.625, Loss: 2570534.000, time:1.1840s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00005500_lores_N.1001.0001.png
+Train Iter: 5550, Content Loss: 2492456.000, Style Loss: 1161842.375, Loss: 3654298.500, time:2.1477s
+Train Iter: 5600, Content Loss: 2125354.750, Style Loss: 993507.375, Loss: 3118862.000, time:3.1498s
+Train Iter: 5650, Content Loss: 2147975.250, Style Loss: 865012.812, Loss: 3012988.000, time:3.1251s
+Train Iter: 5700, Content Loss: 2045260.500, Style Loss: 965303.438, Loss: 3010564.000, time:2.1700s
+Train Iter: 5750, Content Loss: 2194910.000, Style Loss: 931656.875, Loss: 3126567.000, time:3.1215s
+Train Iter: 5800, Content Loss: 2450414.000, Style Loss: 822900.562, Loss: 3273314.500, time:3.1482s
+Train Iter: 5850, Content Loss: 2689256.750, Style Loss: 1023466.938, Loss: 3712723.750, time:2.1582s
+Train Iter: 5900, Content Loss: 2083330.125, Style Loss: 908966.062, Loss: 2992296.250, time:3.1249s
+Train Iter: 5950, Content Loss: 3269203.500, Style Loss: 1242781.250, Loss: 4511985.000, time:3.1209s
+Train Iter: 6000, Content Loss: 2890150.500, Style Loss: 1137482.500, Loss: 4027633.000, time:2.1438s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 6000, Content Loss: 1960254.375, Style Loss: 674448.062, Loss: 2634702.500, time:1.2210s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00006000_lores_N.1001.0001.png
+Train Iter: 6050, Content Loss: 2263686.500, Style Loss: 941076.500, Loss: 3204763.000, time:3.1094s
+Train Iter: 6100, Content Loss: 3859799.750, Style Loss: 1189081.750, Loss: 5048881.500, time:3.1085s
+Train Iter: 6150, Content Loss: 2187210.750, Style Loss: 758069.625, Loss: 2945280.500, time:2.1460s
+Train Iter: 6200, Content Loss: 2431119.750, Style Loss: 954692.062, Loss: 3385811.750, time:3.1093s
+Train Iter: 6250, Content Loss: 3437843.000, Style Loss: 1391112.250, Loss: 4828955.000, time:3.1173s
+Train Iter: 6300, Content Loss: 1858887.250, Style Loss: 1008815.125, Loss: 2867702.500, time:2.1491s
+Train Iter: 6350, Content Loss: 2190173.000, Style Loss: 822005.188, Loss: 3012178.250, time:3.1073s
+Train Iter: 6400, Content Loss: 2180962.250, Style Loss: 741129.625, Loss: 2922092.000, time:3.1271s
+Train Iter: 6450, Content Loss: 2263828.500, Style Loss: 817916.250, Loss: 3081744.750, time:2.1660s
+Train Iter: 6500, Content Loss: 2306961.500, Style Loss: 1095249.750, Loss: 3402211.250, time:3.1150s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 6500, Content Loss: 1788589.750, Style Loss: 623533.938, Loss: 2412123.750, time:1.1681s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00006500_lores_N.1001.0001.png
+Train Iter: 6550, Content Loss: 1977118.250, Style Loss: 776253.438, Loss: 2753371.750, time:3.1071s
+Train Iter: 6600, Content Loss: 2059990.250, Style Loss: 982183.312, Loss: 3042173.500, time:2.1726s
+Train Iter: 6650, Content Loss: 2451846.500, Style Loss: 1152943.625, Loss: 3604790.000, time:3.0974s
+Train Iter: 6700, Content Loss: 2431325.500, Style Loss: 1084235.500, Loss: 3515561.000, time:3.0872s
+Train Iter: 6750, Content Loss: 2266205.000, Style Loss: 822065.000, Loss: 3088270.000, time:2.1683s
+Train Iter: 6800, Content Loss: 2213037.250, Style Loss: 896609.812, Loss: 3109647.000, time:3.0975s
+Train Iter: 6850, Content Loss: 2077180.500, Style Loss: 1071788.375, Loss: 3148969.000, time:3.1195s
+Train Iter: 6900, Content Loss: 2877171.000, Style Loss: 1172688.625, Loss: 4049859.500, time:2.1656s
+Train Iter: 6950, Content Loss: 2243403.000, Style Loss: 851515.500, Loss: 3094918.500, time:3.1179s
+Train Iter: 7000, Content Loss: 2115686.500, Style Loss: 1012768.938, Loss: 3128455.500, time:3.1111s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 7000, Content Loss: 1715192.500, Style Loss: 564902.375, Loss: 2280095.000, time:1.1614s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00007000_lores_N.1001.0001.png
+Train Iter: 7050, Content Loss: 1915498.500, Style Loss: 953684.438, Loss: 2869183.000, time:2.1533s
+Train Iter: 7100, Content Loss: 2187244.250, Style Loss: 767853.250, Loss: 2955097.500, time:2.4567s
+Train Iter: 7150, Content Loss: 1958679.000, Style Loss: 927317.688, Loss: 2885996.750, time:2.6008s
+Train Iter: 7200, Content Loss: 1756697.750, Style Loss: 1019520.125, Loss: 2776218.000, time:2.1334s
+Train Iter: 7250, Content Loss: 1729314.250, Style Loss: 755787.062, Loss: 2485101.250, time:2.6287s
+Train Iter: 7300, Content Loss: 1723485.250, Style Loss: 752083.562, Loss: 2475568.750, time:2.6715s
+Train Iter: 7350, Content Loss: 2225955.750, Style Loss: 1035354.062, Loss: 3261309.750, time:2.1674s
+Train Iter: 7400, Content Loss: 2329167.000, Style Loss: 918127.000, Loss: 3247294.000, time:2.5688s
+Train Iter: 7450, Content Loss: 1822286.875, Style Loss: 685116.812, Loss: 2507403.750, time:2.4264s
+Train Iter: 7500, Content Loss: 1890063.750, Style Loss: 905841.500, Loss: 2795905.250, time:2.1812s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 7500, Content Loss: 1697341.250, Style Loss: 569643.500, Loss: 2266984.750, time:1.2107s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00007500_lores_N.1001.0001.png
+Train Iter: 7550, Content Loss: 2024713.500, Style Loss: 937255.812, Loss: 2961969.250, time:3.2002s
+Train Iter: 7600, Content Loss: 2068484.625, Style Loss: 982650.125, Loss: 3051134.750, time:3.2158s
+Train Iter: 7650, Content Loss: 1910347.000, Style Loss: 782484.000, Loss: 2692831.000, time:2.2149s
+Train Iter: 7700, Content Loss: 1961898.750, Style Loss: 1192750.250, Loss: 3154649.000, time:3.1555s
+Train Iter: 7750, Content Loss: 2231898.750, Style Loss: 1081472.500, Loss: 3313371.250, time:3.1912s
+Train Iter: 7800, Content Loss: 2224650.000, Style Loss: 1160210.625, Loss: 3384860.500, time:2.2011s
+Train Iter: 7850, Content Loss: 2357553.750, Style Loss: 883477.688, Loss: 3241031.500, time:3.1742s
+Train Iter: 7900, Content Loss: 2112411.250, Style Loss: 860899.375, Loss: 2973310.500, time:3.1881s
+Train Iter: 7950, Content Loss: 2294836.000, Style Loss: 1185424.000, Loss: 3480260.000, time:2.2021s
+Train Iter: 8000, Content Loss: 1966004.125, Style Loss: 776375.188, Loss: 2742379.250, time:3.1792s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 8000, Content Loss: 1635839.750, Style Loss: 615788.938, Loss: 2251628.750, time:1.2217s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00008000_lores_N.1001.0001.png
+Train Iter: 8050, Content Loss: 1949731.500, Style Loss: 830514.688, Loss: 2780246.250, time:3.1843s
+Train Iter: 8100, Content Loss: 2408691.000, Style Loss: 917432.375, Loss: 3326123.500, time:2.1989s
+Train Iter: 8150, Content Loss: 2229608.500, Style Loss: 926844.312, Loss: 3156452.750, time:3.1661s
+Train Iter: 8200, Content Loss: 2027192.250, Style Loss: 781826.812, Loss: 2809019.000, time:3.1719s
+Train Iter: 8250, Content Loss: 2102936.000, Style Loss: 760471.750, Loss: 2863407.750, time:2.2127s
+Train Iter: 8300, Content Loss: 2789937.750, Style Loss: 855094.062, Loss: 3645031.750, time:3.1674s
+Train Iter: 8350, Content Loss: 1908382.250, Style Loss: 649997.375, Loss: 2558379.500, time:3.1725s
+Train Iter: 8400, Content Loss: 2137172.500, Style Loss: 1089856.750, Loss: 3227029.250, time:2.2035s
+Train Iter: 8450, Content Loss: 2487616.000, Style Loss: 1049491.375, Loss: 3537107.500, time:3.1772s
+Train Iter: 8500, Content Loss: 1917298.000, Style Loss: 871657.688, Loss: 2788955.750, time:3.1871s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 8500, Content Loss: 1690551.250, Style Loss: 634972.125, Loss: 2325523.500, time:1.1975s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00008500_lores_N.1001.0001.png
+Train Iter: 8550, Content Loss: 2234977.250, Style Loss: 983584.125, Loss: 3218561.500, time:2.1280s
+Train Iter: 8600, Content Loss: 2195526.500, Style Loss: 1271181.375, Loss: 3466708.000, time:3.1213s
+Train Iter: 8650, Content Loss: 2288463.750, Style Loss: 1179785.625, Loss: 3468249.500, time:3.1289s
+Train Iter: 8700, Content Loss: 2551573.500, Style Loss: 951324.625, Loss: 3502898.000, time:2.1688s
+Train Iter: 8750, Content Loss: 2315545.000, Style Loss: 759600.250, Loss: 3075145.250, time:3.1196s
+Train Iter: 8800, Content Loss: 1981101.000, Style Loss: 920651.688, Loss: 2901752.750, time:3.1147s
+Train Iter: 8850, Content Loss: 2045513.125, Style Loss: 699847.938, Loss: 2745361.000, time:2.1346s
+Train Iter: 8900, Content Loss: 2110194.250, Style Loss: 733003.062, Loss: 2843197.250, time:3.0723s
+Train Iter: 8950, Content Loss: 2124956.750, Style Loss: 1120346.500, Loss: 3245303.250, time:3.0884s
+Train Iter: 9000, Content Loss: 1789762.625, Style Loss: 922995.688, Loss: 2712758.250, time:2.1547s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 9000, Content Loss: 1616320.875, Style Loss: 623003.750, Loss: 2239324.500, time:1.1732s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00009000_lores_N.1001.0001.png
+Train Iter: 9050, Content Loss: 2093698.250, Style Loss: 717495.875, Loss: 2811194.000, time:3.0932s
+Train Iter: 9100, Content Loss: 2701795.750, Style Loss: 954105.500, Loss: 3655901.250, time:3.1167s
+Train Iter: 9150, Content Loss: 2210651.000, Style Loss: 685003.125, Loss: 2895654.000, time:2.1664s
+Train Iter: 9200, Content Loss: 3149673.250, Style Loss: 875819.250, Loss: 4025492.500, time:3.1040s
+Train Iter: 9250, Content Loss: 1780960.500, Style Loss: 715335.062, Loss: 2496295.500, time:3.0872s
+Train Iter: 9300, Content Loss: 1950138.750, Style Loss: 864232.250, Loss: 2814371.000, time:2.1289s
+Train Iter: 9350, Content Loss: 2040147.750, Style Loss: 853443.312, Loss: 2893591.000, time:3.0975s
+Train Iter: 9400, Content Loss: 2439771.250, Style Loss: 816223.688, Loss: 3255995.000, time:3.1006s
+Train Iter: 9450, Content Loss: 1938914.625, Style Loss: 745895.562, Loss: 2684810.250, time:2.1297s
+Train Iter: 9500, Content Loss: 2676553.750, Style Loss: 1082551.375, Loss: 3759105.000, time:3.1579s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 9500, Content Loss: 1702926.000, Style Loss: 553836.188, Loss: 2256762.250, time:1.2016s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00009500_lores_N.1001.0001.png
+Train Iter: 9550, Content Loss: 2100234.000, Style Loss: 648485.688, Loss: 2748719.750, time:3.1159s
+Train Iter: 9600, Content Loss: 1880390.125, Style Loss: 1032427.375, Loss: 2912817.500, time:2.1414s
+Train Iter: 9650, Content Loss: 2207997.000, Style Loss: 973526.562, Loss: 3181523.500, time:3.0894s
+Train Iter: 9700, Content Loss: 1981626.875, Style Loss: 939315.312, Loss: 2920942.250, time:3.1225s
+Train Iter: 9750, Content Loss: 1850407.250, Style Loss: 816116.812, Loss: 2666524.000, time:2.1489s
+Train Iter: 9800, Content Loss: 1882911.000, Style Loss: 841753.375, Loss: 2724664.500, time:3.0986s
+Train Iter: 9850, Content Loss: 2238149.250, Style Loss: 805281.688, Loss: 3043431.000, time:3.1142s
+Train Iter: 9900, Content Loss: 1793516.000, Style Loss: 1006346.438, Loss: 2799862.500, time:2.1298s
+Train Iter: 9950, Content Loss: 3045441.000, Style Loss: 1007512.688, Loss: 4052953.750, time:3.1054s
+Train Iter: 10000, Content Loss: 2002395.000, Style Loss: 990570.062, Loss: 2992965.000, time:3.0940s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 10000, Content Loss: 1464439.625, Style Loss: 615250.188, Loss: 2079689.750, time:1.1788s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00010000_lores_N.1001.0001.png
+Train Iter: 10050, Content Loss: 1793478.250, Style Loss: 852898.875, Loss: 2646377.000, time:2.1469s
+Train Iter: 10100, Content Loss: 2301116.000, Style Loss: 807785.938, Loss: 3108902.000, time:3.1120s
+Train Iter: 10150, Content Loss: 2342797.750, Style Loss: 915371.188, Loss: 3258169.000, time:3.1176s
+Train Iter: 10200, Content Loss: 2579659.750, Style Loss: 1204856.875, Loss: 3784516.500, time:2.1701s
+Train Iter: 10250, Content Loss: 1862214.500, Style Loss: 855074.000, Loss: 2717288.500, time:3.1104s
+Train Iter: 10300, Content Loss: 1887670.000, Style Loss: 1088852.500, Loss: 2976522.500, time:3.1078s
+Train Iter: 10350, Content Loss: 1871780.875, Style Loss: 1164291.125, Loss: 3036072.000, time:2.1618s
+Train Iter: 10400, Content Loss: 2743430.000, Style Loss: 864406.438, Loss: 3607836.500, time:3.1132s
+Train Iter: 10450, Content Loss: 1820924.625, Style Loss: 653046.125, Loss: 2473970.750, time:3.1277s
+Train Iter: 10500, Content Loss: 1743469.875, Style Loss: 635711.188, Loss: 2379181.000, time:2.1564s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 10500, Content Loss: 1625757.750, Style Loss: 580025.000, Loss: 2205782.750, time:1.1889s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00010500_lores_N.1001.0001.png
+Train Iter: 10550, Content Loss: 1683752.500, Style Loss: 806562.125, Loss: 2490314.500, time:3.0831s
+Train Iter: 10600, Content Loss: 2042551.000, Style Loss: 866044.375, Loss: 2908595.500, time:3.0836s
+Train Iter: 10650, Content Loss: 1660761.000, Style Loss: 917312.000, Loss: 2578073.000, time:2.1530s
+Train Iter: 10700, Content Loss: 2041495.500, Style Loss: 1008147.875, Loss: 3049643.500, time:3.1162s
+Train Iter: 10750, Content Loss: 1906025.875, Style Loss: 757220.000, Loss: 2663246.000, time:3.0827s
+Train Iter: 10800, Content Loss: 2089227.375, Style Loss: 1017064.375, Loss: 3106291.750, time:2.1413s
+Train Iter: 10850, Content Loss: 2161478.000, Style Loss: 832853.375, Loss: 2994331.500, time:3.0797s
+Train Iter: 10900, Content Loss: 2213755.250, Style Loss: 863394.688, Loss: 3077150.000, time:3.1089s
+Train Iter: 10950, Content Loss: 2149580.500, Style Loss: 829120.500, Loss: 2978701.000, time:2.1323s
+Train Iter: 11000, Content Loss: 1725601.875, Style Loss: 804162.438, Loss: 2529764.250, time:3.0913s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 11000, Content Loss: 1439802.000, Style Loss: 532043.875, Loss: 1971845.875, time:1.1720s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00011000_lores_N.1001.0001.png
+Train Iter: 11050, Content Loss: 1722372.750, Style Loss: 898454.125, Loss: 2620827.000, time:3.1108s
+Train Iter: 11100, Content Loss: 2254382.750, Style Loss: 753943.625, Loss: 3008326.500, time:2.1339s
+Train Iter: 11150, Content Loss: 1996932.500, Style Loss: 958565.312, Loss: 2955497.750, time:3.1212s
+Train Iter: 11200, Content Loss: 1940988.250, Style Loss: 839270.188, Loss: 2780258.500, time:3.1171s
+Train Iter: 11250, Content Loss: 2216066.000, Style Loss: 968466.250, Loss: 3184532.250, time:2.1484s
+Train Iter: 11300, Content Loss: 2015433.750, Style Loss: 1098266.125, Loss: 3113700.000, time:3.1332s
+Train Iter: 11350, Content Loss: 2022478.375, Style Loss: 1166030.750, Loss: 3188509.000, time:3.1021s
+Train Iter: 11400, Content Loss: 1749491.000, Style Loss: 844189.750, Loss: 2593680.750, time:2.1477s
+Train Iter: 11450, Content Loss: 1639517.250, Style Loss: 913050.562, Loss: 2552567.750, time:3.1047s
+Train Iter: 11500, Content Loss: 2166414.500, Style Loss: 730605.875, Loss: 2897020.500, time:3.0732s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 11500, Content Loss: 1530710.750, Style Loss: 544509.875, Loss: 2075220.625, time:1.1689s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00011500_lores_N.1001.0001.png
+Train Iter: 11550, Content Loss: 1752260.625, Style Loss: 727359.438, Loss: 2479620.000, time:2.1457s
+Train Iter: 11600, Content Loss: 1921320.500, Style Loss: 905333.375, Loss: 2826654.000, time:3.0927s
+Train Iter: 11650, Content Loss: 2303033.500, Style Loss: 1338889.500, Loss: 3641923.000, time:3.0973s
+Train Iter: 11700, Content Loss: 1880454.750, Style Loss: 786628.438, Loss: 2667083.250, time:2.1630s
+Train Iter: 11750, Content Loss: 1953224.250, Style Loss: 792044.500, Loss: 2745268.750, time:3.1214s
+Train Iter: 11800, Content Loss: 2146600.000, Style Loss: 691730.250, Loss: 2838330.250, time:3.1090s
+Train Iter: 11850, Content Loss: 2361894.000, Style Loss: 940847.625, Loss: 3302741.500, time:2.1512s
+Train Iter: 11900, Content Loss: 1678705.000, Style Loss: 828226.188, Loss: 2506931.250, time:3.0932s
+Train Iter: 11950, Content Loss: 2561898.500, Style Loss: 934107.688, Loss: 3496006.250, time:3.1106s
+Train Iter: 12000, Content Loss: 2607483.250, Style Loss: 1024541.000, Loss: 3632024.250, time:2.1667s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 12000, Content Loss: 1559413.625, Style Loss: 581267.062, Loss: 2140680.750, time:1.1690s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00012000_lores_N.1001.0001.png
+Train Iter: 12050, Content Loss: 2042500.250, Style Loss: 843293.125, Loss: 2885793.500, time:2.6491s
+Train Iter: 12100, Content Loss: 2032542.375, Style Loss: 1089266.875, Loss: 3121809.250, time:2.4647s
+Train Iter: 12150, Content Loss: 2023636.250, Style Loss: 948698.625, Loss: 2972335.000, time:2.6075s
+Train Iter: 12200, Content Loss: 1796136.750, Style Loss: 745801.250, Loss: 2541938.000, time:2.5797s
+Train Iter: 12250, Content Loss: 2395435.250, Style Loss: 830137.375, Loss: 3225572.500, time:2.6991s
+Train Iter: 12300, Content Loss: 2526766.000, Style Loss: 851413.500, Loss: 3378179.500, time:2.5524s
+Train Iter: 12350, Content Loss: 1980493.250, Style Loss: 965227.812, Loss: 2945721.000, time:2.6432s
+Train Iter: 12400, Content Loss: 1901671.875, Style Loss: 704844.375, Loss: 2606516.250, time:2.4643s
+Train Iter: 12450, Content Loss: 2032639.250, Style Loss: 1021453.000, Loss: 3054092.250, time:2.4898s
+Train Iter: 12500, Content Loss: 2235199.500, Style Loss: 1090131.750, Loss: 3325331.250, time:2.5317s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 12500, Content Loss: 1625132.250, Style Loss: 670773.938, Loss: 2295906.250, time:1.1768s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00012500_lores_N.1001.0001.png
+Train Iter: 12550, Content Loss: 1796882.000, Style Loss: 720638.375, Loss: 2517520.500, time:2.5742s
+Train Iter: 12600, Content Loss: 1890516.875, Style Loss: 904140.250, Loss: 2794657.000, time:2.5647s
+Train Iter: 12650, Content Loss: 1718447.875, Style Loss: 873128.375, Loss: 2591576.250, time:2.4404s
+Train Iter: 12700, Content Loss: 1763638.250, Style Loss: 916431.188, Loss: 2680069.500, time:2.4074s
+Train Iter: 12750, Content Loss: 2492545.500, Style Loss: 1235432.750, Loss: 3727978.250, time:2.6001s
+Train Iter: 12800, Content Loss: 2469037.000, Style Loss: 1059814.875, Loss: 3528852.000, time:2.6118s
+Train Iter: 12850, Content Loss: 2002656.500, Style Loss: 771441.938, Loss: 2774098.500, time:2.4801s
+Train Iter: 12900, Content Loss: 2809917.750, Style Loss: 1171332.750, Loss: 3981250.500, time:2.4119s
+Train Iter: 12950, Content Loss: 1846963.625, Style Loss: 712749.000, Loss: 2559712.500, time:2.6005s
+Train Iter: 13000, Content Loss: 2010852.500, Style Loss: 791567.375, Loss: 2802420.000, time:2.4612s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 13000, Content Loss: 1560218.375, Style Loss: 562354.000, Loss: 2122572.500, time:1.1718s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00013000_lores_N.1001.0001.png
+Train Iter: 13050, Content Loss: 1887490.000, Style Loss: 730178.625, Loss: 2617668.500, time:2.1356s
+Train Iter: 13100, Content Loss: 2132742.500, Style Loss: 938915.688, Loss: 3071658.250, time:3.0883s
+Train Iter: 13150, Content Loss: 1749864.750, Style Loss: 599731.750, Loss: 2349596.500, time:3.1031s
+Train Iter: 13200, Content Loss: 1756754.500, Style Loss: 685162.375, Loss: 2441917.000, time:2.1487s
+Train Iter: 13250, Content Loss: 2137193.000, Style Loss: 1154101.875, Loss: 3291295.000, time:3.1059s
+Train Iter: 13300, Content Loss: 2219711.000, Style Loss: 803987.125, Loss: 3023698.000, time:3.1144s
+Train Iter: 13350, Content Loss: 2076455.625, Style Loss: 867816.000, Loss: 2944271.500, time:2.1451s
+Train Iter: 13400, Content Loss: 2161300.250, Style Loss: 740617.500, Loss: 2901917.750, time:3.1172s
+Train Iter: 13450, Content Loss: 1875109.500, Style Loss: 749737.062, Loss: 2624846.500, time:3.1231s
+Train Iter: 13500, Content Loss: 1960217.750, Style Loss: 796052.312, Loss: 2756270.000, time:2.1653s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 13500, Content Loss: 1691517.500, Style Loss: 648155.750, Loss: 2339673.250, time:1.1793s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00013500_lores_N.1001.0001.png
+Train Iter: 13550, Content Loss: 1652215.250, Style Loss: 784903.312, Loss: 2437118.500, time:3.0992s
+Train Iter: 13600, Content Loss: 1592365.000, Style Loss: 730367.875, Loss: 2322733.000, time:3.1066s
+Train Iter: 13650, Content Loss: 2037696.750, Style Loss: 709383.938, Loss: 2747080.750, time:2.1608s
+Train Iter: 13700, Content Loss: 2183078.000, Style Loss: 1056870.250, Loss: 3239948.250, time:3.1104s
+Train Iter: 13750, Content Loss: 1769502.125, Style Loss: 938259.000, Loss: 2707761.000, time:3.1059s
+Train Iter: 13800, Content Loss: 1728315.625, Style Loss: 851306.625, Loss: 2579622.250, time:2.1510s
+Train Iter: 13850, Content Loss: 1767002.250, Style Loss: 973707.562, Loss: 2740709.750, time:3.1028s
+Train Iter: 13900, Content Loss: 1883734.750, Style Loss: 687942.438, Loss: 2571677.250, time:3.0945s
+Train Iter: 13950, Content Loss: 1731069.250, Style Loss: 843455.938, Loss: 2574525.250, time:2.1525s
+Train Iter: 14000, Content Loss: 2058131.750, Style Loss: 943657.062, Loss: 3001788.750, time:3.1573s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 14000, Content Loss: 1462136.875, Style Loss: 550444.625, Loss: 2012581.500, time:1.2082s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00014000_lores_N.1001.0001.png
+Train Iter: 14050, Content Loss: 2018264.500, Style Loss: 799303.500, Loss: 2817568.000, time:3.0832s
+Train Iter: 14100, Content Loss: 1800377.250, Style Loss: 998365.312, Loss: 2798742.500, time:2.1361s
+Train Iter: 14150, Content Loss: 2483402.000, Style Loss: 972643.500, Loss: 3456045.500, time:3.0958s
+Train Iter: 14200, Content Loss: 2270771.500, Style Loss: 796807.875, Loss: 3067579.500, time:3.1096s
+Train Iter: 14250, Content Loss: 2017517.000, Style Loss: 932411.938, Loss: 2949929.000, time:2.1579s
+Train Iter: 14300, Content Loss: 2560477.000, Style Loss: 1048944.125, Loss: 3609421.000, time:3.0935s
+Train Iter: 14350, Content Loss: 2094360.375, Style Loss: 1116991.250, Loss: 3211351.500, time:3.1288s
+Train Iter: 14400, Content Loss: 1774701.500, Style Loss: 997113.500, Loss: 2771815.000, time:2.1335s
+Train Iter: 14450, Content Loss: 2522948.750, Style Loss: 1130681.625, Loss: 3653630.500, time:3.0935s
+Train Iter: 14500, Content Loss: 2305382.500, Style Loss: 775835.125, Loss: 3081217.500, time:3.1111s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 14500, Content Loss: 1652943.000, Style Loss: 543743.125, Loss: 2196686.000, time:1.1805s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00014500_lores_N.1001.0001.png
+Train Iter: 14550, Content Loss: 2118593.500, Style Loss: 694427.812, Loss: 2813021.250, time:2.1099s
+Train Iter: 14600, Content Loss: 1932294.000, Style Loss: 950396.188, Loss: 2882690.250, time:3.1062s
+Train Iter: 14650, Content Loss: 1771459.750, Style Loss: 902662.500, Loss: 2674122.250, time:3.1044s
+Train Iter: 14700, Content Loss: 2309865.500, Style Loss: 1118260.500, Loss: 3428126.000, time:2.1499s
+Train Iter: 14750, Content Loss: 3096418.750, Style Loss: 931668.688, Loss: 4028087.500, time:3.0843s
+Train Iter: 14800, Content Loss: 1997709.000, Style Loss: 901142.125, Loss: 2898851.000, time:3.1042s
+Train Iter: 14850, Content Loss: 2388375.500, Style Loss: 1239895.750, Loss: 3628271.250, time:2.1495s
+Train Iter: 14900, Content Loss: 1715083.500, Style Loss: 817894.375, Loss: 2532978.000, time:3.0985s
+Train Iter: 14950, Content Loss: 2274653.500, Style Loss: 816460.188, Loss: 3091113.750, time:3.1195s
+Train Iter: 15000, Content Loss: 1800589.625, Style Loss: 1032158.062, Loss: 2832747.750, time:2.1460s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 15000, Content Loss: 1435509.375, Style Loss: 513835.625, Loss: 1949345.000, time:1.1715s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00015000_lores_N.1001.0001.png
+Train Iter: 15050, Content Loss: 2570825.750, Style Loss: 820785.812, Loss: 3391611.500, time:3.1170s
+Train Iter: 15100, Content Loss: 2282727.500, Style Loss: 884509.188, Loss: 3167236.750, time:3.1103s
+Train Iter: 15150, Content Loss: 2801816.250, Style Loss: 1060596.500, Loss: 3862412.750, time:2.1420s
+Train Iter: 15200, Content Loss: 1807335.125, Style Loss: 766785.438, Loss: 2574120.500, time:3.1510s
+Train Iter: 15250, Content Loss: 2479414.250, Style Loss: 957600.375, Loss: 3437014.500, time:3.1098s
+Train Iter: 15300, Content Loss: 1889651.750, Style Loss: 676071.312, Loss: 2565723.000, time:2.1452s
+Train Iter: 15350, Content Loss: 1864435.000, Style Loss: 915824.375, Loss: 2780259.500, time:3.1087s
+Train Iter: 15400, Content Loss: 1629917.750, Style Loss: 860521.188, Loss: 2490439.000, time:3.1507s
+Train Iter: 15450, Content Loss: 2931817.500, Style Loss: 974293.000, Loss: 3906110.500, time:2.1387s
+Train Iter: 15500, Content Loss: 2536526.250, Style Loss: 802265.312, Loss: 3338791.500, time:3.1136s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 15500, Content Loss: 1723492.250, Style Loss: 678096.188, Loss: 2401588.500, time:1.1970s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00015500_lores_N.1001.0001.png
+Train Iter: 15550, Content Loss: 1886794.000, Style Loss: 741756.188, Loss: 2628550.250, time:2.4094s
+Train Iter: 15600, Content Loss: 1737319.000, Style Loss: 784048.250, Loss: 2521367.250, time:2.4977s
+Train Iter: 15650, Content Loss: 1927250.500, Style Loss: 895459.000, Loss: 2822709.500, time:2.5526s
+Train Iter: 15700, Content Loss: 2296698.000, Style Loss: 821652.062, Loss: 3118350.000, time:2.4365s
+Train Iter: 15750, Content Loss: 1843328.750, Style Loss: 1002368.188, Loss: 2845697.000, time:2.4771s
+Train Iter: 15800, Content Loss: 1939328.625, Style Loss: 787212.062, Loss: 2726540.750, time:2.5802s
+Train Iter: 15850, Content Loss: 2253664.000, Style Loss: 802229.625, Loss: 3055893.500, time:2.6798s
+Train Iter: 15900, Content Loss: 1939603.500, Style Loss: 969211.625, Loss: 2908815.000, time:2.4345s
+Train Iter: 15950, Content Loss: 2293859.500, Style Loss: 775349.375, Loss: 3069209.000, time:2.4183s
+Train Iter: 16000, Content Loss: 2805610.750, Style Loss: 1106383.875, Loss: 3911994.500, time:2.6458s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 16000, Content Loss: 1524814.500, Style Loss: 599498.250, Loss: 2124312.750, time:1.2624s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00016000_lores_N.1001.0001.png
+Train Iter: 16050, Content Loss: 2447042.250, Style Loss: 789076.562, Loss: 3236118.750, time:2.4989s
+Train Iter: 16100, Content Loss: 2135748.500, Style Loss: 1135686.750, Loss: 3271435.250, time:2.5594s
+Train Iter: 16150, Content Loss: 1674975.625, Style Loss: 791209.250, Loss: 2466185.000, time:2.6508s
+Train Iter: 16200, Content Loss: 2210459.000, Style Loss: 956664.750, Loss: 3167123.750, time:2.5173s
+Train Iter: 16250, Content Loss: 1816448.000, Style Loss: 1022634.875, Loss: 2839083.000, time:2.5582s
+Train Iter: 16300, Content Loss: 2125128.000, Style Loss: 1135494.875, Loss: 3260623.000, time:2.5751s
+Train Iter: 16350, Content Loss: 1700321.750, Style Loss: 950361.938, Loss: 2650683.750, time:2.4043s
+Train Iter: 16400, Content Loss: 1890591.500, Style Loss: 1066074.875, Loss: 2956666.500, time:2.5610s
+Train Iter: 16450, Content Loss: 2440592.250, Style Loss: 879361.750, Loss: 3319954.000, time:2.6237s
+Train Iter: 16500, Content Loss: 2180809.000, Style Loss: 919733.125, Loss: 3100542.000, time:2.4056s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 16500, Content Loss: 1747029.375, Style Loss: 569002.375, Loss: 2316031.750, time:1.1499s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00016500_lores_N.1001.0001.png
+Train Iter: 16550, Content Loss: 1702470.500, Style Loss: 578400.750, Loss: 2280871.250, time:3.0910s
+Train Iter: 16600, Content Loss: 1681873.750, Style Loss: 984137.750, Loss: 2666011.500, time:3.1317s
+Train Iter: 16650, Content Loss: 1957854.750, Style Loss: 849121.250, Loss: 2806976.000, time:2.1511s
+Train Iter: 16700, Content Loss: 1724119.500, Style Loss: 818503.438, Loss: 2542623.000, time:3.1440s
+Train Iter: 16750, Content Loss: 1692359.375, Style Loss: 745967.438, Loss: 2438326.750, time:3.0996s
+Train Iter: 16800, Content Loss: 2044527.375, Style Loss: 971548.938, Loss: 3016076.250, time:2.1385s
+Train Iter: 16850, Content Loss: 1612085.000, Style Loss: 714969.250, Loss: 2327054.250, time:3.0973s
+Train Iter: 16900, Content Loss: 1868372.500, Style Loss: 796869.938, Loss: 2665242.500, time:3.1045s
+Train Iter: 16950, Content Loss: 1992877.875, Style Loss: 822258.688, Loss: 2815136.500, time:2.1364s
+Train Iter: 17000, Content Loss: 2062481.750, Style Loss: 1085810.750, Loss: 3148292.500, time:3.1123s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 17000, Content Loss: 1472699.250, Style Loss: 538371.938, Loss: 2011071.250, time:1.2010s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00017000_lores_N.1001.0001.png
+Train Iter: 17050, Content Loss: 1983994.000, Style Loss: 898972.000, Loss: 2882966.000, time:3.1227s
+Train Iter: 17100, Content Loss: 1948954.125, Style Loss: 655792.688, Loss: 2604746.750, time:2.1485s
+Train Iter: 17150, Content Loss: 1850891.500, Style Loss: 709687.625, Loss: 2560579.000, time:3.1083s
+Train Iter: 17200, Content Loss: 1757882.250, Style Loss: 770119.500, Loss: 2528001.750, time:3.0876s
+Train Iter: 17250, Content Loss: 1819941.250, Style Loss: 706425.875, Loss: 2526367.000, time:2.1500s
+Train Iter: 17300, Content Loss: 2083816.125, Style Loss: 801018.062, Loss: 2884834.250, time:3.0942s
+Train Iter: 17350, Content Loss: 1756427.000, Style Loss: 837831.812, Loss: 2594258.750, time:3.1247s
+Train Iter: 17400, Content Loss: 1749049.750, Style Loss: 620972.562, Loss: 2370022.250, time:2.1413s
+Train Iter: 17450, Content Loss: 1959907.875, Style Loss: 787665.500, Loss: 2747573.500, time:3.1003s
+Train Iter: 17500, Content Loss: 1636970.875, Style Loss: 586180.250, Loss: 2223151.000, time:3.0972s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 17500, Content Loss: 1656953.875, Style Loss: 603696.312, Loss: 2260650.250, time:1.1799s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00017500_lores_N.1001.0001.png
+Train Iter: 17550, Content Loss: 2278817.500, Style Loss: 770650.875, Loss: 3049468.500, time:2.1347s
+Train Iter: 17600, Content Loss: 2489676.000, Style Loss: 902420.750, Loss: 3392096.750, time:3.1116s
+Train Iter: 17650, Content Loss: 1924151.375, Style Loss: 741427.125, Loss: 2665578.500, time:3.1193s
+Train Iter: 17700, Content Loss: 2257666.000, Style Loss: 1010996.375, Loss: 3268662.500, time:2.1516s
+Train Iter: 17750, Content Loss: 1685051.750, Style Loss: 667986.125, Loss: 2353038.000, time:3.0899s
+Train Iter: 17800, Content Loss: 2541095.250, Style Loss: 869610.438, Loss: 3410705.750, time:3.0961s
+Train Iter: 17850, Content Loss: 2086456.375, Style Loss: 940261.562, Loss: 3026718.000, time:2.1670s
+Train Iter: 17900, Content Loss: 1928973.500, Style Loss: 834838.188, Loss: 2763811.750, time:3.0777s
+Train Iter: 17950, Content Loss: 2175200.500, Style Loss: 786569.812, Loss: 2961770.250, time:3.1253s
+Train Iter: 18000, Content Loss: 2428909.250, Style Loss: 708162.562, Loss: 3137071.750, time:2.1484s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 18000, Content Loss: 1621015.000, Style Loss: 652512.438, Loss: 2273527.500, time:1.1686s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00018000_lores_N.1001.0001.png
+Train Iter: 18050, Content Loss: 1881334.250, Style Loss: 718378.750, Loss: 2599713.000, time:3.1192s
+Train Iter: 18100, Content Loss: 2198009.000, Style Loss: 831700.812, Loss: 3029709.750, time:3.0954s
+Train Iter: 18150, Content Loss: 1922022.500, Style Loss: 943021.250, Loss: 2865043.750, time:2.1519s
+Train Iter: 18200, Content Loss: 1837702.750, Style Loss: 809982.500, Loss: 2647685.250, time:3.1267s
+Train Iter: 18250, Content Loss: 2683162.000, Style Loss: 868853.312, Loss: 3552015.250, time:3.1011s
+Train Iter: 18300, Content Loss: 1586910.250, Style Loss: 918084.500, Loss: 2504994.750, time:2.1353s
+Train Iter: 18350, Content Loss: 1760177.625, Style Loss: 642128.625, Loss: 2402306.250, time:3.1064s
+Train Iter: 18400, Content Loss: 1917683.750, Style Loss: 897859.938, Loss: 2815543.750, time:3.1129s
+Train Iter: 18450, Content Loss: 2517115.750, Style Loss: 1183430.625, Loss: 3700546.500, time:2.1500s
+Train Iter: 18500, Content Loss: 1771019.000, Style Loss: 1135072.375, Loss: 2906091.500, time:3.1175s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 18500, Content Loss: 1537650.750, Style Loss: 535385.312, Loss: 2073036.000, time:1.1638s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00018500_lores_N.1001.0001.png
+Train Iter: 18550, Content Loss: 1819508.750, Style Loss: 938466.812, Loss: 2757975.500, time:2.6866s
+Train Iter: 18600, Content Loss: 1855398.750, Style Loss: 1011110.375, Loss: 2866509.000, time:2.5367s
+Train Iter: 18650, Content Loss: 1834939.000, Style Loss: 729013.438, Loss: 2563952.500, time:2.4594s
+Train Iter: 18700, Content Loss: 1779399.375, Style Loss: 1233908.500, Loss: 3013308.000, time:2.6650s
+Train Iter: 18750, Content Loss: 1927302.250, Style Loss: 998542.500, Loss: 2925844.750, time:2.4400s
+Train Iter: 18800, Content Loss: 1972265.750, Style Loss: 1029141.062, Loss: 3001406.750, time:2.5613s
+Train Iter: 18850, Content Loss: 1760149.000, Style Loss: 987155.938, Loss: 2747305.000, time:2.5694s
+Train Iter: 18900, Content Loss: 2438547.000, Style Loss: 964483.750, Loss: 3403030.750, time:2.4758s
+Train Iter: 18950, Content Loss: 2060796.125, Style Loss: 833134.375, Loss: 2893930.500, time:2.5830s
+Train Iter: 19000, Content Loss: 1707440.875, Style Loss: 1102605.500, Loss: 2810046.500, time:2.6470s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 19000, Content Loss: 1594161.000, Style Loss: 578907.688, Loss: 2173068.750, time:1.2074s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00019000_lores_N.1001.0001.png
+Train Iter: 19050, Content Loss: 1856463.250, Style Loss: 761311.125, Loss: 2617774.500, time:2.5496s
+Train Iter: 19100, Content Loss: 2079823.250, Style Loss: 1005556.500, Loss: 3085379.750, time:2.6700s
+Train Iter: 19150, Content Loss: 1794626.750, Style Loss: 973663.938, Loss: 2768290.750, time:2.5360s
+Train Iter: 19200, Content Loss: 2639336.500, Style Loss: 1518934.000, Loss: 4158270.500, time:2.5631s
+Train Iter: 19250, Content Loss: 1957171.000, Style Loss: 754417.500, Loss: 2711588.500, time:2.6197s
+Train Iter: 19300, Content Loss: 1617003.000, Style Loss: 708913.438, Loss: 2325916.500, time:2.5724s
+Train Iter: 19350, Content Loss: 2245170.500, Style Loss: 794971.750, Loss: 3040142.250, time:2.6435s
+Train Iter: 19400, Content Loss: 2727747.750, Style Loss: 1128470.125, Loss: 3856218.000, time:2.5545s
+Train Iter: 19450, Content Loss: 2261205.750, Style Loss: 755745.438, Loss: 3016951.250, time:2.4205s
+Train Iter: 19500, Content Loss: 2192725.000, Style Loss: 764796.438, Loss: 2957521.500, time:2.5525s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 19500, Content Loss: 1486904.250, Style Loss: 563253.875, Loss: 2050158.125, time:1.1955s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00019500_lores_N.1001.0001.png
+Train Iter: 19550, Content Loss: 1967871.625, Style Loss: 931589.500, Loss: 2899461.000, time:2.4978s
+Train Iter: 19600, Content Loss: 2557722.000, Style Loss: 1029034.875, Loss: 3586757.000, time:2.4585s
+Train Iter: 19650, Content Loss: 2091747.250, Style Loss: 1062329.500, Loss: 3154076.750, time:2.4981s
+Train Iter: 19700, Content Loss: 2706343.000, Style Loss: 896878.688, Loss: 3603221.750, time:2.6509s
+Train Iter: 19750, Content Loss: 1717176.375, Style Loss: 925452.250, Loss: 2642628.500, time:2.5401s
+Train Iter: 19800, Content Loss: 1814245.750, Style Loss: 868348.562, Loss: 2682594.250, time:2.6171s
+Train Iter: 19850, Content Loss: 2026702.625, Style Loss: 714669.938, Loss: 2741372.500, time:2.5486s
+Train Iter: 19900, Content Loss: 2401213.750, Style Loss: 728602.000, Loss: 3129815.750, time:2.4464s
+Train Iter: 19950, Content Loss: 1816473.125, Style Loss: 1131056.000, Loss: 2947529.000, time:2.6198s
+Train Iter: 20000, Content Loss: 1502118.000, Style Loss: 611988.625, Loss: 2114106.500, time:2.5507s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 20000, Content Loss: 1463516.250, Style Loss: 581654.125, Loss: 2045170.375, time:1.1772s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00020000_lores_N.1001.0001.png
+Train Iter: 20050, Content Loss: 1536446.250, Style Loss: 649553.375, Loss: 2185999.500, time:2.4331s
+Train Iter: 20100, Content Loss: 1626152.000, Style Loss: 711447.438, Loss: 2337599.500, time:2.5968s
+Train Iter: 20150, Content Loss: 2191397.500, Style Loss: 907637.500, Loss: 3099035.000, time:2.5943s
+Train Iter: 20200, Content Loss: 2715313.250, Style Loss: 1218546.500, Loss: 3933859.750, time:2.5677s
+Train Iter: 20250, Content Loss: 2074720.250, Style Loss: 1347433.500, Loss: 3422153.750, time:2.4101s
+Train Iter: 20300, Content Loss: 1638291.250, Style Loss: 572012.875, Loss: 2210304.000, time:2.4332s
+Train Iter: 20350, Content Loss: 1738004.125, Style Loss: 770621.938, Loss: 2508626.000, time:2.4316s
+Train Iter: 20400, Content Loss: 2124738.000, Style Loss: 1054739.500, Loss: 3179477.500, time:2.3801s
+Train Iter: 20450, Content Loss: 1803841.250, Style Loss: 755368.625, Loss: 2559210.000, time:2.5025s
+Train Iter: 20500, Content Loss: 1645826.625, Style Loss: 630416.875, Loss: 2276243.500, time:2.5790s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 20500, Content Loss: 1508942.000, Style Loss: 643366.500, Loss: 2152308.500, time:1.1929s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00020500_lores_N.1001.0001.png
+Train Iter: 20550, Content Loss: 1778138.250, Style Loss: 733710.812, Loss: 2511849.000, time:2.6206s
+Train Iter: 20600, Content Loss: 1974563.000, Style Loss: 859263.000, Loss: 2833826.000, time:2.4698s
+Train Iter: 20650, Content Loss: 1843108.000, Style Loss: 921095.875, Loss: 2764204.000, time:2.5224s
+Train Iter: 20700, Content Loss: 2040785.000, Style Loss: 1041351.688, Loss: 3082136.750, time:2.4985s
+Train Iter: 20750, Content Loss: 2379851.500, Style Loss: 779640.375, Loss: 3159492.000, time:2.4279s
+Train Iter: 20800, Content Loss: 1862375.375, Style Loss: 731944.750, Loss: 2594320.000, time:2.6702s
+Train Iter: 20850, Content Loss: 1856766.250, Style Loss: 842200.875, Loss: 2698967.000, time:2.5772s
+Train Iter: 20900, Content Loss: 2696221.000, Style Loss: 1101643.625, Loss: 3797864.500, time:2.5644s
+Train Iter: 20950, Content Loss: 1988541.000, Style Loss: 1017167.750, Loss: 3005708.750, time:2.6550s
+Train Iter: 21000, Content Loss: 1959185.250, Style Loss: 790488.812, Loss: 2749674.000, time:2.3538s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 21000, Content Loss: 1472758.250, Style Loss: 561132.375, Loss: 2033890.625, time:1.1850s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00021000_lores_N.1001.0001.png
+Train Iter: 21050, Content Loss: 1944595.250, Style Loss: 991922.750, Loss: 2936518.000, time:3.1134s
+Train Iter: 21100, Content Loss: 1615197.625, Style Loss: 795030.000, Loss: 2410227.500, time:3.1046s
+Train Iter: 21150, Content Loss: 1860637.000, Style Loss: 937987.688, Loss: 2798624.750, time:2.1484s
+Train Iter: 21200, Content Loss: 2144636.000, Style Loss: 667983.250, Loss: 2812619.250, time:3.0912s
+Train Iter: 21250, Content Loss: 1556259.250, Style Loss: 865732.500, Loss: 2421991.750, time:3.1037s
+Train Iter: 21300, Content Loss: 1787759.875, Style Loss: 737909.312, Loss: 2525669.250, time:2.1564s
+Train Iter: 21350, Content Loss: 2017268.000, Style Loss: 824687.875, Loss: 2841956.000, time:3.0780s
+Train Iter: 21400, Content Loss: 1718138.250, Style Loss: 620330.688, Loss: 2338469.000, time:3.0884s
+Train Iter: 21450, Content Loss: 1784491.000, Style Loss: 1212576.125, Loss: 2997067.000, time:2.1473s
+Train Iter: 21500, Content Loss: 1924660.625, Style Loss: 977181.562, Loss: 2901842.250, time:3.1075s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 21500, Content Loss: 1346102.375, Style Loss: 598958.062, Loss: 1945060.500, time:1.1828s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00021500_lores_N.1001.0001.png
+Train Iter: 21550, Content Loss: 1942294.500, Style Loss: 827202.312, Loss: 2769496.750, time:3.0863s
+Train Iter: 21600, Content Loss: 1777142.750, Style Loss: 877495.125, Loss: 2654638.000, time:2.1526s
+Train Iter: 21650, Content Loss: 2002880.375, Style Loss: 891088.188, Loss: 2893968.500, time:3.1047s
+Train Iter: 21700, Content Loss: 1906420.250, Style Loss: 849618.500, Loss: 2756038.750, time:3.1159s
+Train Iter: 21750, Content Loss: 2045396.500, Style Loss: 867941.438, Loss: 2913338.000, time:2.1218s
+Train Iter: 21800, Content Loss: 1799918.250, Style Loss: 661311.500, Loss: 2461229.750, time:3.0997s
+Train Iter: 21850, Content Loss: 1706069.500, Style Loss: 721980.688, Loss: 2428050.250, time:3.1259s
+Train Iter: 21900, Content Loss: 2378994.500, Style Loss: 1137978.000, Loss: 3516972.500, time:2.1438s
+Train Iter: 21950, Content Loss: 1679500.250, Style Loss: 918561.125, Loss: 2598061.500, time:3.1068s
+Train Iter: 22000, Content Loss: 1853974.000, Style Loss: 820015.250, Loss: 2673989.250, time:3.1107s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 22000, Content Loss: 1573546.375, Style Loss: 684388.125, Loss: 2257934.500, time:1.1678s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00022000_lores_N.1001.0001.png
+Train Iter: 22050, Content Loss: 1706757.250, Style Loss: 836400.000, Loss: 2543157.250, time:2.1393s
+Train Iter: 22100, Content Loss: 1738008.125, Style Loss: 759308.188, Loss: 2497316.250, time:3.1150s
+Train Iter: 22150, Content Loss: 2021984.000, Style Loss: 939738.625, Loss: 2961722.500, time:3.0991s
+Train Iter: 22200, Content Loss: 1451651.000, Style Loss: 616151.625, Loss: 2067802.625, time:2.1566s
+Train Iter: 22250, Content Loss: 1669381.875, Style Loss: 683255.438, Loss: 2352637.250, time:3.0810s
+Train Iter: 22300, Content Loss: 1603377.125, Style Loss: 1111179.750, Loss: 2714557.000, time:3.1224s
+Train Iter: 22350, Content Loss: 1624787.375, Style Loss: 935169.062, Loss: 2559956.500, time:2.1435s
+Train Iter: 22400, Content Loss: 2438896.000, Style Loss: 1203104.000, Loss: 3642000.000, time:3.1115s
+Train Iter: 22450, Content Loss: 1838009.000, Style Loss: 692489.062, Loss: 2530498.000, time:3.1104s
+Train Iter: 22500, Content Loss: 1591661.500, Style Loss: 740662.312, Loss: 2332323.750, time:2.1606s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 22500, Content Loss: 1613799.875, Style Loss: 800387.250, Loss: 2414187.000, time:1.1484s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00022500_lores_N.1001.0001.png
+Train Iter: 22550, Content Loss: 1649472.500, Style Loss: 709525.625, Loss: 2358998.000, time:2.6209s
+Train Iter: 22600, Content Loss: 2021056.250, Style Loss: 1007783.500, Loss: 3028839.750, time:2.3991s
+Train Iter: 22650, Content Loss: 1682918.250, Style Loss: 739832.562, Loss: 2422750.750, time:2.5288s
+Train Iter: 22700, Content Loss: 2151027.750, Style Loss: 913206.625, Loss: 3064234.500, time:2.6567s
+Train Iter: 22750, Content Loss: 1865841.500, Style Loss: 642173.562, Loss: 2508015.000, time:2.4629s
+Train Iter: 22800, Content Loss: 1583036.000, Style Loss: 771553.062, Loss: 2354589.000, time:2.4031s
+Train Iter: 22850, Content Loss: 2103626.000, Style Loss: 967613.438, Loss: 3071239.500, time:2.6425s
+Train Iter: 22900, Content Loss: 1828097.125, Style Loss: 814370.875, Loss: 2642468.000, time:2.5919s
+Train Iter: 22950, Content Loss: 2167249.750, Style Loss: 1063005.250, Loss: 3230255.000, time:2.4055s
+Train Iter: 23000, Content Loss: 1527252.500, Style Loss: 583299.000, Loss: 2110551.500, time:2.6326s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 23000, Content Loss: 1339345.750, Style Loss: 478949.000, Loss: 1818294.750, time:1.2641s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00023000_lores_N.1001.0001.png
+Train Iter: 23050, Content Loss: 1519159.125, Style Loss: 815599.375, Loss: 2334758.500, time:2.4232s
+Train Iter: 23100, Content Loss: 1657867.750, Style Loss: 621143.188, Loss: 2279011.000, time:2.5799s
+Train Iter: 23150, Content Loss: 2291385.500, Style Loss: 964366.750, Loss: 3255752.250, time:2.5956s
+Train Iter: 23200, Content Loss: 1593473.750, Style Loss: 612086.625, Loss: 2205560.500, time:2.4795s
+Train Iter: 23250, Content Loss: 1671346.125, Style Loss: 785207.500, Loss: 2456553.500, time:2.4362s
+Train Iter: 23300, Content Loss: 2189513.000, Style Loss: 1429866.125, Loss: 3619379.000, time:2.5029s
+Train Iter: 23350, Content Loss: 1931614.375, Style Loss: 801723.500, Loss: 2733338.000, time:2.5840s
+Train Iter: 23400, Content Loss: 1637011.125, Style Loss: 926791.562, Loss: 2563802.750, time:2.5168s
+Train Iter: 23450, Content Loss: 1775415.125, Style Loss: 803600.312, Loss: 2579015.500, time:2.5793s
+Train Iter: 23500, Content Loss: 1836861.750, Style Loss: 573551.500, Loss: 2410413.250, time:2.4985s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 23500, Content Loss: 1591557.750, Style Loss: 799249.875, Loss: 2390807.500, time:1.1700s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00023500_lores_N.1001.0001.png
+Train Iter: 23550, Content Loss: 1945292.500, Style Loss: 889943.750, Loss: 2835236.250, time:2.5184s
+Train Iter: 23600, Content Loss: 2170332.250, Style Loss: 1017796.500, Loss: 3188128.750, time:2.5855s
+Train Iter: 23650, Content Loss: 1858780.250, Style Loss: 642245.188, Loss: 2501025.500, time:2.6708s
+Train Iter: 23700, Content Loss: 1598375.250, Style Loss: 650910.188, Loss: 2249285.500, time:2.3626s
+Train Iter: 23750, Content Loss: 2318408.500, Style Loss: 1158212.875, Loss: 3476621.500, time:2.5591s
+Train Iter: 23800, Content Loss: 1672691.125, Style Loss: 908770.875, Loss: 2581462.000, time:2.4918s
+Train Iter: 23850, Content Loss: 1595976.750, Style Loss: 805036.562, Loss: 2401013.250, time:2.5423s
+Train Iter: 23900, Content Loss: 1614089.500, Style Loss: 959250.500, Loss: 2573340.000, time:2.5616s
+Train Iter: 23950, Content Loss: 1778081.250, Style Loss: 661565.750, Loss: 2439647.000, time:2.5599s
+Train Iter: 24000, Content Loss: 1668910.250, Style Loss: 938308.438, Loss: 2607218.750, time:2.5555s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 24000, Content Loss: 1488862.750, Style Loss: 582698.750, Loss: 2071561.500, time:1.2500s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00024000_lores_N.1001.0001.png
+Train Iter: 24050, Content Loss: 2094868.375, Style Loss: 813391.250, Loss: 2908259.500, time:2.6309s
+Train Iter: 24100, Content Loss: 1779361.250, Style Loss: 801216.438, Loss: 2580577.750, time:2.3398s
+Train Iter: 24150, Content Loss: 1865095.250, Style Loss: 928304.625, Loss: 2793400.000, time:2.5249s
+Train Iter: 24200, Content Loss: 2160665.500, Style Loss: 944855.375, Loss: 3105521.000, time:2.4164s
+Train Iter: 24250, Content Loss: 1971228.000, Style Loss: 753909.750, Loss: 2725137.750, time:2.4326s
+Train Iter: 24300, Content Loss: 1767085.750, Style Loss: 893502.375, Loss: 2660588.000, time:2.4068s
+Train Iter: 24350, Content Loss: 2103879.000, Style Loss: 815754.688, Loss: 2919633.750, time:2.4440s
+Train Iter: 24400, Content Loss: 1705989.000, Style Loss: 867323.625, Loss: 2573312.500, time:2.3758s
+Train Iter: 24450, Content Loss: 2075184.875, Style Loss: 1017564.250, Loss: 3092749.000, time:2.3402s
+Train Iter: 24500, Content Loss: 2334128.500, Style Loss: 838024.125, Loss: 3172152.500, time:2.6187s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 24500, Content Loss: 1424266.250, Style Loss: 552620.000, Loss: 1976886.250, time:1.1729s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00024500_lores_N.1001.0001.png
+Train Iter: 24550, Content Loss: 1438615.250, Style Loss: 536143.312, Loss: 1974758.500, time:2.5833s
+Train Iter: 24600, Content Loss: 1829855.750, Style Loss: 1011601.438, Loss: 2841457.250, time:2.4056s
+Train Iter: 24650, Content Loss: 2144948.000, Style Loss: 954905.688, Loss: 3099853.750, time:2.5474s
+Train Iter: 24700, Content Loss: 1813038.000, Style Loss: 856684.812, Loss: 2669722.750, time:2.3638s
+Train Iter: 24750, Content Loss: 1977384.750, Style Loss: 868214.875, Loss: 2845599.500, time:2.5610s
+Train Iter: 24800, Content Loss: 2126074.000, Style Loss: 730389.812, Loss: 2856463.750, time:2.6313s
+Train Iter: 24850, Content Loss: 2330427.500, Style Loss: 988818.688, Loss: 3319246.250, time:2.7604s
+Train Iter: 24900, Content Loss: 1699304.375, Style Loss: 791345.688, Loss: 2490650.000, time:2.4798s
+Train Iter: 24950, Content Loss: 1802140.125, Style Loss: 663904.750, Loss: 2466045.000, time:2.4663s
+Train Iter: 25000, Content Loss: 1840674.125, Style Loss: 963341.688, Loss: 2804015.750, time:2.5475s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 25000, Content Loss: 1388189.500, Style Loss: 590677.125, Loss: 1978866.625, time:1.1739s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00025000_lores_N.1001.0001.png
+Train Iter: 25050, Content Loss: 1539773.875, Style Loss: 652917.125, Loss: 2192691.000, time:2.5389s
+Train Iter: 25100, Content Loss: 1707336.250, Style Loss: 688548.438, Loss: 2395884.750, time:2.5939s
+Train Iter: 25150, Content Loss: 1684134.125, Style Loss: 902659.062, Loss: 2586793.250, time:2.5838s
+Train Iter: 25200, Content Loss: 1818151.000, Style Loss: 874295.188, Loss: 2692446.250, time:2.5771s
+Train Iter: 25250, Content Loss: 2019821.250, Style Loss: 997560.625, Loss: 3017382.000, time:2.5453s
+Train Iter: 25300, Content Loss: 2362553.500, Style Loss: 970955.688, Loss: 3333509.250, time:2.4737s
+Train Iter: 25350, Content Loss: 1900885.000, Style Loss: 734398.938, Loss: 2635284.000, time:2.4798s
+Train Iter: 25400, Content Loss: 1883481.750, Style Loss: 975454.125, Loss: 2858936.000, time:2.4723s
+Train Iter: 25450, Content Loss: 1806644.750, Style Loss: 760953.062, Loss: 2567597.750, time:2.7211s
+Train Iter: 25500, Content Loss: 1493171.625, Style Loss: 666537.938, Loss: 2159709.500, time:2.3539s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 25500, Content Loss: 1528468.500, Style Loss: 578263.250, Loss: 2106731.750, time:1.1632s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00025500_lores_N.1001.0001.png
+Train Iter: 25550, Content Loss: 2220400.000, Style Loss: 1000679.062, Loss: 3221079.000, time:2.5764s
+Train Iter: 25600, Content Loss: 1514977.625, Style Loss: 764184.812, Loss: 2279162.500, time:2.4993s
+Train Iter: 25650, Content Loss: 1637441.500, Style Loss: 708288.438, Loss: 2345730.000, time:2.3854s
+Train Iter: 25700, Content Loss: 2188442.250, Style Loss: 925654.750, Loss: 3114097.000, time:2.4166s
+Train Iter: 25750, Content Loss: 1680924.750, Style Loss: 915213.750, Loss: 2596138.500, time:2.5497s
+Train Iter: 25800, Content Loss: 1972266.625, Style Loss: 841984.000, Loss: 2814250.500, time:2.5767s
+Train Iter: 25850, Content Loss: 2013216.000, Style Loss: 819573.750, Loss: 2832789.750, time:2.6469s
+Train Iter: 25900, Content Loss: 1696280.750, Style Loss: 788092.750, Loss: 2484373.500, time:2.5198s
+Train Iter: 25950, Content Loss: 2015719.000, Style Loss: 768405.312, Loss: 2784124.250, time:2.4723s
+Train Iter: 26000, Content Loss: 2027172.750, Style Loss: 663626.000, Loss: 2690798.750, time:2.5002s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 26000, Content Loss: 1584303.125, Style Loss: 506287.312, Loss: 2090590.500, time:1.1667s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00026000_lores_N.1001.0001.png
+Train Iter: 26050, Content Loss: 1894485.875, Style Loss: 937061.062, Loss: 2831547.000, time:2.6296s
+Train Iter: 26100, Content Loss: 1949184.000, Style Loss: 783012.000, Loss: 2732196.000, time:2.3739s
+Train Iter: 26150, Content Loss: 1983268.375, Style Loss: 890396.562, Loss: 2873665.000, time:2.6296s
+Train Iter: 26200, Content Loss: 1659820.625, Style Loss: 642056.250, Loss: 2301877.000, time:2.4662s
+Train Iter: 26250, Content Loss: 2062906.250, Style Loss: 762321.250, Loss: 2825227.500, time:2.5655s
+Train Iter: 26300, Content Loss: 1645693.750, Style Loss: 845600.750, Loss: 2491294.500, time:2.4399s
+Train Iter: 26350, Content Loss: 1716870.250, Style Loss: 932212.000, Loss: 2649082.250, time:2.4154s
+Train Iter: 26400, Content Loss: 1759463.750, Style Loss: 858312.688, Loss: 2617776.500, time:2.3464s
+Train Iter: 26450, Content Loss: 1724332.625, Style Loss: 850921.375, Loss: 2575254.000, time:2.4878s
+Train Iter: 26500, Content Loss: 1990656.000, Style Loss: 964751.562, Loss: 2955407.500, time:2.4523s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 26500, Content Loss: 1635917.500, Style Loss: 564473.250, Loss: 2200390.750, time:1.1687s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00026500_lores_N.1001.0001.png
+Train Iter: 26550, Content Loss: 2129553.250, Style Loss: 1367185.000, Loss: 3496738.250, time:2.1313s
+Train Iter: 26600, Content Loss: 1927424.000, Style Loss: 1068298.875, Loss: 2995723.000, time:3.1074s
+Train Iter: 26650, Content Loss: 1822008.750, Style Loss: 832122.812, Loss: 2654131.500, time:3.1237s
+Train Iter: 26700, Content Loss: 1829958.750, Style Loss: 727761.688, Loss: 2557720.500, time:2.1420s
+Train Iter: 26750, Content Loss: 2007440.750, Style Loss: 764456.312, Loss: 2771897.000, time:3.1032s
+Train Iter: 26800, Content Loss: 2069871.750, Style Loss: 1049263.875, Loss: 3119135.500, time:3.1114s
+Train Iter: 26850, Content Loss: 1738485.125, Style Loss: 865914.375, Loss: 2604399.500, time:2.1502s
+Train Iter: 26900, Content Loss: 2389619.000, Style Loss: 1289396.375, Loss: 3679015.500, time:3.1056s
+Train Iter: 26950, Content Loss: 1842775.625, Style Loss: 764063.125, Loss: 2606838.750, time:3.1049s
+Train Iter: 27000, Content Loss: 2079484.375, Style Loss: 1111251.625, Loss: 3190736.000, time:2.1508s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 27000, Content Loss: 1642650.875, Style Loss: 634410.812, Loss: 2277061.750, time:1.1778s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00027000_lores_N.1001.0001.png
+Train Iter: 27050, Content Loss: 1676278.750, Style Loss: 808977.250, Loss: 2485256.000, time:3.0945s
+Train Iter: 27100, Content Loss: 1774188.000, Style Loss: 806459.000, Loss: 2580647.000, time:3.0936s
+Train Iter: 27150, Content Loss: 2068144.750, Style Loss: 1077599.500, Loss: 3145744.250, time:2.1351s
+Train Iter: 27200, Content Loss: 1971728.000, Style Loss: 985243.688, Loss: 2956971.750, time:3.0847s
+Train Iter: 27250, Content Loss: 1746534.500, Style Loss: 942119.000, Loss: 2688653.500, time:3.0927s
+Train Iter: 27300, Content Loss: 1888466.250, Style Loss: 733914.812, Loss: 2622381.000, time:2.1334s
+Train Iter: 27350, Content Loss: 1503224.125, Style Loss: 905128.000, Loss: 2408352.000, time:3.1231s
+Train Iter: 27400, Content Loss: 1846367.750, Style Loss: 1017518.250, Loss: 2863886.000, time:3.0989s
+Train Iter: 27450, Content Loss: 2175609.000, Style Loss: 986141.500, Loss: 3161750.500, time:2.1500s
+Train Iter: 27500, Content Loss: 2324123.500, Style Loss: 1228741.625, Loss: 3552865.000, time:3.0672s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 27500, Content Loss: 1363454.750, Style Loss: 704286.375, Loss: 2067741.125, time:1.1660s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00027500_lores_N.1001.0001.png
+Train Iter: 27550, Content Loss: 1921492.500, Style Loss: 912278.625, Loss: 2833771.000, time:3.0741s
+Train Iter: 27600, Content Loss: 1800494.250, Style Loss: 811132.375, Loss: 2611626.500, time:2.1355s
+Train Iter: 27650, Content Loss: 1931090.375, Style Loss: 778936.438, Loss: 2710026.750, time:3.0947s
+Train Iter: 27700, Content Loss: 2049073.250, Style Loss: 1046153.875, Loss: 3095227.000, time:3.1174s
+Train Iter: 27750, Content Loss: 1757876.500, Style Loss: 705513.250, Loss: 2463389.750, time:2.1516s
+Train Iter: 27800, Content Loss: 1733803.625, Style Loss: 635174.062, Loss: 2368977.750, time:3.1621s
+Train Iter: 27850, Content Loss: 1875424.000, Style Loss: 613333.625, Loss: 2488757.500, time:3.1015s
+Train Iter: 27900, Content Loss: 1828029.250, Style Loss: 675317.812, Loss: 2503347.000, time:2.1437s
+Train Iter: 27950, Content Loss: 1548812.750, Style Loss: 844036.250, Loss: 2392849.000, time:3.1123s
+Train Iter: 28000, Content Loss: 2021485.000, Style Loss: 1036023.250, Loss: 3057508.250, time:3.0994s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 28000, Content Loss: 1388202.625, Style Loss: 556920.250, Loss: 1945122.875, time:1.1658s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00028000_lores_N.1001.0001.png
+Train Iter: 28050, Content Loss: 2015143.250, Style Loss: 844261.875, Loss: 2859405.000, time:2.1262s
+Train Iter: 28100, Content Loss: 2518255.500, Style Loss: 1066940.500, Loss: 3585196.000, time:3.0930s
+Train Iter: 28150, Content Loss: 1925300.125, Style Loss: 1036718.188, Loss: 2962018.250, time:3.1259s
+Train Iter: 28200, Content Loss: 2339707.500, Style Loss: 886479.625, Loss: 3226187.000, time:2.1437s
+Train Iter: 28250, Content Loss: 2467598.000, Style Loss: 1135743.375, Loss: 3603341.500, time:3.1149s
+Train Iter: 28300, Content Loss: 1615975.000, Style Loss: 835052.312, Loss: 2451027.250, time:3.0964s
+Train Iter: 28350, Content Loss: 1801000.000, Style Loss: 887886.375, Loss: 2688886.500, time:2.1352s
+Train Iter: 28400, Content Loss: 2061160.875, Style Loss: 892876.750, Loss: 2954037.500, time:3.0933s
+Train Iter: 28450, Content Loss: 1834279.750, Style Loss: 871961.688, Loss: 2706241.500, time:3.0955s
+Train Iter: 28500, Content Loss: 1694703.750, Style Loss: 735508.562, Loss: 2430212.250, time:2.1399s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 28500, Content Loss: 1375392.250, Style Loss: 570738.125, Loss: 1946130.375, time:1.1634s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00028500_lores_N.1001.0001.png
+Train Iter: 28550, Content Loss: 1726596.000, Style Loss: 775178.750, Loss: 2501774.750, time:2.4832s
+Train Iter: 28600, Content Loss: 2369689.000, Style Loss: 937450.438, Loss: 3307139.500, time:2.4292s
+Train Iter: 28650, Content Loss: 1816855.250, Style Loss: 673894.938, Loss: 2490750.250, time:2.4039s
+Train Iter: 28700, Content Loss: 2098888.000, Style Loss: 904830.250, Loss: 3003718.250, time:2.6710s
+Train Iter: 28750, Content Loss: 1447774.625, Style Loss: 744593.062, Loss: 2192367.750, time:2.4942s
+Train Iter: 28800, Content Loss: 2437117.000, Style Loss: 842196.750, Loss: 3279313.750, time:2.4796s
+Train Iter: 28850, Content Loss: 2169710.500, Style Loss: 836936.062, Loss: 3006646.500, time:2.5091s
+Train Iter: 28900, Content Loss: 1689596.750, Style Loss: 1296895.750, Loss: 2986492.500, time:2.6689s
+Train Iter: 28950, Content Loss: 2138302.500, Style Loss: 926457.125, Loss: 3064759.500, time:2.4106s
+Train Iter: 29000, Content Loss: 1787827.375, Style Loss: 1012289.938, Loss: 2800117.250, time:2.4572s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 29000, Content Loss: 1294967.250, Style Loss: 509170.188, Loss: 1804137.500, time:1.1837s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00029000_lores_N.1001.0001.png
+Train Iter: 29050, Content Loss: 1959202.750, Style Loss: 697502.000, Loss: 2656704.750, time:2.5748s
+Train Iter: 29100, Content Loss: 1765927.875, Style Loss: 932706.500, Loss: 2698634.500, time:2.5767s
+Train Iter: 29150, Content Loss: 1884870.750, Style Loss: 955045.250, Loss: 2839916.000, time:2.4114s
+Train Iter: 29200, Content Loss: 2243718.500, Style Loss: 993987.125, Loss: 3237705.500, time:2.6464s
+Train Iter: 29250, Content Loss: 1551418.375, Style Loss: 645078.562, Loss: 2196497.000, time:2.3714s
+Train Iter: 29300, Content Loss: 1521952.750, Style Loss: 579530.250, Loss: 2101483.000, time:2.4190s
+Train Iter: 29350, Content Loss: 2504354.250, Style Loss: 1144568.500, Loss: 3648922.750, time:2.5199s
+Train Iter: 29400, Content Loss: 1893765.000, Style Loss: 865727.750, Loss: 2759492.750, time:2.4961s
+Train Iter: 29450, Content Loss: 1745677.750, Style Loss: 798498.375, Loss: 2544176.000, time:2.7011s
+Train Iter: 29500, Content Loss: 1530423.250, Style Loss: 776912.250, Loss: 2307335.500, time:2.4478s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 29500, Content Loss: 1457259.500, Style Loss: 579326.812, Loss: 2036586.250, time:1.1597s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00029500_lores_N.1001.0001.png
+Train Iter: 29550, Content Loss: 2322658.000, Style Loss: 887544.188, Loss: 3210202.250, time:2.3885s
+Train Iter: 29600, Content Loss: 2076781.750, Style Loss: 917822.938, Loss: 2994604.750, time:2.5923s
+Train Iter: 29650, Content Loss: 2104731.500, Style Loss: 781543.062, Loss: 2886274.500, time:2.4214s
+Train Iter: 29700, Content Loss: 1884745.500, Style Loss: 691276.625, Loss: 2576022.000, time:2.4743s
+Train Iter: 29750, Content Loss: 2393610.000, Style Loss: 941964.188, Loss: 3335574.250, time:2.5309s
+Train Iter: 29800, Content Loss: 1627958.500, Style Loss: 690029.000, Loss: 2317987.500, time:2.5839s
+Train Iter: 29850, Content Loss: 2344768.500, Style Loss: 946012.438, Loss: 3290781.000, time:2.4007s
+Train Iter: 29900, Content Loss: 1954872.500, Style Loss: 1044043.875, Loss: 2998916.500, time:2.5609s
+Train Iter: 29950, Content Loss: 1817306.500, Style Loss: 855544.812, Loss: 2672851.250, time:2.6156s
+Train Iter: 30000, Content Loss: 1481869.750, Style Loss: 707193.750, Loss: 2189063.500, time:2.5063s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 30000, Content Loss: 1300250.875, Style Loss: 526007.562, Loss: 1826258.500, time:1.2484s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00030000_lores_N.1001.0001.png
+Train Iter: 30050, Content Loss: 2312964.750, Style Loss: 1373476.500, Loss: 3686441.250, time:2.6225s
+Train Iter: 30100, Content Loss: 1993308.875, Style Loss: 1039318.625, Loss: 3032627.500, time:2.4830s
+Train Iter: 30150, Content Loss: 1833316.500, Style Loss: 837679.000, Loss: 2670995.500, time:2.4485s
+Train Iter: 30200, Content Loss: 2223297.750, Style Loss: 986573.312, Loss: 3209871.000, time:2.5049s
+Train Iter: 30250, Content Loss: 2043895.750, Style Loss: 783691.938, Loss: 2827587.750, time:2.5594s
+Train Iter: 30300, Content Loss: 2060987.250, Style Loss: 1113275.875, Loss: 3174263.000, time:2.4768s
+Train Iter: 30350, Content Loss: 1739844.500, Style Loss: 702168.250, Loss: 2442012.750, time:2.5397s
+Train Iter: 30400, Content Loss: 2204700.000, Style Loss: 1035146.688, Loss: 3239846.750, time:2.4409s
+Train Iter: 30450, Content Loss: 1641185.875, Style Loss: 982288.500, Loss: 2623474.500, time:2.4072s
+Train Iter: 30500, Content Loss: 2125276.500, Style Loss: 891966.125, Loss: 3017242.500, time:2.4422s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 30500, Content Loss: 1484821.250, Style Loss: 583973.750, Loss: 2068795.000, time:1.1505s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00030500_lores_N.1001.0001.png
+Train Iter: 30550, Content Loss: 1723973.750, Style Loss: 820004.062, Loss: 2543977.750, time:2.4446s
+Train Iter: 30600, Content Loss: 1786475.000, Style Loss: 645522.125, Loss: 2431997.000, time:2.4879s
+Train Iter: 30650, Content Loss: 1922889.125, Style Loss: 763112.438, Loss: 2686001.500, time:2.5400s
+Train Iter: 30700, Content Loss: 1396478.375, Style Loss: 553765.500, Loss: 1950243.875, time:2.4368s
+Train Iter: 30750, Content Loss: 1542137.250, Style Loss: 691209.938, Loss: 2233347.250, time:2.3396s
+Train Iter: 30800, Content Loss: 1989442.000, Style Loss: 893967.688, Loss: 2883409.750, time:2.4151s
+Train Iter: 30850, Content Loss: 1577345.000, Style Loss: 880424.188, Loss: 2457769.250, time:2.5999s
+Train Iter: 30900, Content Loss: 2206889.250, Style Loss: 912215.875, Loss: 3119105.000, time:2.5006s
+Train Iter: 30950, Content Loss: 1560427.625, Style Loss: 774837.938, Loss: 2335265.500, time:2.6257s
+Train Iter: 31000, Content Loss: 1521683.250, Style Loss: 609440.375, Loss: 2131123.500, time:2.4375s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 31000, Content Loss: 1559956.500, Style Loss: 666511.375, Loss: 2226468.000, time:1.1677s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00031000_lores_N.1001.0001.png
+Train Iter: 31050, Content Loss: 2008421.750, Style Loss: 846845.312, Loss: 2855267.000, time:2.5201s
+Train Iter: 31100, Content Loss: 2322076.000, Style Loss: 726148.250, Loss: 3048224.250, time:2.6618s
+Train Iter: 31150, Content Loss: 1964419.250, Style Loss: 884896.875, Loss: 2849316.000, time:2.5801s
+Train Iter: 31200, Content Loss: 1690390.750, Style Loss: 687612.312, Loss: 2378003.000, time:2.4744s
+Train Iter: 31250, Content Loss: 1885890.125, Style Loss: 718174.750, Loss: 2604065.000, time:2.4297s
+Train Iter: 31300, Content Loss: 2142097.000, Style Loss: 667262.375, Loss: 2809359.500, time:2.4323s
+Train Iter: 31350, Content Loss: 1714095.250, Style Loss: 1015763.188, Loss: 2729858.500, time:2.5616s
+Train Iter: 31400, Content Loss: 1667599.125, Style Loss: 783275.625, Loss: 2450874.750, time:2.4045s
+Train Iter: 31450, Content Loss: 1786375.750, Style Loss: 851322.188, Loss: 2637698.000, time:2.4475s
+Train Iter: 31500, Content Loss: 1850168.250, Style Loss: 642938.688, Loss: 2493107.000, time:2.4422s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 31500, Content Loss: 1471683.500, Style Loss: 542909.625, Loss: 2014593.125, time:1.1563s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00031500_lores_N.1001.0001.png
+Train Iter: 31550, Content Loss: 2308653.000, Style Loss: 781297.750, Loss: 3089950.750, time:2.4931s
+Train Iter: 31600, Content Loss: 1674497.375, Style Loss: 616634.688, Loss: 2291132.000, time:2.5825s
+Train Iter: 31650, Content Loss: 1751293.750, Style Loss: 1223499.125, Loss: 2974793.000, time:2.4146s
+Train Iter: 31700, Content Loss: 1850078.000, Style Loss: 862109.062, Loss: 2712187.000, time:2.6352s
+Train Iter: 31750, Content Loss: 1478619.125, Style Loss: 666941.125, Loss: 2145560.250, time:2.4746s
+Train Iter: 31800, Content Loss: 1666916.750, Style Loss: 1005088.500, Loss: 2672005.250, time:2.5257s
+Train Iter: 31850, Content Loss: 2273573.500, Style Loss: 928838.250, Loss: 3202411.750, time:2.5148s
+Train Iter: 31900, Content Loss: 1736669.500, Style Loss: 844943.062, Loss: 2581612.500, time:2.6398s
+Train Iter: 31950, Content Loss: 2388011.000, Style Loss: 845854.062, Loss: 3233865.000, time:2.4291s
+Train Iter: 32000, Content Loss: 1705927.750, Style Loss: 788460.938, Loss: 2494388.750, time:2.4591s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 32000, Content Loss: 1374593.750, Style Loss: 494834.000, Loss: 1869427.750, time:1.1598s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00032000_lores_N.1001.0001.png
+Train Iter: 32050, Content Loss: 1637757.250, Style Loss: 639957.375, Loss: 2277714.500, time:2.6211s
+Train Iter: 32100, Content Loss: 2168709.500, Style Loss: 765413.750, Loss: 2934123.250, time:2.4976s
+Train Iter: 32150, Content Loss: 1936652.000, Style Loss: 699811.875, Loss: 2636464.000, time:2.4367s
+Train Iter: 32200, Content Loss: 2170852.250, Style Loss: 1019973.312, Loss: 3190825.500, time:2.5100s
+Train Iter: 32250, Content Loss: 2243533.750, Style Loss: 794793.625, Loss: 3038327.500, time:2.3574s
+Train Iter: 32300, Content Loss: 1708543.500, Style Loss: 731083.000, Loss: 2439626.500, time:2.4759s
+Train Iter: 32350, Content Loss: 1732121.250, Style Loss: 730346.812, Loss: 2462468.000, time:2.5054s
+Train Iter: 32400, Content Loss: 1727162.875, Style Loss: 718834.688, Loss: 2445997.500, time:2.3525s
+Train Iter: 32450, Content Loss: 1571903.750, Style Loss: 1011775.688, Loss: 2583679.500, time:2.6408s
+Train Iter: 32500, Content Loss: 1773976.000, Style Loss: 986466.750, Loss: 2760442.750, time:2.6714s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 32500, Content Loss: 1508737.250, Style Loss: 591659.375, Loss: 2100396.500, time:1.2699s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00032500_lores_N.1001.0001.png
+Train Iter: 32550, Content Loss: 1849417.250, Style Loss: 1134363.875, Loss: 2983781.000, time:2.3429s
+Train Iter: 32600, Content Loss: 2289087.500, Style Loss: 1068727.000, Loss: 3357814.500, time:2.4999s
+Train Iter: 32650, Content Loss: 1842478.250, Style Loss: 785958.688, Loss: 2628437.000, time:2.5150s
+Train Iter: 32700, Content Loss: 1954414.500, Style Loss: 1386500.000, Loss: 3340914.500, time:2.5252s
+Train Iter: 32750, Content Loss: 1681816.250, Style Loss: 587281.750, Loss: 2269098.000, time:2.4735s
+Train Iter: 32800, Content Loss: 1723892.250, Style Loss: 867801.062, Loss: 2591693.250, time:2.6509s
+Train Iter: 32850, Content Loss: 1576587.250, Style Loss: 665710.375, Loss: 2242297.500, time:2.4227s
+Train Iter: 32900, Content Loss: 2141609.500, Style Loss: 885536.500, Loss: 3027146.000, time:2.5636s
+Train Iter: 32950, Content Loss: 1577097.625, Style Loss: 562112.375, Loss: 2139210.000, time:2.6631s
+Train Iter: 33000, Content Loss: 2183945.000, Style Loss: 771067.500, Loss: 2955012.500, time:2.4303s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 33000, Content Loss: 1361914.750, Style Loss: 553727.750, Loss: 1915642.500, time:1.2297s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00033000_lores_N.1001.0001.png
+Train Iter: 33050, Content Loss: 1576185.000, Style Loss: 689454.062, Loss: 2265639.000, time:2.4675s
+Train Iter: 33100, Content Loss: 1918588.750, Style Loss: 1103805.500, Loss: 3022394.250, time:2.4299s
+Train Iter: 33150, Content Loss: 1522829.500, Style Loss: 682488.125, Loss: 2205317.500, time:2.4234s
+Train Iter: 33200, Content Loss: 1420224.875, Style Loss: 556841.688, Loss: 1977066.500, time:2.5294s
+Train Iter: 33250, Content Loss: 1752082.250, Style Loss: 700396.438, Loss: 2452478.750, time:2.4286s
+Train Iter: 33300, Content Loss: 2337825.000, Style Loss: 918739.625, Loss: 3256564.500, time:2.5066s
+Train Iter: 33350, Content Loss: 1632959.125, Style Loss: 1044924.938, Loss: 2677884.000, time:2.4278s
+Train Iter: 33400, Content Loss: 1925059.875, Style Loss: 787542.938, Loss: 2712602.750, time:2.6137s
+Train Iter: 33450, Content Loss: 1740039.750, Style Loss: 1030436.250, Loss: 2770476.000, time:2.5220s
+Train Iter: 33500, Content Loss: 1714749.375, Style Loss: 907451.812, Loss: 2622201.250, time:2.3312s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 33500, Content Loss: 1447254.750, Style Loss: 660124.000, Loss: 2107378.750, time:1.1861s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00033500_lores_N.1001.0001.png
+Train Iter: 33550, Content Loss: 2122516.750, Style Loss: 611579.375, Loss: 2734096.000, time:3.1040s
+Train Iter: 33600, Content Loss: 1760612.625, Style Loss: 701191.250, Loss: 2461804.000, time:2.1388s
+Train Iter: 33650, Content Loss: 2292309.750, Style Loss: 1045432.562, Loss: 3337742.250, time:3.0905s
+Train Iter: 33700, Content Loss: 1675122.250, Style Loss: 735046.688, Loss: 2410169.000, time:3.0802s
+Train Iter: 33750, Content Loss: 1856548.250, Style Loss: 1001828.062, Loss: 2858376.250, time:2.1429s
+Train Iter: 33800, Content Loss: 1895191.750, Style Loss: 800260.250, Loss: 2695452.000, time:3.1058s
+Train Iter: 33850, Content Loss: 1911655.250, Style Loss: 834881.875, Loss: 2746537.000, time:3.0960s
+Train Iter: 33900, Content Loss: 1794428.750, Style Loss: 824761.062, Loss: 2619189.750, time:2.1295s
+Train Iter: 33950, Content Loss: 2401482.750, Style Loss: 1056480.500, Loss: 3457963.250, time:3.0773s
+Train Iter: 34000, Content Loss: 1538366.750, Style Loss: 760517.875, Loss: 2298884.500, time:3.0755s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 34000, Content Loss: 1565385.500, Style Loss: 690984.375, Loss: 2256370.000, time:1.1596s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00034000_lores_N.1001.0001.png
+Train Iter: 34050, Content Loss: 1434313.250, Style Loss: 704673.438, Loss: 2138986.750, time:2.1442s
+Train Iter: 34100, Content Loss: 2255150.000, Style Loss: 727694.375, Loss: 2982844.500, time:3.1066s
+Train Iter: 34150, Content Loss: 2454594.000, Style Loss: 807546.312, Loss: 3262140.250, time:3.1067s
+Train Iter: 34200, Content Loss: 2880035.250, Style Loss: 949635.688, Loss: 3829671.000, time:2.1360s
+Train Iter: 34250, Content Loss: 1426841.250, Style Loss: 668551.562, Loss: 2095392.750, time:3.0841s
+Train Iter: 34300, Content Loss: 2009760.750, Style Loss: 899899.188, Loss: 2909660.000, time:3.0736s
+Train Iter: 34350, Content Loss: 1911058.125, Style Loss: 928426.500, Loss: 2839484.500, time:2.1488s
+Train Iter: 34400, Content Loss: 1928193.875, Style Loss: 798126.062, Loss: 2726320.000, time:3.1003s
+Train Iter: 34450, Content Loss: 1994403.500, Style Loss: 908925.000, Loss: 2903328.500, time:3.0969s
+Train Iter: 34500, Content Loss: 2224490.750, Style Loss: 996701.375, Loss: 3221192.000, time:2.1252s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 34500, Content Loss: 1528987.125, Style Loss: 560804.500, Loss: 2089791.625, time:1.1742s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00034500_lores_N.1001.0001.png
+Train Iter: 34550, Content Loss: 1854357.000, Style Loss: 760828.875, Loss: 2615186.000, time:3.0991s
+Train Iter: 34600, Content Loss: 1565141.500, Style Loss: 1023248.750, Loss: 2588390.250, time:3.0945s
+Train Iter: 34650, Content Loss: 1984433.625, Style Loss: 803910.312, Loss: 2788344.000, time:2.1367s
+Train Iter: 34700, Content Loss: 1855879.750, Style Loss: 899216.438, Loss: 2755096.250, time:3.0703s
+Train Iter: 34750, Content Loss: 2197206.000, Style Loss: 865403.812, Loss: 3062609.750, time:3.0874s
+Train Iter: 34800, Content Loss: 1780492.500, Style Loss: 849896.062, Loss: 2630388.500, time:2.1467s
+Train Iter: 34850, Content Loss: 1800540.250, Style Loss: 737641.125, Loss: 2538181.500, time:3.0820s
+Train Iter: 34900, Content Loss: 2336626.250, Style Loss: 765524.438, Loss: 3102150.750, time:3.0741s
+Train Iter: 34950, Content Loss: 2179193.250, Style Loss: 945749.812, Loss: 3124943.000, time:2.1238s
+Train Iter: 35000, Content Loss: 1389810.750, Style Loss: 634137.562, Loss: 2023948.250, time:3.0651s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 35000, Content Loss: 1550972.875, Style Loss: 497154.375, Loss: 2048127.250, time:1.1659s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00035000_lores_N.1001.0001.png
+Train Iter: 35050, Content Loss: 2133051.750, Style Loss: 814501.438, Loss: 2947553.250, time:3.0840s
+Train Iter: 35100, Content Loss: 1810500.000, Style Loss: 930339.125, Loss: 2740839.000, time:2.1415s
+Train Iter: 35150, Content Loss: 1790663.125, Style Loss: 950591.812, Loss: 2741255.000, time:3.1030s
+Train Iter: 35200, Content Loss: 2217430.000, Style Loss: 1035789.062, Loss: 3253219.000, time:3.0945s
+Train Iter: 35250, Content Loss: 1972824.750, Style Loss: 985780.875, Loss: 2958605.500, time:2.1376s
+Train Iter: 35300, Content Loss: 1935579.250, Style Loss: 748963.188, Loss: 2684542.500, time:3.0941s
+Train Iter: 35350, Content Loss: 2550531.500, Style Loss: 833672.875, Loss: 3384204.500, time:3.0922s
+Train Iter: 35400, Content Loss: 1672885.125, Style Loss: 688616.875, Loss: 2361502.000, time:2.1530s
+Train Iter: 35450, Content Loss: 1645779.250, Style Loss: 578119.750, Loss: 2223899.000, time:3.1052s
+Train Iter: 35500, Content Loss: 1828957.750, Style Loss: 791119.812, Loss: 2620077.500, time:3.0780s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 35500, Content Loss: 1326255.500, Style Loss: 560650.062, Loss: 1886905.500, time:1.1845s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00035500_lores_N.1001.0001.png
+Train Iter: 35550, Content Loss: 1690029.375, Style Loss: 606531.438, Loss: 2296560.750, time:2.4209s
+Train Iter: 35600, Content Loss: 1594181.000, Style Loss: 835225.438, Loss: 2429406.500, time:3.1158s
+Train Iter: 35650, Content Loss: 2008462.750, Style Loss: 889872.312, Loss: 2898335.000, time:3.1008s
+Train Iter: 35700, Content Loss: 1863736.250, Style Loss: 973066.125, Loss: 2836802.500, time:2.3796s
+Train Iter: 35750, Content Loss: 1756162.375, Style Loss: 696403.938, Loss: 2452566.250, time:3.1036s
+Train Iter: 35800, Content Loss: 1740702.250, Style Loss: 767846.250, Loss: 2508548.500, time:3.0912s
+Train Iter: 35850, Content Loss: 2012491.000, Style Loss: 871942.438, Loss: 2884433.500, time:2.4676s
+Train Iter: 35900, Content Loss: 1448516.500, Style Loss: 690163.125, Loss: 2138679.500, time:3.1020s
+Train Iter: 35950, Content Loss: 1718117.125, Style Loss: 659512.938, Loss: 2377630.000, time:3.0878s
+Train Iter: 36000, Content Loss: 1934369.000, Style Loss: 951851.188, Loss: 2886220.250, time:2.4999s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 36000, Content Loss: 1542078.500, Style Loss: 640818.625, Loss: 2182897.000, time:1.1719s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00036000_lores_N.1001.0001.png
+Train Iter: 36050, Content Loss: 2301675.000, Style Loss: 964691.875, Loss: 3266367.000, time:2.4540s
+Train Iter: 36100, Content Loss: 1381889.500, Style Loss: 644627.688, Loss: 2026517.250, time:2.5261s
+Train Iter: 36150, Content Loss: 1908828.500, Style Loss: 691189.500, Loss: 2600018.000, time:2.5037s
+Train Iter: 36200, Content Loss: 1487473.000, Style Loss: 783495.688, Loss: 2270968.750, time:2.6252s
+Train Iter: 36250, Content Loss: 1676475.875, Style Loss: 811509.188, Loss: 2487985.000, time:2.6316s
+Train Iter: 36300, Content Loss: 1720010.250, Style Loss: 734684.500, Loss: 2454694.750, time:2.5069s
+Train Iter: 36350, Content Loss: 1633258.750, Style Loss: 641374.562, Loss: 2274633.250, time:2.4593s
+Train Iter: 36400, Content Loss: 1763611.250, Style Loss: 959948.625, Loss: 2723560.000, time:2.6645s
+Train Iter: 36450, Content Loss: 1558754.500, Style Loss: 804115.000, Loss: 2362869.500, time:2.5007s
+Train Iter: 36500, Content Loss: 1953539.750, Style Loss: 1034064.688, Loss: 2987604.500, time:2.5760s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 36500, Content Loss: 1455985.750, Style Loss: 520885.250, Loss: 1976871.000, time:1.1685s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00036500_lores_N.1001.0001.png
+Train Iter: 36550, Content Loss: 1539008.750, Style Loss: 739813.312, Loss: 2278822.000, time:2.5170s
+Train Iter: 36600, Content Loss: 1623377.750, Style Loss: 1045425.812, Loss: 2668803.500, time:2.5000s
+Train Iter: 36650, Content Loss: 2583580.000, Style Loss: 971454.438, Loss: 3555034.500, time:2.5557s
+Train Iter: 36700, Content Loss: 2267883.500, Style Loss: 754570.625, Loss: 3022454.000, time:2.4241s
+Train Iter: 36750, Content Loss: 1561723.000, Style Loss: 739557.812, Loss: 2301280.750, time:2.6109s
+Train Iter: 36800, Content Loss: 1819470.000, Style Loss: 799796.062, Loss: 2619266.000, time:2.5240s
+Train Iter: 36850, Content Loss: 1485360.750, Style Loss: 812494.188, Loss: 2297855.000, time:2.5807s
+Train Iter: 36900, Content Loss: 1705132.750, Style Loss: 1012512.875, Loss: 2717645.500, time:2.3636s
+Train Iter: 36950, Content Loss: 1862165.125, Style Loss: 1010593.875, Loss: 2872759.000, time:2.5388s
+Train Iter: 37000, Content Loss: 1781498.125, Style Loss: 980450.500, Loss: 2761948.500, time:2.5208s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 37000, Content Loss: 1581181.750, Style Loss: 524099.125, Loss: 2105281.000, time:1.1606s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00037000_lores_N.1001.0001.png
+Train Iter: 37050, Content Loss: 1626577.625, Style Loss: 819521.812, Loss: 2446099.500, time:2.4479s
+Train Iter: 37100, Content Loss: 1557309.750, Style Loss: 675261.812, Loss: 2232571.500, time:2.5543s
+Train Iter: 37150, Content Loss: 2022156.000, Style Loss: 1243900.500, Loss: 3266056.500, time:2.4988s
+Train Iter: 37200, Content Loss: 1803384.250, Style Loss: 896111.125, Loss: 2699495.500, time:2.4541s
+Train Iter: 37250, Content Loss: 2021028.500, Style Loss: 817178.625, Loss: 2838207.000, time:2.5667s
+Train Iter: 37300, Content Loss: 1857943.500, Style Loss: 752616.438, Loss: 2610560.000, time:2.6433s
+Train Iter: 37350, Content Loss: 1896687.250, Style Loss: 785091.375, Loss: 2681778.500, time:2.5713s
+Train Iter: 37400, Content Loss: 1708595.000, Style Loss: 671215.125, Loss: 2379810.000, time:2.5456s
+Train Iter: 37450, Content Loss: 2238929.500, Style Loss: 743789.188, Loss: 2982718.750, time:2.5647s
+Train Iter: 37500, Content Loss: 1873519.250, Style Loss: 863480.000, Loss: 2736999.250, time:2.3400s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 37500, Content Loss: 1407617.500, Style Loss: 563114.500, Loss: 1970732.000, time:1.1855s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00037500_lores_N.1001.0001.png
+Train Iter: 37550, Content Loss: 1919414.125, Style Loss: 1595480.500, Loss: 3514894.500, time:2.5710s
+Train Iter: 37600, Content Loss: 1971513.000, Style Loss: 848492.875, Loss: 2820006.000, time:2.5900s
+Train Iter: 37650, Content Loss: 1763707.500, Style Loss: 726173.188, Loss: 2489880.750, time:2.5862s
+Train Iter: 37700, Content Loss: 1559490.000, Style Loss: 708856.688, Loss: 2268346.750, time:2.5094s
+Train Iter: 37750, Content Loss: 2207299.750, Style Loss: 871868.312, Loss: 3079168.000, time:2.5225s
+Train Iter: 37800, Content Loss: 1655817.750, Style Loss: 711041.875, Loss: 2366859.500, time:2.3848s
+Train Iter: 37850, Content Loss: 1855485.375, Style Loss: 812745.812, Loss: 2668231.250, time:2.4134s
+Train Iter: 37900, Content Loss: 1611771.875, Style Loss: 765065.438, Loss: 2376837.250, time:2.5534s
+Train Iter: 37950, Content Loss: 2154551.000, Style Loss: 663962.938, Loss: 2818514.000, time:2.4871s
+Train Iter: 38000, Content Loss: 1772532.625, Style Loss: 817448.125, Loss: 2589980.750, time:2.5101s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 38000, Content Loss: 1348216.625, Style Loss: 700361.625, Loss: 2048578.250, time:1.1710s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00038000_lores_N.1001.0001.png
+Train Iter: 38050, Content Loss: 2026031.000, Style Loss: 740238.500, Loss: 2766269.500, time:2.4925s
+Train Iter: 38100, Content Loss: 1575918.000, Style Loss: 887327.750, Loss: 2463245.750, time:2.3546s
+Train Iter: 38150, Content Loss: 1875296.375, Style Loss: 739423.062, Loss: 2614719.500, time:2.4280s
+Train Iter: 38200, Content Loss: 1617907.500, Style Loss: 600342.312, Loss: 2218249.750, time:2.6016s
+Train Iter: 38250, Content Loss: 1655736.250, Style Loss: 842716.375, Loss: 2498452.500, time:2.3564s
+Train Iter: 38300, Content Loss: 1524690.375, Style Loss: 738608.250, Loss: 2263298.500, time:2.5719s
+Train Iter: 38350, Content Loss: 1526177.625, Style Loss: 609762.250, Loss: 2135940.000, time:2.5547s
+Train Iter: 38400, Content Loss: 2413489.000, Style Loss: 741268.188, Loss: 3154757.250, time:2.5634s
+Train Iter: 38450, Content Loss: 1870330.750, Style Loss: 895535.875, Loss: 2765866.500, time:2.5030s
+Train Iter: 38500, Content Loss: 2064473.625, Style Loss: 761749.438, Loss: 2826223.000, time:2.4446s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 38500, Content Loss: 1610288.750, Style Loss: 569410.625, Loss: 2179699.500, time:1.1803s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00038500_lores_N.1001.0001.png
+Train Iter: 38550, Content Loss: 1889357.000, Style Loss: 845215.000, Loss: 2734572.000, time:2.3939s
+Train Iter: 38600, Content Loss: 2152917.500, Style Loss: 662615.875, Loss: 2815533.500, time:2.6384s
+Train Iter: 38650, Content Loss: 1545780.250, Style Loss: 646416.188, Loss: 2192196.500, time:2.6215s
+Train Iter: 38700, Content Loss: 1802092.750, Style Loss: 640347.125, Loss: 2442440.000, time:2.5226s
+Train Iter: 38750, Content Loss: 1758538.000, Style Loss: 1027382.188, Loss: 2785920.250, time:2.5313s
+Train Iter: 38800, Content Loss: 2078743.250, Style Loss: 1059591.875, Loss: 3138335.000, time:2.5440s
+Train Iter: 38850, Content Loss: 1764908.000, Style Loss: 972410.438, Loss: 2737318.500, time:2.3524s
+Train Iter: 38900, Content Loss: 1564631.500, Style Loss: 615727.438, Loss: 2180359.000, time:2.4522s
+Train Iter: 38950, Content Loss: 1660879.750, Style Loss: 873416.688, Loss: 2534296.500, time:2.5055s
+Train Iter: 39000, Content Loss: 2344984.750, Style Loss: 1175552.000, Loss: 3520536.750, time:2.4506s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 39000, Content Loss: 1379379.500, Style Loss: 629969.062, Loss: 2009348.500, time:1.1478s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00039000_lores_N.1001.0001.png
+Train Iter: 39050, Content Loss: 2310164.000, Style Loss: 805207.188, Loss: 3115371.250, time:2.6566s
+Train Iter: 39100, Content Loss: 2037067.250, Style Loss: 922147.375, Loss: 2959214.500, time:2.4133s
+Train Iter: 39150, Content Loss: 1775199.500, Style Loss: 822825.062, Loss: 2598024.500, time:2.4540s
+Train Iter: 39200, Content Loss: 1877252.750, Style Loss: 753942.125, Loss: 2631195.000, time:2.5304s
+Train Iter: 39250, Content Loss: 1680602.750, Style Loss: 948968.562, Loss: 2629571.250, time:2.5634s
+Train Iter: 39300, Content Loss: 1911742.750, Style Loss: 763085.812, Loss: 2674828.500, time:2.4784s
+Train Iter: 39350, Content Loss: 2018641.875, Style Loss: 920938.875, Loss: 2939580.750, time:2.5787s
+Train Iter: 39400, Content Loss: 1788552.875, Style Loss: 910055.062, Loss: 2698608.000, time:2.6282s
+Train Iter: 39450, Content Loss: 1939067.500, Style Loss: 1118627.750, Loss: 3057695.250, time:2.3845s
+Train Iter: 39500, Content Loss: 1521689.250, Style Loss: 654445.500, Loss: 2176134.750, time:2.4817s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 39500, Content Loss: 1443076.125, Style Loss: 514209.531, Loss: 1957285.625, time:1.1703s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00039500_lores_N.1001.0001.png
+Train Iter: 39550, Content Loss: 1955914.000, Style Loss: 656275.312, Loss: 2612189.250, time:2.4389s
+Train Iter: 39600, Content Loss: 1754495.875, Style Loss: 1079631.125, Loss: 2834127.000, time:2.5660s
+Train Iter: 39650, Content Loss: 2127591.000, Style Loss: 867751.750, Loss: 2995342.750, time:2.5785s
+Train Iter: 39700, Content Loss: 1722546.500, Style Loss: 738981.875, Loss: 2461528.500, time:2.5611s
+Train Iter: 39750, Content Loss: 2175786.000, Style Loss: 870275.438, Loss: 3046061.500, time:2.5494s
+Train Iter: 39800, Content Loss: 1650130.750, Style Loss: 841156.000, Loss: 2491286.750, time:2.5010s
+Train Iter: 39850, Content Loss: 2435216.750, Style Loss: 821701.188, Loss: 3256918.000, time:2.6154s
+Train Iter: 39900, Content Loss: 2062938.500, Style Loss: 948468.500, Loss: 3011407.000, time:2.3488s
+Train Iter: 39950, Content Loss: 2160127.500, Style Loss: 973622.562, Loss: 3133750.000, time:2.5646s
+Train Iter: 40000, Content Loss: 1704351.625, Style Loss: 877640.688, Loss: 2581992.250, time:2.6755s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 40000, Content Loss: 1605633.375, Style Loss: 642755.250, Loss: 2248388.500, time:1.1692s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00040000_lores_N.1001.0001.png
+Train Iter: 40050, Content Loss: 2088643.750, Style Loss: 1037646.812, Loss: 3126290.500, time:2.5020s
+Train Iter: 40100, Content Loss: 1878737.000, Style Loss: 977879.000, Loss: 2856616.000, time:2.4339s
+Train Iter: 40150, Content Loss: 2424487.000, Style Loss: 990618.188, Loss: 3415105.250, time:2.5886s
+Train Iter: 40200, Content Loss: 1796356.000, Style Loss: 637394.250, Loss: 2433750.250, time:2.3608s
+Train Iter: 40250, Content Loss: 2275425.750, Style Loss: 857518.188, Loss: 3132944.000, time:2.5276s
+Train Iter: 40300, Content Loss: 1693896.625, Style Loss: 721968.250, Loss: 2415865.000, time:2.5754s
+Train Iter: 40350, Content Loss: 1963942.750, Style Loss: 871569.875, Loss: 2835512.500, time:2.3498s
+Train Iter: 40400, Content Loss: 1507216.000, Style Loss: 749890.125, Loss: 2257106.000, time:2.4229s
+Train Iter: 40450, Content Loss: 1780457.875, Style Loss: 773915.688, Loss: 2554373.500, time:2.5501s
+Train Iter: 40500, Content Loss: 2316929.250, Style Loss: 961711.625, Loss: 3278641.000, time:2.4906s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 40500, Content Loss: 1351753.500, Style Loss: 556917.875, Loss: 1908671.375, time:1.1615s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00040500_lores_N.1001.0001.png
+Train Iter: 40550, Content Loss: 2308909.500, Style Loss: 905987.062, Loss: 3214896.500, time:2.4471s
+Train Iter: 40600, Content Loss: 1550881.000, Style Loss: 976992.875, Loss: 2527874.000, time:2.4404s
+Train Iter: 40650, Content Loss: 2098845.000, Style Loss: 717101.125, Loss: 2815946.000, time:2.3376s
+Train Iter: 40700, Content Loss: 1472224.000, Style Loss: 691750.812, Loss: 2163974.750, time:2.4189s
+Train Iter: 40750, Content Loss: 2039748.125, Style Loss: 953905.625, Loss: 2993653.750, time:2.6425s
+Train Iter: 40800, Content Loss: 1518295.500, Style Loss: 690277.688, Loss: 2208573.250, time:2.3340s
+Train Iter: 40850, Content Loss: 1475523.750, Style Loss: 519534.469, Loss: 1995058.250, time:2.5098s
+Train Iter: 40900, Content Loss: 2441989.750, Style Loss: 1040160.188, Loss: 3482150.000, time:2.6616s
+Train Iter: 40950, Content Loss: 1783901.500, Style Loss: 899960.250, Loss: 2683861.750, time:2.5114s
+Train Iter: 41000, Content Loss: 2239902.000, Style Loss: 941775.688, Loss: 3181677.750, time:2.6580s
+loss saved: output/log/losses.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/train_image.png
+Test Iter: 41000, Content Loss: 1336314.625, Style Loss: 585842.750, Loss: 1922157.375, time:1.1588s
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+image plot saved: output/log/test_image.png
+saveN: output/PatchTest/00041000_lores_N.1001.0001.png
+Traceback (most recent call last):
+  File "train_DDE_ours.py", line 380, in <module>
+    train_loss = model_train(itt)
+  File "train_DDE_ours.py", line 270, in model_train
+    c_Loss, s_Loss = lossFunc(X=Out, SG=train_stylBatch, CX=train_inBatch[:, 0:3, :, :], MX=train_maskBatch)
+  File "/nobackup/joon/anaconda3/envs/torch2-lap/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/nobackup/joon/1_Projects/Deep-Detail-Enhancement-for-Any-Garment/network_train_and_run/Losses.py", line 75, in forward
+    CX_Content_act = self.vgg.get_content_activations(cx) * cont_masks
+  File "/nobackup/joon/1_Projects/Deep-Detail-Enhancement-for-Any-Garment/network_train_and_run/VGG_Model.py", line 78, in get_content_activations
+    features = self.vgg[:7](y)
+  File "/nobackup/joon/anaconda3/envs/torch2-lap/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/nobackup/joon/anaconda3/envs/torch2-lap/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/nobackup/joon/anaconda3/envs/torch2-lap/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/nobackup/joon/anaconda3/envs/torch2-lap/lib/python3.8/site-packages/torch/nn/modules/conv.py", line 463, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "/nobackup/joon/anaconda3/envs/torch2-lap/lib/python3.8/site-packages/torch/nn/modules/conv.py", line 459, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 960.00 MiB (GPU 0; 47.53 GiB total capacity; 31.28 GiB already allocated; 35.62 MiB free; 32.38 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
