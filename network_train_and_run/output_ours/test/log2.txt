@@ -1,0 +1,63 @@
+balin--> True
+   fear : 110 frames
+[fear_111_pred.obj] Iteration: 0, old_loss: 0.000000, total Loss: 0.054729, Geo Loss: 0.029783, disLoss: 0.000000, Smooth Loss: 0.024947
+[fear_111_pred.obj] Iteration: 10, old_loss: 0.047462, total Loss: 0.047035, Geo Loss: 0.021612, disLoss: 0.000481, Smooth Loss: 0.024942
+[fear_111_pred.obj] Iteration: 20, old_loss: 0.044002, total Loss: 0.043729, Geo Loss: 0.018064, disLoss: 0.000726, Smooth Loss: 0.024939
+[fear_111_pred.obj] Iteration: 30, old_loss: 0.041640, total Loss: 0.041440, Geo Loss: 0.015566, disLoss: 0.000936, Smooth Loss: 0.024938
+[fear_111_pred.obj] Iteration: 40, old_loss: 0.039875, total Loss: 0.039724, Geo Loss: 0.013670, disLoss: 0.001117, Smooth Loss: 0.024937
+[fear_111_pred.obj] Iteration: 50, old_loss: 0.038513, total Loss: 0.038395, Geo Loss: 0.012184, disLoss: 0.001274, Smooth Loss: 0.024937
+[fear_111_pred.obj] Iteration: 60, old_loss: 0.037472, total Loss: 0.037376, Geo Loss: 0.011029, disLoss: 0.001410, Smooth Loss: 0.024938
+[fear_111_pred.obj] Iteration: 70, old_loss: 0.036665, total Loss: 0.036591, Geo Loss: 0.010125, disLoss: 0.001528, Smooth Loss: 0.024938
+[fear_111_pred.obj] Iteration: 80, old_loss: 0.036030, total Loss: 0.035973, Geo Loss: 0.009404, disLoss: 0.001630, Smooth Loss: 0.024939
+[fear_111_pred.obj] Iteration: 90, old_loss: 0.035534, total Loss: 0.035483, Geo Loss: 0.008825, disLoss: 0.001719, Smooth Loss: 0.024939
+[fear_111_pred.obj] Iteration: 100, old_loss: 0.035132, total Loss: 0.035093, Geo Loss: 0.008359, disLoss: 0.001795, Smooth Loss: 0.024939
+[fear_111_pred.obj] Iteration: 110, old_loss: 0.034798, total Loss: 0.034770, Geo Loss: 0.007969, disLoss: 0.001861, Smooth Loss: 0.024940
+[fear_111_pred.obj] Iteration: 120, old_loss: 0.034532, total Loss: 0.034500, Geo Loss: 0.007642, disLoss: 0.001918, Smooth Loss: 0.024940
+[fear_111_pred.obj] Iteration: 130, old_loss: 0.034292, total Loss: 0.034274, Geo Loss: 0.007366, disLoss: 0.001967, Smooth Loss: 0.024940
+[fear_111_pred.obj] Iteration: 140, old_loss: 0.034100, total Loss: 0.034081, Geo Loss: 0.007130, disLoss: 0.002011, Smooth Loss: 0.024940
+[fear_111_pred.obj] Iteration: 150, old_loss: 0.033938, total Loss: 0.033925, Geo Loss: 0.006935, disLoss: 0.002050, Smooth Loss: 0.024940
+[fear_111_pred.obj] Iteration: 160, old_loss: 0.033799, total Loss: 0.033782, Geo Loss: 0.006757, disLoss: 0.002085, Smooth Loss: 0.024939
+[fear_111_pred.obj] Iteration: 170, old_loss: 0.033675, total Loss: 0.033666, Geo Loss: 0.006609, disLoss: 0.002117, Smooth Loss: 0.024939
+[fear_111_pred.obj] Iteration: 180, old_loss: 0.033562, total Loss: 0.033551, Geo Loss: 0.006467, disLoss: 0.002145, Smooth Loss: 0.024939
+[fear_111_pred.obj] Iteration: 190, old_loss: 0.033464, total Loss: 0.033455, Geo Loss: 0.006345, disLoss: 0.002171, Smooth Loss: 0.024938
+[fear_111_pred.obj] Iteration: 200, old_loss: 0.033380, total Loss: 0.033366, Geo Loss: 0.006234, disLoss: 0.002194, Smooth Loss: 0.024938
+[fear_111_pred.obj] Iteration: 210, old_loss: 0.033302, total Loss: 0.033294, Geo Loss: 0.006142, disLoss: 0.002215, Smooth Loss: 0.024937
+[fear_111_pred.obj] Iteration: 220, old_loss: 0.033231, total Loss: 0.033234, Geo Loss: 0.006062, disLoss: 0.002234, Smooth Loss: 0.024937
+total_loss.item()-oldLoss: 8.195638656616211e-08
+>>  output_ours/test/obj/fear_111_pred.obj
+[fear_112_pred.obj] Iteration: 0, old_loss: 0.000000, total Loss: 0.054333, Geo Loss: 0.029474, disLoss: 0.000000, Smooth Loss: 0.024859
+[fear_112_pred.obj] Iteration: 10, old_loss: 0.047067, total Loss: 0.046649, Geo Loss: 0.021316, disLoss: 0.000479, Smooth Loss: 0.024854
+[fear_112_pred.obj] Iteration: 20, old_loss: 0.043668, total Loss: 0.043401, Geo Loss: 0.017826, disLoss: 0.000723, Smooth Loss: 0.024852
+[fear_112_pred.obj] Iteration: 30, old_loss: 0.041335, total Loss: 0.041138, Geo Loss: 0.015357, disLoss: 0.000931, Smooth Loss: 0.024850
+[fear_112_pred.obj] Iteration: 40, old_loss: 0.039590, total Loss: 0.039439, Geo Loss: 0.013478, disLoss: 0.001111, Smooth Loss: 0.024850
+[fear_112_pred.obj] Iteration: 50, old_loss: 0.038239, total Loss: 0.038127, Geo Loss: 0.012009, disLoss: 0.001268, Smooth Loss: 0.024850
+[fear_112_pred.obj] Iteration: 60, old_loss: 0.037226, total Loss: 0.037139, Geo Loss: 0.010885, disLoss: 0.001404, Smooth Loss: 0.024850
+[fear_112_pred.obj] Iteration: 70, old_loss: 0.036450, total Loss: 0.036383, Geo Loss: 0.010012, disLoss: 0.001520, Smooth Loss: 0.024851
+[fear_112_pred.obj] Iteration: 80, old_loss: 0.035849, total Loss: 0.035795, Geo Loss: 0.009323, disLoss: 0.001620, Smooth Loss: 0.024851
+[fear_112_pred.obj] Iteration: 90, old_loss: 0.035367, total Loss: 0.035322, Geo Loss: 0.008763, disLoss: 0.001707, Smooth Loss: 0.024852
+[fear_112_pred.obj] Iteration: 100, old_loss: 0.034971, total Loss: 0.034935, Geo Loss: 0.008301, disLoss: 0.001782, Smooth Loss: 0.024852
+[fear_112_pred.obj] Iteration: 110, old_loss: 0.034654, total Loss: 0.034627, Geo Loss: 0.007928, disLoss: 0.001847, Smooth Loss: 0.024852
+[fear_112_pred.obj] Iteration: 120, old_loss: 0.034387, total Loss: 0.034363, Geo Loss: 0.007608, disLoss: 0.001902, Smooth Loss: 0.024852
+[fear_112_pred.obj] Iteration: 130, old_loss: 0.034168, total Loss: 0.034143, Geo Loss: 0.007339, disLoss: 0.001951, Smooth Loss: 0.024852
+[fear_112_pred.obj] Iteration: 140, old_loss: 0.033980, total Loss: 0.033968, Geo Loss: 0.007121, disLoss: 0.001994, Smooth Loss: 0.024852
+[fear_112_pred.obj] Iteration: 150, old_loss: 0.033827, total Loss: 0.033809, Geo Loss: 0.006924, disLoss: 0.002032, Smooth Loss: 0.024852
+[fear_112_pred.obj] Iteration: 160, old_loss: 0.033692, total Loss: 0.033675, Geo Loss: 0.006757, disLoss: 0.002067, Smooth Loss: 0.024852
+[fear_112_pred.obj] Iteration: 170, old_loss: 0.033565, total Loss: 0.033554, Geo Loss: 0.006603, disLoss: 0.002098, Smooth Loss: 0.024852
+[fear_112_pred.obj] Iteration: 180, old_loss: 0.033456, total Loss: 0.033444, Geo Loss: 0.006466, disLoss: 0.002127, Smooth Loss: 0.024851
+[fear_112_pred.obj] Iteration: 190, old_loss: 0.033357, total Loss: 0.033356, Geo Loss: 0.006352, disLoss: 0.002152, Smooth Loss: 0.024851
+[fear_112_pred.obj] Iteration: 200, old_loss: 0.033279, total Loss: 0.033273, Geo Loss: 0.006247, disLoss: 0.002175, Smooth Loss: 0.024851
+[fear_112_pred.obj] Iteration: 210, old_loss: 0.033207, total Loss: 0.033196, Geo Loss: 0.006150, disLoss: 0.002196, Smooth Loss: 0.024850
+[fear_112_pred.obj] Iteration: 220, old_loss: 0.033135, total Loss: 0.033138, Geo Loss: 0.006073, disLoss: 0.002215, Smooth Loss: 0.024850
+[fear_112_pred.obj] Iteration: 230, old_loss: 0.033084, total Loss: 0.033078, Geo Loss: 0.005995, disLoss: 0.002233, Smooth Loss: 0.024849
+[fear_112_pred.obj] Iteration: 240, old_loss: 0.033022, total Loss: 0.033016, Geo Loss: 0.005918, disLoss: 0.002249, Smooth Loss: 0.024849
+[fear_112_pred.obj] Iteration: 250, old_loss: 0.032982, total Loss: 0.032970, Geo Loss: 0.005857, disLoss: 0.002265, Smooth Loss: 0.024848
+[fear_112_pred.obj] Iteration: 260, old_loss: 0.032928, total Loss: 0.032926, Geo Loss: 0.005799, disLoss: 0.002279, Smooth Loss: 0.024848
+[fear_112_pred.obj] Iteration: 270, old_loss: 0.032889, total Loss: 0.032877, Geo Loss: 0.005738, disLoss: 0.002292, Smooth Loss: 0.024847
+total_loss.item()-oldLoss: 9.685754776000977e-08
+>>  output_ours/test/obj/fear_112_pred.obj
+[fear_113_pred.obj] Iteration: 0, old_loss: 0.000000, total Loss: 0.053832, Geo Loss: 0.029047, disLoss: 0.000000, Smooth Loss: 0.024786
+[fear_113_pred.obj] Iteration: 10, old_loss: 0.046718, total Loss: 0.046306, Geo Loss: 0.021045, disLoss: 0.000480, Smooth Loss: 0.024781
+[fear_113_pred.obj] Iteration: 20, old_loss: 0.043409, total Loss: 0.043147, Geo Loss: 0.017643, disLoss: 0.000725, Smooth Loss: 0.024779
+[fear_113_pred.obj] Iteration: 30, old_loss: 0.041133, total Loss: 0.040955, Geo Loss: 0.015243, disLoss: 0.000935, Smooth Loss: 0.024778
+[fear_113_pred.obj] Iteration: 40, old_loss: 0.039452, total Loss: 0.039304, Geo Loss: 0.013410, disLoss: 0.001117, Smooth Loss: 0.024777
+[fear_113_pred.obj] Iteration: 50, old_loss: 0.038153, total Loss: 0.038042, Geo Loss: 0.011992, disLoss: 0.001274, Smooth Loss: 0.024777

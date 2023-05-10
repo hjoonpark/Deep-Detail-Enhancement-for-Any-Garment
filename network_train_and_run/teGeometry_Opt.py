@@ -216,9 +216,6 @@ def geo_opt_ours(fname, device, nmap_path, rrVertArray, uvs, vertEdges_0, vertEd
     oldLoss = 0.
     t = time.time()
     
-    plot_dir = "output/plot"
-    os.makedirs(plot_dir, exist_ok=True)
-
     for iteration in range(num_iter + 1):
         adam.zero_grad()
         loss_geo = Func_lossNormalCrossVert(normalArray=rrNormTensor, vertArray=noise)
@@ -231,9 +228,7 @@ def geo_opt_ours(fname, device, nmap_path, rrVertArray, uvs, vertEdges_0, vertEd
         else:
             loss_smooth = 0
 
-        if iteration % 100 == 0:
-            # save_path = os.path.join(plot_dir, "iter_{:05d}.jpg".format(iteration))
-            # save_plotly(iteration, save_path, noise.detach().cpu().numpy(), rrNormArray, vertEdges_0)
+        if iteration % 10 == 0:
             print("[{}] Iteration: {}, old_loss: {:.6f}, total Loss: {:.6f}, Geo Loss: {:.6f}, disLoss: {:.6f}, Smooth Loss: {:.6f}".format(\
                 fname, iteration,oldLoss, total_loss.item(), cEdgeWeight * loss_geo.item(), distWeight * loss_dist, smoothWeight * loss_smooth))
 
