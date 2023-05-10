@@ -254,7 +254,7 @@ def geo_opt_ours(fname, device, nmap_path, rrVertArray, uvs, vertEdges_0, vertEd
 def run(args):
     folder = args.folder
     idx0 = args.start_idx
-    idx1 = args.end_idx
+    idx1 = args.end_idx + 1
     device = torch.device("cuda:{}".format(args.cuda_idx))
 
     in_dir = "nvidia_data"
