@@ -10,3 +10,4 @@ nvidia_data/
 *.jpg
 plot/
 output/
+log*.txt

@@ -12,7 +12,7 @@ import networkx as nx
 import plotly
 import plotly.graph_objects as go
 
-import argparse, sys
+import argparse, sys, datetime
 
 #USE_CUDA = False
 USE_CUDA = torch.cuda.is_available()
@@ -23,6 +23,11 @@ cEdgeWeight = 1
 distWeight = 0.1
 smoothWeight = 0.01
 
+def get_timestamp():
+    now = datetime.datetime.now()
+    timestamp = "{:02}-{:02}-{:02} {:02}:{:02}:{:02}".format(now.year, now.month, now.day, now.hour, now.minute, now.second)
+    return timestamp
+    
 def save_plotly(iteration, save_path, x, rrNormArray, vertEdges_0):
     L = 1.5
     colors = rrNormArray.copy()
@@ -229,12 +234,12 @@ def geo_opt_ours(fname, device, nmap_path, rrVertArray, uvs, vertEdges_0, vertEd
             loss_smooth = 0
 
         if iteration % 10 == 0:
-            print("[{}] Iteration: {}, old_loss: {:.6f}, total Loss: {:.6f}, Geo Loss: {:.6f}, disLoss: {:.6f}, Smooth Loss: {:.6f}".format(\
-                fname, iteration,oldLoss, total_loss.item(), cEdgeWeight * loss_geo.item(), distWeight * loss_dist, smoothWeight * loss_smooth))
+            print("{} [{}] Iteration: {}, old_loss: {:.6f}, total Loss: {:.6f}, Geo Loss: {:.6f}, disLoss: {:.6f}, Smooth Loss: {:.6f}".format(\
+                get_timestamp(), fname, iteration,oldLoss, total_loss.item(), cEdgeWeight * loss_geo.item(), distWeight * loss_dist, smoothWeight * loss_smooth))
             sys.stdout.flush()
         if abs(oldLoss-total_loss.item()) < 1e-7 and iteration > 50:
         # if loss_geo < 1e-3:
-            print("total_loss.item()-oldLoss:", total_loss.item()-oldLoss)
+            print("{} total_loss.item()-oldLoss: {:.10f}".format(get_timestamp(), total_loss.item()-oldLoss))
             return noise.clone().detach()
 
         oldLoss = total_loss.item()
@@ -294,7 +299,7 @@ def run(args):
 
         save_path = os.path.join(out_dir, bname)
         write_obj(save_path, p, normals=[], faces=hfaces, vts=[])
-        print(">> ", save_path)
+        print("{} >> {}".format(get_timestamp(), save_path))
         sys.stdout.flush()
     print("#### Done")
     sys.stdout.flush()
