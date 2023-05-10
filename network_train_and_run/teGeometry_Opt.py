@@ -12,7 +12,7 @@ import networkx as nx
 import plotly
 import plotly.graph_objects as go
 
-import argparse
+import argparse, sys
 
 #USE_CUDA = False
 USE_CUDA = torch.cuda.is_available()
@@ -231,7 +231,7 @@ def geo_opt_ours(fname, device, nmap_path, rrVertArray, uvs, vertEdges_0, vertEd
         if iteration % 10 == 0:
             print("[{}] Iteration: {}, old_loss: {:.6f}, total Loss: {:.6f}, Geo Loss: {:.6f}, disLoss: {:.6f}, Smooth Loss: {:.6f}".format(\
                 fname, iteration,oldLoss, total_loss.item(), cEdgeWeight * loss_geo.item(), distWeight * loss_dist, smoothWeight * loss_smooth))
-
+            sys.stdout.flush()
         if abs(oldLoss-total_loss.item()) < 1e-7 and iteration > 50:
         # if loss_geo < 1e-3:
             print("total_loss.item()-oldLoss:", total_loss.item()-oldLoss)
@@ -295,7 +295,9 @@ def run(args):
         save_path = os.path.join(out_dir, bname)
         write_obj(save_path, p, normals=[], faces=hfaces, vts=[])
         print(">> ", save_path)
+        sys.stdout.flush()
     print("#### Done")
+    sys.stdout.flush()
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='PyTorch implementation of the paper: Variational auto-encoder for collagen fiber centerline generation and extraction in fibrotic cancer tissues.')
