@@ -12,10 +12,11 @@ import networkx as nx
 import plotly
 import plotly.graph_objects as go
 
+import argparse
+
 #USE_CUDA = False
 USE_CUDA = torch.cuda.is_available()
 print('balin-->', USE_CUDA)
-
 num_iter = 10000
 
 cEdgeWeight = 1
@@ -198,18 +199,15 @@ def texel_interpolation(texture_map, uvs):
     output = (output*2)-1
     return output
 
-def geo_opt_ours(nmap_path, rrVertArray, uvs, vertEdges_0, vertEdges_1, EdgeCounts, numV, LapM):
+def geo_opt_ours(fname, device, nmap_path, rrVertArray, uvs, vertEdges_0, vertEdges_1, EdgeCounts, numV, LapM):
     texture_map = np.array(cv2.cvtColor(cv2.imread(nmap_path), cv2.COLOR_BGR2RGB))
     rrNormArray = texel_interpolation(texture_map, uvs)
     rrNormTensor = torch.from_numpy(rrNormArray).type(torch.FloatTensor).to(device)
-    print("rrNormArray:", rrNormArray.shape)
-    print("rrNormTensor:", rrNormTensor.shape)
     # ini vert position
     noise = torch.from_numpy(rrVertArray.copy()).type(torch.FloatTensor).to(device)
     noise.requires_grad = True
 
     gtVertTensor = noise.detach().clone()
-    print("gtVertTensor:", gtVertTensor.shape)
     
     Func_lossNormalCrossVert = Loss_NormalCrossVert(vertEdges_0, vertEdges_1, EdgeCounts, numV, device).to(device)
     Func_lossVertToGtVert = nn.L1Loss(reduction='mean').to(device)
@@ -236,8 +234,8 @@ def geo_opt_ours(nmap_path, rrVertArray, uvs, vertEdges_0, vertEdges_1, EdgeCoun
         if iteration % 100 == 0:
             # save_path = os.path.join(plot_dir, "iter_{:05d}.jpg".format(iteration))
             # save_plotly(iteration, save_path, noise.detach().cpu().numpy(), rrNormArray, vertEdges_0)
-            print("Iteration: {}, old_loss: {:.6f}, total Loss: {:.6f}, Geo Loss: {:.6f}, disLoss: {:.6f}, Smooth Loss: {:.6f}".format(\
-                iteration,oldLoss, total_loss.item(), cEdgeWeight * loss_geo.item(), distWeight * loss_dist, smoothWeight * loss_smooth))
+            print("[{}] Iteration: {}, old_loss: {:.6f}, total Loss: {:.6f}, Geo Loss: {:.6f}, disLoss: {:.6f}, Smooth Loss: {:.6f}".format(\
+                fname, iteration,oldLoss, total_loss.item(), cEdgeWeight * loss_geo.item(), distWeight * loss_dist, smoothWeight * loss_smooth))
 
         if abs(oldLoss-total_loss.item()) < 1e-7 and iteration > 50:
         # if loss_geo < 1e-3:
@@ -254,16 +252,19 @@ def geo_opt_ours(nmap_path, rrVertArray, uvs, vertEdges_0, vertEdges_1, EdgeCoun
     return noise.clone().detach()
 
 def run(args):
+    folder = args.folder
+    idx0 = args.start_idx
+    idx1 = args.end_idx
+    device = torch.device("cuda:{}".format(args.cuda_idx))
+
     in_dir = "nvidia_data"
     out_dir = "output_ours/test/obj"
     os.makedirs(out_dir, exist_ok=1)
 
     hrestshape, _, hfaces = read_obj(os.path.join(in_dir, "restshape_surf_v1.4.obj"))
-    print("hrestshape:", hrestshape.shape, hrestshape.min(), hrestshape.max(), hrestshape.dtype)
 
     uvs = np.loadtxt(os.path.join(in_dir, "restshape_surf_v1.4_sts.txt"))
     uvs[:,1] = 1-uvs[:,1]
-    print("uvs:", uvs.shape, uvs.dtype)
 
     edges = np.loadtxt(os.path.join(in_dir, "edges_src_trg.txt")).astype(int)
     vertEdges_0 = edges[:,0] # p
@@ -276,19 +277,11 @@ def run(args):
     Adj[vertEdges_1, vertEdges_0] = 1
     LapM = torch.from_numpy(getLaplacianMatrix(Adj)).float().to(device)
 
-    print("LapM:", LapM.shape, LapM.dtype)
-    print("edges:", edges.shape, edges.dtype)
-    print("EdgeCounts:", EdgeCounts.shape, EdgeCounts.dtype)
-
-    folder = args.folder
-    idx0 = args.start_idx
-    idx1 = args.end_idx
-    device = torch.device("cuda:{}".format(args.cuda_idx))
-
     nm_dir = "output_ours/test/predictions"
-    hres_paths = sorted(glob.glob(os.path.join(nm_dir, f"*{folder}*")))[idx0:idx1]
-    print("  ", folder, ":", len(hres_paths), "frames")
+    hres_paths = sorted(glob.glob(os.path.join(nm_dir, f"*{folder}*")))
+    hres_paths = hres_paths[idx0:min(len(hres_paths), idx1)]
 
+    print("  ", folder, ":", len(hres_paths), "frames")
     for hres_path in hres_paths:
         bnames = os.path.basename(hres_path).split("_")
         seq_name = bnames[1]
@@ -301,13 +294,13 @@ def run(args):
         x0, _, _ = read_obj(obj_path)
         bname = f"{seq_name}_{seq_frame:03d}_pred.obj"
 
-        p = geo_opt_ours(hres_path, x0, uvs, vertEdges_0, vertEdges_1, EdgeCounts, numV, LapM)
+        p = geo_opt_ours(bname, device, hres_path, x0, uvs, vertEdges_0, vertEdges_1, EdgeCounts, numV, LapM)
         p = p.cpu().numpy()
 
         save_path = os.path.join(out_dir, bname)
         write_obj(save_path, p, normals=[], faces=hfaces, vts=[])
-        print(p.shape, ">>", save_path)
-    print("Done")
+        print(">> ", save_path)
+    print("#### Done")
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='PyTorch implementation of the paper: Variational auto-encoder for collagen fiber centerline generation and extraction in fibrotic cancer tissues.')
