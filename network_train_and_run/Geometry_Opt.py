@@ -240,7 +240,7 @@ def geo_opt_ours(nmap_path, rrVertArray, uvs, vertEdges_0, vertEdges_1, EdgeCoun
             print("Iteration: {}, old_loss: {:.6f}, total Loss: {:.6f}, Geo Loss: {:.6f}, disLoss: {:.6f}, Smooth Loss: {:.6f}".format(\
                 iteration,oldLoss, total_loss.item(), cEdgeWeight * loss_geo.item(), distWeight * loss_dist, smoothWeight * loss_smooth))
 
-        if abs(oldLoss-total_loss.item()) < 1e-7 and iteration > 50:
+        if abs(oldLoss-total_loss.item()) < 1e-3 and iteration > 50:
         # if loss_geo < 1e-3:
             print("total_loss.item()-oldLoss:", total_loss.item()-oldLoss)
             return noise.clone().detach()

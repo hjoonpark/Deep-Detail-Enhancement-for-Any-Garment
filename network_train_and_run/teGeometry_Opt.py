@@ -6,22 +6,26 @@ import os, math
 import torch.nn as nn
 from Losses import Loss_NormalCrossVert, LapSmooth_loss
 import time
-import cv2, glob
+import cv2, glob, sys
 
-import networkx as nx
-import plotly
-import plotly.graph_objects as go
+# import networkx as nx
+# import plotly
+# import plotly.graph_objects as go
 
 import argparse, sys, datetime
 
 #USE_CUDA = False
 USE_CUDA = torch.cuda.is_available()
 print('balin-->', USE_CUDA)
-num_iter = 10000
+# num_iter = 10000
+# cEdgeWeight = 1
+# distWeight = 0.1
+# smoothWeight = 0.01
+num_iter = 500
 
-cEdgeWeight = 1
-distWeight = 0.1
-smoothWeight = 0.01
+cEdgeWeight = 100.
+distWeight = 0.01
+smoothWeight = 0.001
 
 def get_timestamp():
     now = datetime.datetime.now()
@@ -222,6 +226,7 @@ def geo_opt_ours(fname, device, nmap_path, rrVertArray, uvs, vertEdges_0, vertEd
     t = time.time()
     
     for iteration in range(num_iter + 1):
+
         adam.zero_grad()
         loss_geo = Func_lossNormalCrossVert(normalArray=rrNormTensor, vertArray=noise)
         loss_dist = Func_lossVertToGtVert(gtVertTensor, noise)
@@ -231,15 +236,22 @@ def geo_opt_ours(fname, device, nmap_path, rrVertArray, uvs, vertEdges_0, vertEd
             loss_smooth = LapSmooth_loss(LapM, noise)
             total_loss += smoothWeight * loss_smooth
         else:
+            assert False
             loss_smooth = 0
 
+        derror = (oldLoss-total_loss.item())
+        if iteration % 5 == 0:
+            if not os.path.exists("output_ours/test_ref"):
+                sys.exit()
         if iteration % 10 == 0:
-            print("{} [{}] Iteration: {}, old_loss: {:.6f}, total Loss: {:.6f}, Geo Loss: {:.6f}, disLoss: {:.6f}, Smooth Loss: {:.6f}".format(\
-                get_timestamp(), fname, iteration,oldLoss, total_loss.item(), cEdgeWeight * loss_geo.item(), distWeight * loss_dist, smoothWeight * loss_smooth))
+            print("{} [{}] Iteration: {}, derror: {:.5f}, total Loss: {:.5f}, Geo Loss: {:.5f}, disLoss: {:.5f}, Smooth Loss: {:.5f}".format(\
+                get_timestamp(), fname, iteration, derror,  total_loss.item(), cEdgeWeight * loss_geo.item(), distWeight * loss_dist, smoothWeight * loss_smooth))
             sys.stdout.flush()
-        if abs(oldLoss-total_loss.item()) < 1e-7 and iteration > 50:
+        if derror < 0.001 and iteration > 50:
         # if loss_geo < 1e-3:
-            print("{} total_loss.item()-oldLoss: {:.10f}".format(get_timestamp(), total_loss.item()-oldLoss))
+            print("{} [{}] Iteration: {}, break : {:.5f}, total Loss: {:.5f}, Geo Loss: {:.5f}, disLoss: {:.5f}, Smooth Loss: {:.5f}".format(\
+                get_timestamp(), fname, iteration, derror,  total_loss.item(), cEdgeWeight * loss_geo.item(), distWeight * loss_dist, smoothWeight * loss_smooth))
+            sys.stdout.flush()
             return noise.clone().detach()
 
         oldLoss = total_loss.item()
@@ -258,7 +270,7 @@ def run(args):
     device = torch.device("cuda:{}".format(args.cuda_idx))
 
     in_dir = "nvidia_data"
-    out_dir = "output_ours/test/obj"
+    out_dir = "output_ours/test_ref/npy"
     os.makedirs(out_dir, exist_ok=1)
 
     hrestshape, _, hfaces = read_obj(os.path.join(in_dir, "restshape_surf_v1.4.obj"))
@@ -277,28 +289,40 @@ def run(args):
     Adj[vertEdges_1, vertEdges_0] = 1
     LapM = torch.from_numpy(getLaplacianMatrix(Adj)).float().to(device)
 
-    nm_dir = "output_ours/test/predictions"
-    hres_paths = sorted(glob.glob(os.path.join(nm_dir, f"*{folder}*")))
-    hres_paths = hres_paths[idx0:min(len(hres_paths), idx1)]
+    # Predictions nm
+    # nm_dir = "output_ours/test/predictions"
+    # hres_paths = sorted(glob.glob(os.path.join(nm_dir, f"*{folder}*")))
+    # hres_paths = hres_paths[idx0:min(len(hres_paths), idx1)]
+
+    # Ground-truth nm
+    nm_dir = os.path.join(in_dir, "BakedUVMaps", folder)
+    hres_paths = sorted(glob.glob(os.path.join(nm_dir, "hires*.png")))
+    if idx1 > idx0:
+        hres_paths = hres_paths[idx0:min(len(hres_paths), idx1)]
 
     print("  ", folder, ":", len(hres_paths), "frames")
     for hres_path in hres_paths:
-        bnames = os.path.basename(hres_path).split("_")
-        seq_name = bnames[1]
-        seq_frame = int(bnames[-1].split(".")[-2])
-        
-        obj_path = os.path.join(in_dir, "obj", f"{seq_name}_{seq_frame:03d}.obj")
+        # bnames = os.path.basename(hres_path).split("_")
+        # seq_name = bnames[1]
+        # seq_frame = int(bnames[-1].split(".")[-2])
+
+        bnames2 = hres_path.split("/")
+        seq_name = bnames2[2]
+        seq_frame = int(bnames2[-1].split(".")[-2])-1
+
+        obj_path = os.path.join(in_dir, "obj_7_4", f"{seq_name}_{seq_frame:03d}.obj")
         if not os.path.exists(obj_path):
             print("NOT FOUND:", obj_path)
             assert 0
         x0, _, _ = read_obj(obj_path)
-        bname = f"{seq_name}_{seq_frame:03d}_pred.obj"
+        bname = f"{seq_name}_{seq_frame:03d}"
 
         p = geo_opt_ours(bname, device, hres_path, x0, uvs, vertEdges_0, vertEdges_1, EdgeCounts, numV, LapM)
         p = p.cpu().numpy()
 
         save_path = os.path.join(out_dir, bname)
-        write_obj(save_path, p, normals=[], faces=hfaces, vts=[])
+        # write_obj(save_path, p, normals=[], faces=hfaces, vts=[])
+        np.save(save_path, p)
         print("{} >> {}".format(get_timestamp(), save_path))
         sys.stdout.flush()
     print("#### Done")
@@ -307,7 +331,7 @@ def run(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='PyTorch implementation of the paper: Variational auto-encoder for collagen fiber centerline generation and extraction in fibrotic cancer tissues.')
     parser.add_argument("--start-idx", type=int, help="starting index", default=0)
-    parser.add_argument("--end-idx", type=int, help="end index", default=0)
+    parser.add_argument("--end-idx", type=int, help="end index", default=-1)
     parser.add_argument("--cuda-idx", type=int, help="cuda index", default=0)
     parser.add_argument("--folder", type=str, help="anger, fear", default="anger")
     args = parser.parse_args()
