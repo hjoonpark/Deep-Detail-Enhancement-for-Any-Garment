@@ -244,8 +244,15 @@ def geo_opt_ours(fname, device, nmap_path, rrVertArray, uvs, vertEdges_0, vertEd
             loss_smooth = 0
 
         derror = (oldLoss-total_loss.item())
+        if iteration % 5 == 0:
+            """
+            for single frame
+            """
+            save_path = os.path.join("output_ours/test_single/npy/{:03d}".format(iteration))
+            np.save(save_path, noise.detach().cpu().numpy())
+            print(save_path)
         if iteration % 10 == 0:
-            if not os.path.exists("output_ours/test/reconstruction"):
+            if not os.path.exists("output_ours/test_single"):
                 sys.exit()
         if iteration % 20 == 0:
             print("{} [{}] Iteration: {}, derror: {:.5f}, total Loss: {:.5f}, Geo Loss: {:.5f}, disLoss: {:.5f}, Smooth Loss: {:.5f}".format(\
@@ -274,7 +281,7 @@ def run(args):
     device = torch.device("cuda:{}".format(args.cuda_idx))
 
     in_dir = "nvidia_data"
-    out_dir = "output_ours/test/reconstruction"
+    out_dir = "output_ours/test_single/npy"
     os.makedirs(out_dir, exist_ok=1)
 
     hrestshape, _, hfaces = read_obj(os.path.join(in_dir, "restshape_surf_v1.4.obj"))
@@ -299,24 +306,25 @@ def run(args):
     # hres_paths = hres_paths[idx0:min(len(hres_paths), idx1)]
 
     # Ground-truth nm
-    # nm_dir = os.path.join(in_dir, "BakedUVMaps", folder)
-    nm_dir = os.path.join(out_dir, "..", "predictions")
-    hres_paths = sorted(glob.glob(os.path.join(nm_dir, f"*{folder}*.png")))
+    nm_dir = os.path.join(in_dir, "BakedUVMaps", folder)
+    hres_paths = sorted(glob.glob(os.path.join(nm_dir, "hires*.png")))
     if idx1 > idx0:
         hres_paths = hres_paths[idx0:min(len(hres_paths), idx1)]
 
     print("  ", folder, ":", len(hres_paths), "frames")
     for hres_path in hres_paths:
+        """
+        for single frame
+        """
+        if "anger" not in hres_path or "072" not in hres_path:
+            continue
+
         # bnames = os.path.basename(hres_path).split("_")
         # seq_name = bnames[1]
         # seq_frame = int(bnames[-1].split(".")[-2])
 
-        # bnames2 = hres_path.split("/")
-        # seq_name = bnames2[2]
-        # seq_frame = int(bnames2[-1].split(".")[-2])-1
-
-        bnames2 = os.path.basename(hres_path).split("_")
-        seq_name = bnames2[1]
+        bnames2 = hres_path.split("/")
+        seq_name = bnames2[2]
         seq_frame = int(bnames2[-1].split(".")[-2])-1
 
         obj_path = os.path.join(in_dir, "obj_7_4", f"{seq_name}_{seq_frame:03d}.obj")
@@ -329,10 +337,6 @@ def run(args):
         p = geo_opt_ours(bname, device, hres_path, x0, uvs, vertEdges_0, vertEdges_1, EdgeCounts, numV, LapM)
         p = p.cpu().numpy()
         # # write_obj(save_path, p, normals=[], faces=hfaces, vts=[])
-
-        save_path = os.path.join(out_dir, bname)
-        np.save(save_path, p)
-        
         print("{} >> {}".format(get_timestamp(), save_path))
         sys.stdout.flush()
     print("#### Done")

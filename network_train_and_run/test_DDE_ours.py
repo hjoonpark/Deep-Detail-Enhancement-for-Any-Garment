@@ -22,7 +22,6 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
 
 import numpy as np
-
 def save_image_plot(I_ins, I_outs, I_gts, save_path):
     fname = os.path.basename(save_path)
     b = 0
@@ -92,7 +91,7 @@ parser.add_argument('--patience', type=int, default=100000, help='Patience')
 parser.add_argument('--model-path', type=str, default="")
 
 args = parser.parse_args()
-args.model_path = "output_ours/ckp/c_best_model_29000.ckp"
+args.model_path = "output_ours/ckp/c_best_model_42500.ckp"
 
 #USE_CUDA = False
 USE_CUDA = torch.cuda.is_available()
@@ -260,11 +259,12 @@ def model_test(data_index, fname):
         print("saveN:", saveN)
         rst = Out[0, 0:3, :, :] * torch.tensor(vgg_std).view(-1, 1, 1).to(device) + \
               torch.tensor(vgg_mean).view(-1, 1, 1).to(device)
+        # rst = (rst-rst.min())/(rst.max()-rst.min())
         save_image(rst, fp=saveN)
 
         # save plot
-        save_path = os.path.join(plot_dir, out_fname)
-        save_image_plot(test_inBatch, Out, test_stylBatch, save_path)
+        # save_path = os.path.join(plot_dir, out_fname)
+        # save_image_plot(test_inBatch, Out, test_stylBatch, save_path)
 
         return Loss
 

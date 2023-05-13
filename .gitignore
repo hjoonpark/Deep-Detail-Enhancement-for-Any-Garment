@@ -11,3 +11,4 @@ nvidia_data/
 plot/
 output/
 log*.txt
+*.npy

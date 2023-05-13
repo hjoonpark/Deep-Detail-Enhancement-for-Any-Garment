@@ -203,7 +203,7 @@ for folder in ["amazement", "pain"]:
     # nm_paths["in"].append(in_paths[0])
     # nm_paths["gt"].append(gt_paths[0])
 
-BSize = 15
+BSize = 14
 train_paths = nm_paths["in"]
 n_train = len(train_paths)
 TrainKK = n_train // BSize + 1
