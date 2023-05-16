@@ -28,9 +28,9 @@ num_iter = 2000
 # distWeight = 1
 # smoothWeight = 0.01
 
-cEdgeWeight = 100.
-distWeight = 1
-smoothWeight = 0.001
+cEdgeWeight = 200.
+distWeight = 0.1
+smoothWeight = 0.0001
 
 def get_timestamp():
     now = datetime.datetime.now()
@@ -213,10 +213,11 @@ def texel_interpolation(texture_map, uvs):
     output = (output*2)-1
     return output
 
-def geo_opt_ours(fname, device, nmap_path, rrVertArray, uvs, vertEdges_0, vertEdges_1, EdgeCounts, numV, LapM):
+def geo_opt_ours(fname, device, nmap_path, rrVertArray, uvs, vertEdges_0, vertEdges_1, EdgeCounts, numV, LapM, out_dir):
     texture_map = np.array(cv2.cvtColor(cv2.imread(nmap_path), cv2.COLOR_BGR2RGB))
     rrNormArray = texel_interpolation(texture_map, uvs)
     rrNormTensor = torch.from_numpy(rrNormArray).type(torch.FloatTensor).to(device)
+    print(rrNormTensor.min().item(), rrNormTensor.max().item())
     # ini vert position
     noise = torch.from_numpy(rrVertArray.copy()).type(torch.FloatTensor).to(device)
     noise.requires_grad = True
@@ -230,6 +231,8 @@ def geo_opt_ours(fname, device, nmap_path, rrVertArray, uvs, vertEdges_0, vertEd
     oldLoss = 0.
     t = time.time()
     
+    recon_dir = os.path.join(out_dir, "reconstruction")
+    os.makedirs(recon_dir, exist_ok=1)
     for iteration in range(num_iter + 1):
         adam.zero_grad()
         loss_geo = Func_lossNormalCrossVert(normalArray=rrNormTensor, vertArray=noise)
@@ -245,7 +248,8 @@ def geo_opt_ours(fname, device, nmap_path, rrVertArray, uvs, vertEdges_0, vertEd
 
         derror = (oldLoss-total_loss.item())
         if iteration % 10 == 0:
-            if not os.path.exists("output_ours/test/reconstruction"):
+            if not os.path.exists(recon_dir):
+                print("EXIT: {} does not exist".format(recon_dir))
                 sys.exit()
         if iteration % 20 == 0:
             print("{} [{}] Iteration: {}, derror: {:.5f}, total Loss: {:.5f}, Geo Loss: {:.5f}, disLoss: {:.5f}, Smooth Loss: {:.5f}".format(\
@@ -264,7 +268,6 @@ def geo_opt_ours(fname, device, nmap_path, rrVertArray, uvs, vertEdges_0, vertEd
         total_loss.backward()
         # update parameters
         adam.step()
-
     return noise.clone().detach()
 
 def run(args):
@@ -274,7 +277,7 @@ def run(args):
     device = torch.device("cuda:{}".format(args.cuda_idx))
 
     in_dir = "nvidia_data"
-    out_dir = "output_ours/test/reconstruction"
+    out_dir = args.out_dir
     os.makedirs(out_dir, exist_ok=1)
 
     hrestshape, _, hfaces = read_obj(os.path.join(in_dir, "restshape_surf_v1.4.obj"))
@@ -300,7 +303,7 @@ def run(args):
 
     # Ground-truth nm
     # nm_dir = os.path.join(in_dir, "BakedUVMaps", folder)
-    nm_dir = os.path.join(out_dir, "..", "predictions")
+    nm_dir = os.path.join(out_dir, "predictions")
     hres_paths = sorted(glob.glob(os.path.join(nm_dir, f"*{folder}*.png")))
     if idx1 > idx0:
         hres_paths = hres_paths[idx0:min(len(hres_paths), idx1)]
@@ -316,21 +319,26 @@ def run(args):
         # seq_frame = int(bnames2[-1].split(".")[-2])-1
 
         bnames2 = os.path.basename(hres_path).split("_")
-        seq_name = bnames2[1]
+        seq_name = bnames2[0]
         seq_frame = int(bnames2[-1].split(".")[-2])-1
+
+        bname = f"{seq_name}_{seq_frame:03d}"
+        save_path = os.path.join(out_dir, "reconstruction", bname)
+        if os.path.exists(save_path + ".npy"):
+            print("skipping existing: {}".format(save_path))
+            continue
 
         obj_path = os.path.join(in_dir, "obj_7_4", f"{seq_name}_{seq_frame:03d}.obj")
         if not os.path.exists(obj_path):
             print("NOT FOUND:", obj_path)
             assert 0
         x0, _, _ = read_obj(obj_path)
-        bname = f"{seq_name}_{seq_frame:03d}"
+        
 
-        p = geo_opt_ours(bname, device, hres_path, x0, uvs, vertEdges_0, vertEdges_1, EdgeCounts, numV, LapM)
+        p = geo_opt_ours(bname, device, hres_path, x0, uvs, vertEdges_0, vertEdges_1, EdgeCounts, numV, LapM, out_dir)
         p = p.cpu().numpy()
         # # write_obj(save_path, p, normals=[], faces=hfaces, vts=[])
 
-        save_path = os.path.join(out_dir, bname)
         np.save(save_path, p)
         
         print("{} >> {}".format(get_timestamp(), save_path))
@@ -344,6 +352,7 @@ if __name__ == '__main__':
     parser.add_argument("--end-idx", type=int, help="end index", default=-1)
     parser.add_argument("--cuda-idx", type=int, help="cuda index", default=0)
     parser.add_argument("--folder", type=str, help="anger, fear", default="anger")
+    parser.add_argument("--out-dir", type=str, help='output directory', default="output/test")
     args = parser.parse_args()
     
     run(args)

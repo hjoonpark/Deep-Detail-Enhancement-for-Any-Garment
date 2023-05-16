@@ -5,9 +5,11 @@ from PIL import Image
 from torchvision import transforms
 from torchvision.utils import save_image
 
-vgg_mean = [0.485, 0.456, 0.406]
-vgg_std = [0.229, 0.224, 0.225]
+# vgg_mean = [0.485, 0.456, 0.406]
+# vgg_std = [0.229, 0.224, 0.225]
 
+vgg_mean = [0.50608397, 0.53402823, 0.6266865 ] 
+vgg_std = [0.2919069, 0.15321317, 0.17889984]
 
 class Mask_layers(nn.Module):
     def __init__(self, vgg, method='simple'):

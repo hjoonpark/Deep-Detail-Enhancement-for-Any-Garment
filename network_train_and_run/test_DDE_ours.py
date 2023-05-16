@@ -20,6 +20,8 @@ from torchvision.utils import save_image
 
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
+from dataset import DatasetNormalmaps
+from ddp import DDPWraper
 
 import numpy as np
 def save_image_plot(I_ins, I_outs, I_gts, save_path):
@@ -91,12 +93,12 @@ parser.add_argument('--patience', type=int, default=100000, help='Patience')
 parser.add_argument('--model-path', type=str, default="")
 
 args = parser.parse_args()
-args.model_path = "output_ours/ckp/c_best_model_42500.ckp"
+args.model_path = "output_ours/ckp/c_best_model_3350_keep.ckp"
 
-#USE_CUDA = False
-USE_CUDA = torch.cuda.is_available()
-print("balin-->", USE_CUDA)
-device = torch.device("cuda:0" if USE_CUDA else "cpu")
+batch_size = 1
+dataset_te = DatasetNormalmaps(is_train=False)
+data_loader_te = torch.utils.data.DataLoader(dataset_te, batch_size=batch_size)
+device = torch.device("cuda:0")
 
 def load_model(model, optimizer, model_path):
     try:
@@ -127,50 +129,6 @@ def load_model(model, optimizer, model_path):
 Patch_H = 512
 Patch_W = 512
 
-NumMat = 1
-
-Img_transform = transforms.Compose([transforms.ToTensor(),
-                                    transforms.Normalize(vgg_mean, vgg_std)])
-# Mask_transform = transforms.Compose([transforms.Resize((Patch_H, Patch_W)), transforms.ToTensor()])
-Mask_transform = transforms.Compose([transforms.ToTensor()])
-
-def get_fileSet_list(dir, withF=[]):
-    if len(withF) == 0:
-        return glob.glob(os.path.join(dir, "*"))
-    else:
-        fL = []
-        for wf in withF:
-            fL = fL + glob.glob(os.path.join(dir, wf))
-        return fL
-
-def getBatchImg(DirList, batchIDs, maskDir, stylDir, extraInfo, device, refMat):
-    imgBatch = []
-    maskBatch = []
-    stylBatch = []
-    MatIDBatch = []
-    for id in range(len(batchIDs)):
-        imgN = DirList[id]
-        img = Image.open(imgN)
-        img = Img_transform(img)
-        img = img.unsqueeze(0)
-        imgBatch.append(img)
-
-        fname = os.path.basename(imgN).split("_")[-1]
-        stylN = os.path.join(os.path.dirname(imgN), f"hires_{fname}")
-        styI = Image.open(stylN)
-        styI = Img_transform(styI)
-        styI = styI.unsqueeze(0)
-        stylBatch.append(styI)
-
-        mask = torch.ones_like(img[:, 0, :, :].unsqueeze(1))
-        maskBatch.append(mask)
-
-    imgBatch = torch.cat(imgBatch, dim=0).to(device)
-    maskBatch = torch.cat(maskBatch, dim=0).to(device)
-    stylBatch = torch.cat(stylBatch, dim=0).to(device)
-
-    return imgBatch, maskBatch, stylBatch, MatIDBatch
-
 def saveBImg(itt, DirList, batchIDs, imgBatch, maskBatch, saveDir):
     c = 0
     for id in range(len(batchIDs)):
@@ -197,31 +155,13 @@ in_dir = "nvidia_data/BakedUVMaps"
 """
 Load test dataset
 """
-nm_paths_te = {"in": [], "gt": []}
-for folder in ["anger", "fear"]:
-    in_paths = sorted(glob.glob(os.path.join(in_dir, folder, "lores*")))
-    gt_paths = [os.path.join(in_dir, folder, "higres_{}".format(os.path.basename(p).split("_")[-1])) for p in in_paths]
-
-    nm_paths_te["in"].extend(in_paths)
-    nm_paths_te["gt"].extend(gt_paths)
-    
-    # nm_paths_te["in"].append(in_paths[0])
-    # nm_paths_te["gt"].append(gt_paths[0])
-
-test_paths = nm_paths_te["in"]
-n_test = len(test_paths)
-TestKK = 1 # n_test // BSize
-print("test_paths:", len(nm_paths_te["in"]))
-
-show_idList = test_paths    
-show_inBatch, show_maskBatch, show_stylBatch, show_matIDs = getBatchImg(DirList=show_idList, batchIDs=show_idList,
-                                                                        maskDir=[], stylDir=[],
-                                                                        extraInfo=[], device=device,
-                                                                        refMat=[])
-print(show_inBatch.size(), show_maskBatch.size(), show_stylBatch.size())
-
 #model = Generator_CNN_Cat(3+len(test_InfoDir)*3, 3).to(device)
+NumMat = 1
 model = Generator_CNNCIN(inDim=3, outDim=3, styleNum=NumMat).to(device)
+
+ddp = DDPWraper(rank=0, world_size=1)
+model = ddp.setup_model(model)
+model_module = model.module
 model.eval()
 
 lossFunc = BatchFeatureLoss_Model(device=device, c_alpha=1., s_beta=1.e4, s_layWei=[1., 1., 1., 1., 1.]).to(device)
@@ -230,41 +170,36 @@ plot_dir = "output_ours/test/plot"
 save_dir = "output_ours/test/predictions"
 os.makedirs(plot_dir, exist_ok=1)
 os.makedirs(save_dir, exist_ok=1)
-losses = {"index": [], "c_Loss": [], "s_Loss": []}
+losses = {"frame": [], "c_Loss": [], "s_Loss": []}
 
-def model_test(data_index, fname):
-    DList = [test_paths[data_index]]
-    test_inBatch, test_maskBatch, test_stylBatch, test_MatIDBatch = \
-        getBatchImg(DirList=DList, batchIDs=DList, maskDir=[], stylDir=[],
-                    extraInfo=[], device=device, refMat=[])
-
+def model_test(data):
     model.eval()
     with torch.no_grad():
-        path = str(test_paths[data_index]).split("/")
-        seq_name = path[-2]
-
-        Out = model(test_inBatch)
-        c_Loss, s_Loss = lossFunc(X=Out, SG=test_stylBatch, CX=test_inBatch[:, 0:3, :, :], MX=test_maskBatch)
+        lres = data["lres"].to(device)
+        hres = data["hres"].to(device)
+        mask = data["mask"].to(device)
+        frame = data["frame"][0]
+        Out = model(lres)
+        c_Loss, s_Loss = lossFunc(X=Out, SG=hres, CX=hres[:, 0:3, :, :], MX=mask)
         Loss = c_Loss + s_Loss
         Loss = Loss
 
         losses["c_Loss"].append(c_Loss.item())
         losses["s_Loss"].append(s_Loss.item())
-        losses["index"].append(data_index)
+        losses["frame"].append(frame)
 
         # save normal map
-        bname = os.path.basename(test_paths[data_index]).split(".png")[0]
-        out_fname = f"{data_idx:03d}_{seq_name}_{bname}.png"
+        out_fname = f"{frame}".replace(".npy", ".png")
         saveN = os.path.join(save_dir, out_fname)
-        print("saveN:", saveN)
         rst = Out[0, 0:3, :, :] * torch.tensor(vgg_std).view(-1, 1, 1).to(device) + \
               torch.tensor(vgg_mean).view(-1, 1, 1).to(device)
         # rst = (rst-rst.min())/(rst.max()-rst.min())
+        print("saveN:", saveN, rst.shape, rst.min().item(), rst.max().item())
         save_image(rst, fp=saveN)
 
         # save plot
-        # save_path = os.path.join(plot_dir, out_fname)
-        # save_image_plot(test_inBatch, Out, test_stylBatch, save_path)
+        save_path = os.path.join(plot_dir, out_fname)
+        save_image_plot(lres, Out, hres, save_path)
 
         return Loss
 
@@ -281,9 +216,7 @@ if args.model_path != "":
     
 IFSumWriter = False
 
-for data_idx in range(len(test_paths)):
-    fname = os.path.basename(test_paths[data_idx])
-    print("fname:", fname)
-    test_loss = model_test(data_idx, fname)
+for data_idx, data in enumerate(data_loader_te):
+    test_loss = model_test(data)
 
 print("### DONE")
