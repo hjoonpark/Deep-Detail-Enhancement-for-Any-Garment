@@ -29,7 +29,7 @@ num_iter = 2000
 # smoothWeight = 0.01
 
 cEdgeWeight = 200.
-distWeight = 0.1
+distWeight = 0.001
 smoothWeight = 0.0001
 
 def get_timestamp():
@@ -255,7 +255,7 @@ def geo_opt_ours(fname, device, nmap_path, rrVertArray, uvs, vertEdges_0, vertEd
             print("{} [{}] Iteration: {}, derror: {:.5f}, total Loss: {:.5f}, Geo Loss: {:.5f}, disLoss: {:.5f}, Smooth Loss: {:.5f}".format(\
                 get_timestamp(), fname, iteration, derror,  total_loss.item(), cEdgeWeight * loss_geo.item(), distWeight * loss_dist, smoothWeight * loss_smooth))
             sys.stdout.flush()
-        if derror < 0.001 and iteration > 50:
+        if derror < 0.0001 and iteration > 50:
         # if loss_geo < 1e-3:
             print("{} [{}] Iteration: {}, break : {:.5f}, total Loss: {:.5f}, Geo Loss: {:.5f}, disLoss: {:.5f}, Smooth Loss: {:.5f}".format(\
                 get_timestamp(), fname, iteration, derror,  total_loss.item(), cEdgeWeight * loss_geo.item(), distWeight * loss_dist, smoothWeight * loss_smooth))

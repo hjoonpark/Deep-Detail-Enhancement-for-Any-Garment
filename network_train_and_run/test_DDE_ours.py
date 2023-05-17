@@ -13,7 +13,7 @@ from PIL import Image
 from random import shuffle
 import torch.optim as optim
 
-from models import Generator_CNNCIN
+from models import Generator_CNNCIN_nvidia as Generator_CNNCIN
 from VGG_Model import vgg_mean, vgg_std
 from Losses import BatchFeatureLoss_Model
 from torchvision.utils import save_image
@@ -93,7 +93,7 @@ parser.add_argument('--patience', type=int, default=100000, help='Patience')
 parser.add_argument('--model-path', type=str, default="")
 
 args = parser.parse_args()
-args.model_path = "output_ours/ckp/c_best_model_3350_keep.ckp"
+args.model_path = "output_ours/ckp/c_best_model_1100.ckp"
 
 batch_size = 1
 dataset_te = DatasetNormalmaps(is_train=False)
@@ -159,11 +159,15 @@ Load test dataset
 NumMat = 1
 model = Generator_CNNCIN(inDim=3, outDim=3, styleNum=NumMat).to(device)
 
-ddp = DDPWraper(rank=0, world_size=1)
-model = ddp.setup_model(model)
-model_module = model.module
-model.eval()
-
+world_size = 1
+if world_size > 1:
+    ddp = DDPWraper(rank=0, world_size=2)
+    model = ddp.setup_model(model)
+    model_module = model.module
+else:
+    model = model.to(device)
+    model_module = model
+    
 lossFunc = BatchFeatureLoss_Model(device=device, c_alpha=1., s_beta=1.e4, s_layWei=[1., 1., 1., 1., 1.]).to(device)
 
 plot_dir = "output_ours/test/plot"
