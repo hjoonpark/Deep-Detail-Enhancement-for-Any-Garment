@@ -319,7 +319,7 @@ if __name__ == "__main__":
 
     # Training settings
     parser = argparse.ArgumentParser(description="")
-    parser.add_argument("--world-size", type=int, help="number of GPUs", default=2)
+    parser.add_argument("--world-size", type=int, help="number of GPUs", default=1)
     parser.add_argument('--epochs', type=int, default=9e5, help='Number of epochs to train.')
     parser.add_argument('--lr', type=float, default=1e-5, help='Initial learning rate.')
     parser.add_argument('--weight_decay', type=float, default=1e-5, help='Weight decay (L2 loss on parameters).')
