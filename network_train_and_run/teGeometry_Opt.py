@@ -29,7 +29,7 @@ num_iter = 2000
 # smoothWeight = 0.01
 
 cEdgeWeight = 200.
-distWeight = 0.001
+distWeight = 0.1
 smoothWeight = 0.0001
 
 def get_timestamp():
@@ -210,11 +210,13 @@ def texel_interpolation(texture_map, uvs):
                         + color_bottom_right * weight_bottom_right)
 
     output = output/255.0
+    # output = (output-output.min())/(output.max()-output.min())
     output = (output*2)-1
     return output
 
 def geo_opt_ours(fname, device, nmap_path, rrVertArray, uvs, vertEdges_0, vertEdges_1, EdgeCounts, numV, LapM, out_dir):
     texture_map = np.array(cv2.cvtColor(cv2.imread(nmap_path), cv2.COLOR_BGR2RGB))
+    # texture_map = np.load(nmap_path).transpose(1, 2, 0)
     rrNormArray = texel_interpolation(texture_map, uvs)
     rrNormTensor = torch.from_numpy(rrNormArray).type(torch.FloatTensor).to(device)
     print(rrNormTensor.min().item(), rrNormTensor.max().item())
@@ -246,7 +248,7 @@ def geo_opt_ours(fname, device, nmap_path, rrVertArray, uvs, vertEdges_0, vertEd
             assert False
             loss_smooth = 0
 
-        derror = (oldLoss-total_loss.item())
+        derror = abs(oldLoss-total_loss.item())
         if iteration % 10 == 0:
             if not os.path.exists(recon_dir):
                 print("EXIT: {} does not exist".format(recon_dir))
@@ -255,7 +257,7 @@ def geo_opt_ours(fname, device, nmap_path, rrVertArray, uvs, vertEdges_0, vertEd
             print("{} [{}] Iteration: {}, derror: {:.5f}, total Loss: {:.5f}, Geo Loss: {:.5f}, disLoss: {:.5f}, Smooth Loss: {:.5f}".format(\
                 get_timestamp(), fname, iteration, derror,  total_loss.item(), cEdgeWeight * loss_geo.item(), distWeight * loss_dist, smoothWeight * loss_smooth))
             sys.stdout.flush()
-        if derror < 0.0001 and iteration > 50:
+        if derror < 0.001 and iteration > 50:
         # if loss_geo < 1e-3:
             print("{} [{}] Iteration: {}, break : {:.5f}, total Loss: {:.5f}, Geo Loss: {:.5f}, disLoss: {:.5f}, Smooth Loss: {:.5f}".format(\
                 get_timestamp(), fname, iteration, derror,  total_loss.item(), cEdgeWeight * loss_geo.item(), distWeight * loss_dist, smoothWeight * loss_smooth))
@@ -303,7 +305,7 @@ def run(args):
 
     # Ground-truth nm
     # nm_dir = os.path.join(in_dir, "BakedUVMaps", folder)
-    nm_dir = os.path.join(out_dir, "predictions")
+    nm_dir = os.path.join(out_dir, "predictions_img")
     hres_paths = sorted(glob.glob(os.path.join(nm_dir, f"*{folder}*.png")))
     if idx1 > idx0:
         hres_paths = hres_paths[idx0:min(len(hres_paths), idx1)]

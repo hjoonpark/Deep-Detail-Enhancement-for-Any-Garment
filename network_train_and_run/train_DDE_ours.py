@@ -325,8 +325,8 @@ if __name__ == "__main__":
     parser.add_argument('--weight_decay', type=float, default=1e-5, help='Weight decay (L2 loss on parameters).')
     parser.add_argument('--patience', type=int, default=100000, help='Patience')
     parser.add_argument('--batch-size', type=int, default=20, help='batch size')
-    parser.add_argument('--ckp-epoch', type=int, default=50, help='checkpoint epoch')
-    parser.add_argument('--log-epoch', type=int, default=5, help='log epoch')
+    parser.add_argument('--ckp-epoch', type=int, default=10, help='checkpoint epoch')
+    parser.add_argument('--log-epoch', type=int, default=1, help='log epoch')
     parser.add_argument('--model-path', type=str, default="")
     args = parser.parse_args()
     world_size = args.world_size

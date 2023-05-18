@@ -25,7 +25,7 @@ class DatasetNormalmaps(torch.utils.data.Dataset):
         to_tensor = transforms.Compose([transforms.ToTensor()])
 
         if is_train:
-            folders = ["amazement", "pain"]
+            folders = ["amazement", "pain", "anger", "fear"]
         else:
             folders = ["anger", "fear"]
         

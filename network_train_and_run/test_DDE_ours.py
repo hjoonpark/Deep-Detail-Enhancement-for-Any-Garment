@@ -93,7 +93,7 @@ parser.add_argument('--patience', type=int, default=100000, help='Patience')
 parser.add_argument('--model-path', type=str, default="")
 
 args = parser.parse_args()
-args.model_path = "output_ours/ckp/c_best_model_1100.ckp"
+args.model_path = "output_ours/ckp/c_best_model_1310.ckp"
 
 batch_size = 1
 dataset_te = DatasetNormalmaps(is_train=False)
@@ -171,8 +171,10 @@ else:
 lossFunc = BatchFeatureLoss_Model(device=device, c_alpha=1., s_beta=1.e4, s_layWei=[1., 1., 1., 1., 1.]).to(device)
 
 plot_dir = "output_ours/test/plot"
+save_img_dir = "output_ours/test/predictions_img"
 save_dir = "output_ours/test/predictions"
 os.makedirs(plot_dir, exist_ok=1)
+os.makedirs(save_img_dir, exist_ok=1)
 os.makedirs(save_dir, exist_ok=1)
 losses = {"frame": [], "c_Loss": [], "s_Loss": []}
 
@@ -194,16 +196,22 @@ def model_test(data):
 
         # save normal map
         out_fname = f"{frame}".replace(".npy", ".png")
-        saveN = os.path.join(save_dir, out_fname)
+        saveN = os.path.join(save_img_dir, out_fname)
         rst = Out[0, 0:3, :, :] * torch.tensor(vgg_std).view(-1, 1, 1).to(device) + \
               torch.tensor(vgg_mean).view(-1, 1, 1).to(device)
-        # rst = (rst-rst.min())/(rst.max()-rst.min())
-        print("saveN:", saveN, rst.shape, rst.min().item(), rst.max().item())
+
+        # normalize rgb channels
+        print(rst.shape, rst.min().item(), rst.max().item(), saveN)
         save_image(rst, fp=saveN)
+        saveN = os.path.join(save_dir, frame)
+
+        vec_norm = torch.linalg.norm(rst, dim=0)[None, :, :]
+        rst = rst.div(vec_norm)
+        np.save(saveN, rst.cpu().numpy().squeeze())
 
         # save plot
         save_path = os.path.join(plot_dir, out_fname)
-        save_image_plot(lres, Out, hres, save_path)
+        save_image_plot(lres, rst.unsqueeze(0), hres, save_path)
 
         return Loss
 
