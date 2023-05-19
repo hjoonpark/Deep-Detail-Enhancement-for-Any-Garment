@@ -28,9 +28,9 @@ num_iter = 2000
 # distWeight = 1
 # smoothWeight = 0.01
 
-cEdgeWeight = 100.
-distWeight = 1
-smoothWeight = 0.001
+cEdgeWeight = 0
+distWeight = 0
+smoothWeight = 1000
 
 def get_timestamp():
     now = datetime.datetime.now()
@@ -243,12 +243,12 @@ def geo_opt_ours(fname, device, nmap_path, rrVertArray, uvs, vertEdges_0, vertEd
             assert False
             loss_smooth = 0
 
-        derror = (oldLoss-total_loss.item())
-        if iteration % 5 == 0:
+        derror = abs(oldLoss-total_loss.item())
+        if iteration % 10 == 0:
             """
             for single frame
             """
-            save_path = os.path.join("output_ours/test_single/npy/{:03d}".format(iteration))
+            save_path = os.path.join("output_ours/test_single/npy/{:05d}".format(iteration))
             np.save(save_path, noise.detach().cpu().numpy())
             print(save_path)
         if iteration % 10 == 0:
@@ -258,7 +258,7 @@ def geo_opt_ours(fname, device, nmap_path, rrVertArray, uvs, vertEdges_0, vertEd
             print("{} [{}] Iteration: {}, derror: {:.5f}, total Loss: {:.5f}, Geo Loss: {:.5f}, disLoss: {:.5f}, Smooth Loss: {:.5f}".format(\
                 get_timestamp(), fname, iteration, derror,  total_loss.item(), cEdgeWeight * loss_geo.item(), distWeight * loss_dist, smoothWeight * loss_smooth))
             sys.stdout.flush()
-        if derror < 0.001 and iteration > 50:
+        if derror < 0.0001 and iteration > 50:
         # if loss_geo < 1e-3:
             print("{} [{}] Iteration: {}, break : {:.5f}, total Loss: {:.5f}, Geo Loss: {:.5f}, disLoss: {:.5f}, Smooth Loss: {:.5f}".format(\
                 get_timestamp(), fname, iteration, derror,  total_loss.item(), cEdgeWeight * loss_geo.item(), distWeight * loss_dist, smoothWeight * loss_smooth))
@@ -306,8 +306,11 @@ def run(args):
     # hres_paths = hres_paths[idx0:min(len(hres_paths), idx1)]
 
     # Ground-truth nm
-    nm_dir = os.path.join(in_dir, "BakedUVMaps", folder)
-    hres_paths = sorted(glob.glob(os.path.join(nm_dir, "hires*.png")))
+    # nm_dir = os.path.join(in_dir, "BakedUVMaps", folder)
+
+    nm_dir = os.path.join("output_ours/test/predictions_img")
+    hres_paths = sorted(glob.glob(os.path.join(nm_dir, f"*{folder}*.png")))
+    print("  ", folder, ":", len(hres_paths), "frames")
     if idx1 > idx0:
         hres_paths = hres_paths[idx0:min(len(hres_paths), idx1)]
 
@@ -323,8 +326,8 @@ def run(args):
         # seq_name = bnames[1]
         # seq_frame = int(bnames[-1].split(".")[-2])
 
-        bnames2 = hres_path.split("/")
-        seq_name = bnames2[2]
+        bnames2 = os.path.basename(hres_path).split("_")
+        seq_name = bnames2[0]
         seq_frame = int(bnames2[-1].split(".")[-2])-1
 
         obj_path = os.path.join(in_dir, "obj_7_4", f"{seq_name}_{seq_frame:03d}.obj")
@@ -337,7 +340,7 @@ def run(args):
         p = geo_opt_ours(bname, device, hres_path, x0, uvs, vertEdges_0, vertEdges_1, EdgeCounts, numV, LapM)
         p = p.cpu().numpy()
         # # write_obj(save_path, p, normals=[], faces=hfaces, vts=[])
-        print("{} >> {}".format(get_timestamp(), save_path))
+        print("{}".format(get_timestamp()))
         sys.stdout.flush()
     print("#### Done")
     sys.stdout.flush()

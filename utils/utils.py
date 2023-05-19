@@ -73,12 +73,14 @@ def genKRingAdj(adj_1, K=3):
 
 def getLaplacianMatrix(Adj):
     LapM = np.zeros_like(Adj)
-    LapM = LapM - Adj
+    LapM = -LapM + Adj
     LapM = LapM.astype(float)
     a = np.sum(Adj, axis=1).astype(float)
     for i in range(LapM.shape[0]):
-        LapM[i, i] = a[i]-1.
-        LapM[i, :] = LapM[i, :] / (a[i] - 1)
+        LapM[i, i] = a[i]
+    # for i in range(LapM.shape[0]):
+    #     LapM[i, i] = a[i]-1.
+    #     LapM[i, :] = LapM[i, :] / (a[i] - 1)
     return LapM
 
 

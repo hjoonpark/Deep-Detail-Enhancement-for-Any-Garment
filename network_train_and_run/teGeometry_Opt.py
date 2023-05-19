@@ -29,9 +29,12 @@ num_iter = 2000
 # smoothWeight = 0.01
 
 cEdgeWeight = 200.
-distWeight = 0.1
-smoothWeight = 0.0001
+distWeight = 0.01
+smoothWeight = 0.01
 
+print("cEdgeWeight:", cEdgeWeight)
+print("distWeight:", distWeight)
+print("smoothWeight:", smoothWeight)
 def get_timestamp():
     now = datetime.datetime.now()
     timestamp = "{:02}-{:02}-{:02} {:02}:{:02}:{:02}".format(now.year, now.month, now.day, now.hour, now.minute, now.second)
@@ -335,7 +338,6 @@ def run(args):
             print("NOT FOUND:", obj_path)
             assert 0
         x0, _, _ = read_obj(obj_path)
-        
 
         p = geo_opt_ours(bname, device, hres_path, x0, uvs, vertEdges_0, vertEdges_1, EdgeCounts, numV, LapM, out_dir)
         p = p.cpu().numpy()
