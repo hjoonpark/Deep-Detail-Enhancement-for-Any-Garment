@@ -29,7 +29,7 @@ num_iter = 2000
 # smoothWeight = 0.01
 
 cEdgeWeight = 0
-distWeight = 0
+distWeight = 10
 smoothWeight = 1000
 
 def get_timestamp():
@@ -226,7 +226,7 @@ def geo_opt_ours(fname, device, nmap_path, rrVertArray, uvs, vertEdges_0, vertEd
     Func_lossNormalCrossVert = Loss_NormalCrossVert(vertEdges_0, vertEdges_1, EdgeCounts, numV, device).to(device)
     Func_lossVertToGtVert = nn.L1Loss(reduction='mean').to(device)
 
-    adam = optim.Adam(params=[noise], lr=0.001, betas=(0.9, 0.999), amsgrad=True)
+    adam = optim.Adam(params=[noise], lr=0.01, betas=(0.9, 0.999), amsgrad=True)
     oldLoss = 0.
     t = time.time()
     
@@ -258,7 +258,7 @@ def geo_opt_ours(fname, device, nmap_path, rrVertArray, uvs, vertEdges_0, vertEd
             print("{} [{}] Iteration: {}, derror: {:.5f}, total Loss: {:.5f}, Geo Loss: {:.5f}, disLoss: {:.5f}, Smooth Loss: {:.5f}".format(\
                 get_timestamp(), fname, iteration, derror,  total_loss.item(), cEdgeWeight * loss_geo.item(), distWeight * loss_dist, smoothWeight * loss_smooth))
             sys.stdout.flush()
-        if derror < 0.0001 and iteration > 50:
+        if derror < 0.001 and iteration > 50:
         # if loss_geo < 1e-3:
             print("{} [{}] Iteration: {}, break : {:.5f}, total Loss: {:.5f}, Geo Loss: {:.5f}, disLoss: {:.5f}, Smooth Loss: {:.5f}".format(\
                 get_timestamp(), fname, iteration, derror,  total_loss.item(), cEdgeWeight * loss_geo.item(), distWeight * loss_dist, smoothWeight * loss_smooth))
@@ -298,8 +298,19 @@ def run(args):
     Adj = np.zeros((len(hrestshape), len(hrestshape))).astype(float)
     Adj[vertEdges_0, vertEdges_1] = 1
     Adj[vertEdges_1, vertEdges_0] = 1
+
+    src = set(vertEdges_0)
+    trg = set(vertEdges_1)
+    print(len(src), vertEdges_0.min(), vertEdges_0.max())
+    print(len(trg), vertEdges_1.min(), vertEdges_1.max())
+    d = Adj-Adj.T
+    print("Adj: {}".format(d.max()))
     LapM = torch.from_numpy(getLaplacianMatrix(Adj)).float().to(device)
 
+    # symmetric test
+    d = LapM - LapM.t()
+    print(f"symmetric: {d.max().item()}", d.max().item() == 0)
+    
     # Predictions nm
     # nm_dir = "output_ours/test/predictions"
     # hres_paths = sorted(glob.glob(os.path.join(nm_dir, f"*{folder}*")))

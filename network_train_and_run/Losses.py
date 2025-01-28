@@ -17,7 +17,7 @@ def LapSmooth_loss(Lap: torch.Tensor, vert: torch.Tensor):
     loss = torch.bmm(lv.unsqueeze(1), lv.unsqueeze(-1))
     return torch.sum(loss) / float(vert.size()[0])
 
-
+    
 class BatchFeatureLoss_Model(nn.Module):
     def __init__(self, device, c_alpha, s_beta, s_layWei=[1., 1., 1., 1., 1.]):
         super(BatchFeatureLoss_Model, self).__init__()

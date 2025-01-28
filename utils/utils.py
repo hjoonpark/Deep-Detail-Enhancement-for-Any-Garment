@@ -71,18 +71,30 @@ def genKRingAdj(adj_1, K=3):
     return Rst
 
 
-def getLaplacianMatrix(Adj):
-    LapM = np.zeros_like(Adj)
-    LapM = -LapM + Adj
-    LapM = LapM.astype(float)
-    a = np.sum(Adj, axis=1).astype(float)
-    for i in range(LapM.shape[0]):
-        LapM[i, i] = a[i]
-    # for i in range(LapM.shape[0]):
-    #     LapM[i, i] = a[i]-1.
-    #     LapM[i, :] = LapM[i, :] / (a[i] - 1)
+def getLaplacianMatrix_mine(R, C, EdgeCounts, edges_dict):
+    LapM = np.zeros((R*C, R*C)).astype(int)
+    for r in range(R):
+        for c in range(C):
+            i = r*C + c
+            degree = EdgeCounts[i]
+            LapM[i, i] = degree
+            for j in edges_dict[i]:
+                LapM[i, j] = -1
+                LapM[j, i] = -1
+    LapM = torch.from_numpy(LapM).float()
     return LapM
 
+def getLaplacianMatrix(Adj):
+    LapM = np.zeros_like(Adj)
+    LapM = LapM - Adj
+    LapM = LapM.astype(float)
+    a = np.sum(Adj, axis=1).astype(float)
+    print("LapM:", LapM.shape)
+    print("a:", a.shape)
+    for i in range(LapM.shape[0]):
+        LapM[i, i] = a[i]-1
+        # LapM[i, :] = LapM[i, :] / (a[i] - 1)
+    return LapM
 
 class _ModelMesh(object):
     def __init__(self, vertName, faceName, adjName, K=3, ss='obj'):

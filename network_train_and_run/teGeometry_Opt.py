@@ -28,10 +28,16 @@ num_iter = 2000
 # distWeight = 1
 # smoothWeight = 0.01
 
-cEdgeWeight = 200.
+cEdgeWeight = 200
 distWeight = 0.01
-smoothWeight = 0.01
+smoothWeight = 50
 
+"""
+/reconstruction_resume
+cEdgeWeight = 200
+distWeight = 0.01
+smoothWeight = 0.5
+"""
 print("cEdgeWeight:", cEdgeWeight)
 print("distWeight:", distWeight)
 print("smoothWeight:", smoothWeight)
@@ -252,10 +258,9 @@ def geo_opt_ours(fname, device, nmap_path, rrVertArray, uvs, vertEdges_0, vertEd
             loss_smooth = 0
 
         derror = abs(oldLoss-total_loss.item())
-        if iteration % 10 == 0:
-            if not os.path.exists(recon_dir):
-                print("EXIT: {} does not exist".format(recon_dir))
-                sys.exit()
+        if not os.path.exists(recon_dir):
+            print("EXIT: {} does not exist".format(recon_dir))
+            sys.exit()
         if iteration % 20 == 0:
             print("{} [{}] Iteration: {}, derror: {:.5f}, total Loss: {:.5f}, Geo Loss: {:.5f}, disLoss: {:.5f}, Smooth Loss: {:.5f}".format(\
                 get_timestamp(), fname, iteration, derror,  total_loss.item(), cEdgeWeight * loss_geo.item(), distWeight * loss_dist, smoothWeight * loss_smooth))
